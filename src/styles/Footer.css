@@ -1,0 +1,58 @@
+.footer-content {
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* Распределяем пространство между элементами */
+  width: 100%;
+}
+
+.left-half {
+  width: 50%; /* Каждая половина занимает 50% ширины футера */
+  display: flex;
+  justify-content: center; /* Выравниваем содержимое по горизонтали */
+  align-items: center; /* Выравниваем содержимое по вертикали */
+}
+
+.right-half {
+  width: 50%; /* Каждая половина занимает 50% ширины футера */
+  text-align: center; /* Выравниваем содержимое по центру */
+  display: flex; /* Располагаем элементы в строку */
+  justify-content: center; /* Выравниваем элементы по центру по горизонтали */
+}
+
+
+
+.footer-text {
+  margin: 0; /* Убираем внешние отступы у текста */
+  align-items: center;
+  text-decoration: none; /* Убираем подчеркивание ссылки */
+  color: #000000;
+  font-weight: bold; /* Жирный текст */
+  font-size: 16px; /* Размер шрифта 16 пикселей */
+  text-align: center; /* Выравниваем текст по центру */
+  line-height: 1; /* Высота строки равна 1.5 */
+}
+
+.footer-nav-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex; /* Располагаем элементы в строку */
+  flex-direction: row; /* Направляем элементы по горизонтали */
+
+}
+
+.footer-link {
+  color: #000000;
+  text-decoration: none;
+  padding: 10px;
+  margin-right: 50px; /* Добавляем правый отступ между элементами */
+}
+
+.footer-link:hover {
+  color: #ffffff; /* Белый цвет текста при наведении */
+  background-color: #594E3E; /* Цвет фона при наведении */
+}
+
+.footer-link.active {
+  color: #ffffff; /* Белый цвет текста при наведении */
+  background-color: #594E3E; /* Цвет фона при наведении */
+}

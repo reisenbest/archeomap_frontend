@@ -1,0 +1,69 @@
+.monument-detail-container {
+  padding: 20px;
+  max-height: calc(85vh - 10%); /* Фиксированная высота контейнера с запасом внизу */
+  overflow-y: auto; /* Включение вертикальной прокрутки */
+  background-color: rgb(172, 180, 174);
+}
+
+.monument-details-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333; /* Цвет заголовка */
+}
+
+.monument-details-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #555; /* Цвет названия */
+  margin-bottom: 10px;
+}
+
+.monument-details-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666; /* Цвет описания */
+  margin-bottom: 20px;
+}
+
+.monument-details-landmark {
+  font-style: italic;
+  color: #777; /* Цвет особенности */
+  margin-bottom: 20px;
+}
+
+.monument-details-address,
+.monument-details-coordinates,
+.monument-details-dating,
+.monument-details-categories,
+.monument-details-images {
+  margin-bottom: 20px;
+}
+
+.monument-details-categories ul,
+.monument-details-dating ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.monument-details-categories h4,
+.monument-details-dating h4,
+.monument-details-images h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #444; /* Цвет заголовков списков */
+  margin-bottom: 10px;
+}
+
+.monument-details-categories li,
+.monument-details-dating li {
+  font-size: 16px;
+  color: #666; /* Цвет элементов списка */
+}
+
+.monument-image {
+  margin-bottom: 20px;
+}
+
+.monument-image img {
+  max-width: 100%;
+}

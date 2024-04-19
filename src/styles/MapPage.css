@@ -1,0 +1,111 @@
+.map-page-container {
+  display: flex;
+  width: 100%;
+  z-index: 1;
+
+}
+
+.filters-popup-container {
+  flex-shrink: 0; /* Запрещаем сжатие фильтров */
+  width: 37%; /* Ширина контейнера с фильтрами */
+  margin-left: 63%; /* Смещаем контейнер с фильтрами вправо на 70% */
+  height: 100%;
+  position: fixed;
+  z-index: 0;
+  padding-left: 20px;
+  background-color: #EFEBDD;
+  border: 3px solid rgb(0, 0, 0);
+
+}
+
+
+.filters-buttons-container {
+  position: relative;
+  width: 100%; /* Ширина контейнера с фильтрами */ 
+  height: 10%;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+  background-color: #EFEBDD;
+  text-align: center;
+
+
+}
+
+.filters-filters-content-container {
+  position: relative;
+  width: 100%; /* Ширина контейнера с фильтрами */ 
+  height: 90%;
+  padding: 0;
+  margin-top: 10%;
+  z-index: 1;
+  background-color: #EFEBDD;
+  text-align: left;
+
+
+}
+
+
+.map-container {
+  position: fixed;
+  flex-grow: 1;
+  width: 63%;
+  height: 100%;
+  overflow-y: hidden; /* Запрещаем горизонтальную прокрутку */
+  overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+  z-index: 0;
+}
+
+.leaflet-container {
+  width: 100%; /* Устанавливаем ширину карты на 100% от ширины родительского элемента */
+  height: 100%; /* Устанавливаем высоту карты */
+  border: 3px solid rgb(0, 0, 0);
+}
+
+
+.monument-popup-button,
+.monument-filter-button {
+  background-color: #594E3E; /* Цвет фона кнопки */
+  color: #ffffff; /* Цвет текста кнопки */
+  border: 2px solid #594E3E; /* Граница кнопки */
+  padding: 8px 16px; /* Внутренние отступы кнопки */
+  cursor: pointer; /* Изменение курсора при наведении */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Плавные переходы для изменения свойств */
+  margin-top: 5%; /* Отступ сверху */
+  margin-left: 5%; /* Отступ слева */
+  margin-right: 5%; /* Отступ слева */
+  width: 32%;
+  height: 50%;
+  text-align: center;
+
+}
+
+.monument-filter-button.open,
+.monument-filter-button:hover,
+.monument-popup-button.open,
+.monument-popup-button:hover {
+  background-color: #C87E7B; /* Цвет фона кнопки при открытом фильтре и наведении */
+}
+.monument-filter-button:focus,
+.monument-popup-button:focus {
+  outline: none; /* Убираем фокусировку */
+}
+
+.monument-filter-button .fa-angle-down,
+.monument-popup-button .fa-angle-down {
+  margin-left: 8px; /* Отступ от текста кнопки до иконки */
+}
+
+
+.monument-type-button,
+.monument-date-button {
+  display: block;
+  background-color: #594E3E; /* Цвет фона кнопки */
+  color: #ffffff; /* Цвет текста кнопки */
+  border: 2px solid #8B4513; /* Коричневый бордер */
+  padding: 8px 16px; /* Внутренние отступы кнопки */
+  cursor: pointer; /* Изменение курсора при наведении */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Плавные переходы для изменения свойств */
+  margin-top: 10px; /* Отступ сверху */
+  
+}

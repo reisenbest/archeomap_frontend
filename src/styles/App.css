@@ -1,0 +1,54 @@
+
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.main{
+  background-color: #EFEBDD;
+  flex-grow: 1;
+  position: fixed;
+  top: 13%;
+  bottom: 8%;
+  width: 100%;
+  height: 100%;
+}
+
+
+.header {
+  background-color: #EFEBDD;
+  color: white;
+  position: fixed;
+  display: flex;
+  align-items: center; /* Центрирование содержимого по вертикали */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 13%; /* Изменено на 10vh */
+  border-bottom: 3px solid black; /* Добавляем рамку только снизу */
+  border-left: 3px solid black; /* Добавляем рамку только сверху */
+  border-right: 3px solid black; /* Добавляем рамку только сверху */
+  z-index: 2; /* Устанавливаем порядок слоя для хедера */
+}
+
+
+
+.footer {
+  background-color: #EFEBDD; /* синий цвет */
+  width: 100%;
+  height: 8%; 
+  position: fixed; /* фиксированная позиция, чтобы футер всегда был внизу страницы */
+  display: flex;
+  align-items: center; /* Центрирование содержимого по вертикали */
+  bottom: 0; /* футер прижимается к нижней границе страницы */
+  left: 0;
+  right: 0;
+  border-top: 3px solid black; /* Добавляем рамку только сверху */
+  border-left: 3px solid black; /* Добавляем рамку только сверху */
+  border-right: 3px solid black; /* Добавляем рамку только сверху */
+  z-index: 2; /* Устанавливаем порядок слоя для хедера */
+}

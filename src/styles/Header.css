@@ -1,0 +1,41 @@
+.header-content {
+  display: flex; /* Используем flexbox */
+  justify-content: space-between; /* Распределяем элементы равномерно по ширине контейнера */
+  align-items: center; /* Выравниваем элементы по центру вертикально */
+  width: 100%; /* Ширина контейнера занимает всю доступную ширину */
+}
+
+.header-nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end; /* Выравниваем элементы по правому краю */
+  width: 50%; /* Ширина списка занимает 50% ширины контейнера */
+}
+
+
+.header-logo {
+  width: 65px; /* Настройте размеры изображения */
+  margin-left: 50px;
+  margin-right: 20px; /* Добавьте отступ справа, чтобы разделить изображение и пункты меню */
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  padding: 10px;
+  margin-right: 50px; /* Добавляем правый отступ между элементами */
+  flex-grow: 1; /* Распределение доступного пространства между элементами */
+
+}
+
+.nav-link:hover {
+  color: #ffffff; /* Белый цвет текста при наведении */
+  background-color: #594E3E; /* Цвет фона при наведении */
+}
+
+.nav-link.active {
+  color: #ffffff; /* Белый цвет текста при наведении */
+  background-color: #594E3E; /* Цвет фона при наведении */
+}
