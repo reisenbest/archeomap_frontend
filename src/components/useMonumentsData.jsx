@@ -9,7 +9,7 @@ const useMonumentsData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/monuments/');
+        const response = await axios.get('http://89.111.170.193/api/monuments/');
         setMonuments(response.data);
 
         const allCategories = response.data.flatMap(monument => monument.classification_category);

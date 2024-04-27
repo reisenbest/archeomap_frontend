@@ -9,7 +9,7 @@ const MonumentDetailsPage = () => {
   useEffect(() => {
     const fetchMonumentData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/monuments/${id}/`);
+        const response = await fetch(`http://89.111.170.193/api/monuments/${id}/`);
         if (!response.ok) {
           throw new Error('Ошибка загрузки данных о памятнике');
         }
@@ -102,7 +102,7 @@ const MonumentDetailsPage = () => {
     <h3 className="monument-details-section-title">Images:</h3>
     {monumentData.images.map((image, index) => (
       <div key={index} className="monument-image">
-        <img src={`http://127.0.0.1:8000${image.image}`} alt={image.description} />
+        <img src={`http://89.111.170.193/${image.image}`} alt={image.description} />
         <p>{image.description}</p>
       </div>
     ))}
