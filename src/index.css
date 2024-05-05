@@ -1,8 +1,20 @@
+@font-face {
+  font-family: "Pixel-Ultima-Bold";   
+  src: local("Pixel-Ultima-Bold"),
+    url("./fonts/pixel-ultima-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Pixel-Ultima-Regular";   
+  src: local("Pixel-Ultima-Regular"),
+    url("./fonts/pixel-ultima-regular.ttf") format("truetype");
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
@@ -11,8 +23,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 
@@ -20,5 +32,7 @@ code {
 
 #root{
   height: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
 
 }

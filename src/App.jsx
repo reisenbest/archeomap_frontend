@@ -1,17 +1,31 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import AboutPage from "./pages/AboutPage";
+
+
+import NewsPage from "./pages/NewsPage";
 import MapPage from "./pages/MapPage.jsx";
 import StartPage from "./pages/StartPage.jsx";
+import MonumentDetailsPage from "./pages/MonumentDetailsPage.jsx";
+import GlossaryPage from "./pages/GlossaryPage.jsx";
+import MonumentsListPage from "./pages/MonumentsListPage.jsx";
+import BibliographyListPage from "./pages/BibliographyListPage.jsx";
+import ArticlesPage from "./pages/ArticlesPage.jsx";
 import AboutProjectPage from "./pages/AboutProjectPage.jsx";
 import AboutAuthorsPage from "./pages/AboutAuthorsPage.jsx";
-import MonumentDetailsPage from "./pages/MonumentDetailsPage.jsx";
+
+
+
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import './styles/Header.css';
 import './styles/Footer.css';
 import './styles/MapPage.css';
 import './styles/App.css';
+import './styles/MonumentsListPage.css';
+
+
+import './fonts/pixel-ultima-bold.ttf';
+import './fonts/pixel-ultima-regular.ttf';
 
 function App() {
   
@@ -26,8 +40,12 @@ function App() {
       <main className="main">
         <Routes>
           <Route path='/' element={<StartPage />} />
-          <Route path='/about' element={<AboutPage />} />
-          <Route path='/map' element={<React.Fragment><div className="map-page-container"><MapPage /></div></React.Fragment>} />
+          <Route path='/map' element={<React.Fragment><MapPage /></React.Fragment>} />
+          <Route path='/news' element={<NewsPage />} />
+          <Route path='/monumentslist' element={<MonumentsListPage />} />
+          <Route path='/vocabulary' element={<GlossaryPage />} />
+          <Route path='/articles' element={<ArticlesPage />} />
+          <Route path='/bibliographylist' element={<BibliographyListPage />} />
           <Route path='/about-project' element={<AboutProjectPage />} />
           <Route path='/about-authors' element={<AboutAuthorsPage />} />
           <Route path="/monument/:id" element={<MonumentDetailsPage />} />

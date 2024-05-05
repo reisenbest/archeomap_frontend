@@ -1,0 +1,25 @@
+.content {
+  text-align: left; /* Выравниваем текст по левому краю */
+  max-width: 100%; /* Максимальная ширина контейнера */
+  margin: 2%;
+
+
+}
+
+ol {
+  list-style-type: decimal; /* Формат нумерации списка */
+  padding-left: 20px; /* Отступ слева */
+}
+
+li {
+  margin-bottom: 10px; /* Отступ между элементами списка */
+}
+
+a {
+  color: #007bff; /* Цвет ссылок */
+  text-decoration: none; /* Убираем подчеркивание ссылок */
+}
+
+a:hover {
+  text-decoration: underline; /* Добавляем подчеркивание при наведении на ссылку */
+}

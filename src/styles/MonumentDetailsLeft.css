@@ -1,0 +1,15 @@
+.monument-details-left-column-content {
+  width: 90%;
+  min-height: auto; /* Прямоугольник будет иметь высоту, зависящую от содержимого */
+  background-color: #3B2D1D;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 20px auto 0;
+  text-align: justify; /* Выравнивание текста по обеим сторонам */
+  font-size: calc(0.8vh + 0.8vh);
+}
+
+.monument-details-left-column-content p {
+  color: white;
+  margin-bottom: 10px; /* Добавление отступа между параграфами */
+}

@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import TypeDropdown from '../components/TypeDropdown';
+import DatingDropdown from '../components/DatingDropdown'; // Импортируем компонент DatingDropdown
+import PopupContent from '../components/PopupContent';
 
-const FilterPopupPage = ({ categories, selectedCategories, handleClearSelectionChange, handleCategoryChange }) => {
+const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDating, handleClearSelectionChange, handleCategoryChange, handleDatingChange, selectedMarkerInfo }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isTypeOpen, setIsTypeOpen] = useState(false);
   const [isDateOpen, setIsDateOpen] = useState(false);
+  const [markerInfo, setMarkerInfo] = useState(null);
+
+  useEffect(() => {
+    // Обновляем информацию о маркере при изменении выбранного маркера
+    setMarkerInfo(selectedMarkerInfo);
+  }, [selectedMarkerInfo]);
 
   const toggleFilterButton = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -21,18 +30,16 @@ const FilterPopupPage = ({ categories, selectedCategories, handleClearSelectionC
 
   const toggleTypeButton = () => {
     setIsTypeOpen(!isTypeOpen);
-    setIsDateOpen(false);
     setActiveButton('type');
   };
 
   const toggleDateButton = () => {
     setIsDateOpen(!isDateOpen);
-    setIsTypeOpen(false);
     setActiveButton('date');
   };
 
   return (
-    <div className='filters-popup-container'>
+    <>
       <div className={`filters-buttons-container ${isFilterOpen || isTypeOpen || isDateOpen ? 'open' : ''}`}>
         <button
           className={`monument-filter-button ${isFilterOpen ? 'open' : ''}`}
@@ -40,52 +47,41 @@ const FilterPopupPage = ({ categories, selectedCategories, handleClearSelectionC
         >
           Фильтры
         </button>
+        
         <button
           className={`monument-popup-button ${isPopupOpen ? 'open' : ''}`}
           onClick={togglePopupButton}
         >
           О памятнике
         </button>
+        
         {isFilterOpen && (
-          <div className="dropdown-menu">
-            <button
-              className={`monument-type-button ${isTypeOpen ? 'open' : ''}`}
-              onClick={toggleTypeButton}
-            >
-              Тип
-            </button>
-            <div className={`dropdown-content ${isTypeOpen ? 'open' : ''}`}>
-              {/* Код для списка типов */}
-              {categories.map((category, index) => (
-                <div key={index}>
-                  <input 
-                    type="checkbox" 
-                    id={`category-${index}`} 
-                    value={category} 
-                    onChange={handleCategoryChange} 
-                    checked={selectedCategories.includes(category)} 
-                  />
-                  <label htmlFor={`category-${index}`}>{category}</label>
-                </div>
-              ))}
-            </div>
-            <button
-              className={`monument-date-button ${isDateOpen ? 'open' : ''}`}
-              onClick={toggleDateButton}
-            >
-              Датировка
-            </button>
-            {/* Здесь можно добавить список для датировки */}
-          </div>
+          <>
+            <TypeDropdown
+              categories={categories}
+              handleCategoryChange={handleCategoryChange}
+              selectedCategories={selectedCategories}
+              isTypeOpen={isTypeOpen}
+              toggleTypeButton={toggleTypeButton}
+            />
+            
+            {/* Используем DatingDropdown */}
+            <DatingDropdown
+              dating={dating}
+              isDateOpen={isDateOpen}
+              toggleDateButton={toggleDateButton}
+              handleDatingChange={handleDatingChange}
+              selectedDating={selectedDating}
+            />
+          </>
         )}
       </div>
-      {isPopupOpen && (
-        <div className="popup-content">
-          {/* Ваш код для попапа */}
-          <p>Это кнопка попап</p>
-        </div>
-      )}
-    </div>
+
+
+        {isPopupOpen &&
+         <PopupContent markerInfo={markerInfo} />} {/* Используем компонент PopupContent */}
+
+</>
   );
 };
 

@@ -1,58 +1,151 @@
 .footer-content {
-  height: 100%;
   display: flex;
-  justify-content: space-between; /* Распределяем пространство между элементами */
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
 .left-half {
-  width: 50%; /* Каждая половина занимает 50% ширины футера */
+  width: 50%;
   display: flex;
-  justify-content: center; /* Выравниваем содержимое по горизонтали */
-  align-items: center; /* Выравниваем содержимое по вертикали */
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.footer-text {
+  font-family: Pixel-Ultima-Bold;
+  margin: 0;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1;
+  font-size: calc(1vw + 1vh); /* Размер шрифта зависит от ширины экрана */
+  
 }
 
 .right-half {
-  width: 50%; /* Каждая половина занимает 50% ширины футера */
-  text-align: center; /* Выравниваем содержимое по центру */
-  display: flex; /* Располагаем элементы в строку */
-  justify-content: center; /* Выравниваем элементы по центру по горизонтали */
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: calc(0.8vw + 0.8vh); /* Размер шрифта зависит от ширины экрана */
 }
 
+.burger-menu {
+  display: none;
+  cursor: pointer;
+}
 
+.burger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px;
+}
 
-.footer-text {
-  margin: 0; /* Убираем внешние отступы у текста */
-  align-items: center;
-  text-decoration: none; /* Убираем подчеркивание ссылки */
-  color: #000000;
-  font-weight: bold; /* Жирный текст */
-  font-size: 16px; /* Размер шрифта 16 пикселей */
-  text-align: center; /* Выравниваем текст по центру */
-  line-height: 1; /* Высота строки равна 1.5 */
+.burger-menu.open .burger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.open .burger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .footer-nav-list {
   list-style-type: none;
   padding: 0;
-  display: flex; /* Располагаем элементы в строку */
-  flex-direction: row; /* Направляем элементы по горизонтали */
-
+  margin: 0;
+  display: flex;
+  flex-direction: row;
 }
 
 .footer-link {
   color: #000000;
   text-decoration: none;
-  padding: 10px;
-  margin-right: 50px; /* Добавляем правый отступ между элементами */
+  padding-right: 7px;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 50px;
+  border-radius: 10px;
 }
 
 .footer-link:hover {
-  color: #ffffff; /* Белый цвет текста при наведении */
-  background-color: #594E3E; /* Цвет фона при наведении */
+  color: #ffffff;
+  background-color: #594E3E;
 }
 
 .footer-link.active {
-  color: #ffffff; /* Белый цвет текста при наведении */
-  background-color: #594E3E; /* Цвет фона при наведении */
+  color: #ffffff;
+  background-color: #594E3E;
+}
+
+/* Адаптивные стили */
+@media screen and (max-width: 768px) {
+  .right-half {
+    position: relative;
+  }
+
+  .burger-menu {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+
+  .footer-nav-list {
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    position: relative;
+    bottom: calc(100%);
+    left: 0;
+    width: auto;
+    max-width: calc(100vw - 20px);
+    background-color: #EFEBDD;
+    border: 1px solid #594E3E;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0; /* Начальная непрозрачность */
+  }
+    
+  
+  .footer-nav-list.open {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+  }
+  
+  .footer-link {
+    color: #000000;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0;
+    transition: background-color 0.3s; /* Плавное изменение фона при наведении */
+  }
+  
+  .footer-link:hover {
+    color: #ffffff;
+    background-color: #594E3E;
+  }
+  
+  .footer-link.active {
+    color: #ffffff;
+    background-color: #594E3E;
+  }
+
+
+  .left-half {
+    position: relative;
+  }
+  
+
 }

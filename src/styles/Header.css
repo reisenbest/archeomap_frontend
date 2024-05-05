@@ -1,8 +1,33 @@
 .header-content {
-  display: flex; /* Используем flexbox */
-  justify-content: space-between; /* Распределяем элементы равномерно по ширине контейнера */
-  align-items: center; /* Выравниваем элементы по центру вертикально */
-  width: 100%; /* Ширина контейнера занимает всю доступную ширину */
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: calc(0.7vw + 0.7vh);
+  background-color: #EFEBDD;
+  position: relative; /* Добавим относительное позиционирование для правильного позиционирования бургер-меню */
+}
+
+.header-logo-wrapper {
+  max-width: 20%;
+}
+
+.header-logo {
+  width: 65px;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+
+.header-navbar-wrapper {
+  width: 80%;
+  max-width: 80%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative; /* Добавим относительное позиционирование */
 }
 
 .header-nav-list {
@@ -10,32 +35,97 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: flex-end; /* Выравниваем элементы по правому краю */
-  width: 50%; /* Ширина списка занимает 50% ширины контейнера */
-}
-
-
-.header-logo {
-  width: 65px; /* Настройте размеры изображения */
-  margin-left: 50px;
-  margin-right: 20px; /* Добавьте отступ справа, чтобы разделить изображение и пункты меню */
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .nav-link {
   color: #000000;
   text-decoration: none;
-  padding: 10px;
-  margin-right: 50px; /* Добавляем правый отступ между элементами */
-  flex-grow: 1; /* Распределение доступного пространства между элементами */
-
+  padding: 7px;
+  margin-right: 20px;
+  white-space: nowrap;
+  border-radius: 10px;
 }
 
 .nav-link:hover {
-  color: #ffffff; /* Белый цвет текста при наведении */
-  background-color: #594E3E; /* Цвет фона при наведении */
+  color: #ffffff;
+  background-color: #594E3E;
 }
 
 .nav-link.active {
-  color: #ffffff; /* Белый цвет текста при наведении */
-  background-color: #594E3E; /* Цвет фона при наведении */
+  color: #ffffff;
+  background-color: #594E3E;
+}
+
+.burger-menu {
+  display: none;
+  cursor: pointer;
+  position: absolute; /* Добавим абсолютное позиционирование для бургер-меню */
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.burger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px;
+}
+
+.burger-menu.open .burger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.open .burger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media screen and (max-width: 768px) {
+  .header-content {
+    font-size: calc(0.7vw + 0.8vh);
+  }
+
+
+  .header-nav-list {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .header-navbar-wrapper {
+    position: relative; /* Изменим позиционирование на относительное */
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: none; /* Сброс максимальной ширины */
+    overflow: visible; /* Показываем содержимое, которое выходит за границы */
+  }
+
+
+  .header-nav-list.open {
+    position: fixed; /* Изменяем на фиксированное позиционирование */
+    top: 23%; /* Перемещаем вверх на 50% */
+    left: 80%; /* Перемещаем влево на 50% */
+    transform: translate(-50%, -50%); /* Центрируем относительно центра экрана */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; /* Отступы вокруг элементов списка */
+    width: auto; /* Сбрасываем ширину на auto */
+    text-align: center; /* Выравнивание элементов по центру */
+    background-color: #EFEBDD;
+    border: 1px solid #594E3E;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+  }
 }

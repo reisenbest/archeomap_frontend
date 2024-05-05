@@ -1,0 +1,90 @@
+.monument-detail-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px; /* Добавляем отступы слева и справа */
+  font-size: calc(0.85vh + 0.85vh);
+}
+
+.button-monument {
+  background-color: #C87E7B;
+  border: 2px solid #594E3E; 
+  color: #fff;
+  padding: 1.2vw 3vh; /* Верхний и нижний отступ равен 1% ширины экрана, правый и левый отступ равен 3% ширины экрана */
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: fit-content; /* Ширина кнопки будет автоматически подстраиваться под содержимое */
+  margin: 0 auto; /* Центрирование кнопки по горизонтали */
+  margin-top: 5%;
+  border-radius: 15px;
+  font-size: calc(0.7vw + 0.7vh);
+  
+}
+
+.button-monument:hover {
+    color: black;
+  
+}
+
+.monument-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: Pixel-Ultima-Bold;
+}
+
+/* Стили для остальных элементов */
+.monument-type,
+.monument-dating,
+.monument-custom-category,
+.monument-description,
+.monument-authors,
+.monument-organization,
+.monument-research-years,
+.monument-address,
+.monument-sources,
+.monument-content,
+.monument-details-section {
+  text-align: left; /* Выравнивание по левому краю */
+
+}
+
+.monument-images-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.monument-image {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.monument-image img {
+  max-width: 150px;
+  height: auto;
+}
+
+.monument-image p {
+  margin-top: 5px;
+}
+
+.photo-slider-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-description {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #fff;
+}

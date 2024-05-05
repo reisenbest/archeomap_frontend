@@ -1,69 +1,75 @@
-.monument-detail-container {
-  padding: 20px;
-  max-height: calc(85vh - 10%); /* Фиксированная высота контейнера с запасом внизу */
-  overflow-y: auto; /* Включение вертикальной прокрутки */
-  background-color: rgb(172, 180, 174);
+/* MonumentDetailsPage.css */
+
+.monument-details-page {
+  position: relative; /* Для правильного позиционирования абсолютных элементов внутри */
+  width: 100%; /* Делаем контейнер растягивающимся на всю ширину */
+  height: 100%; /* Делаем контейнер растягивающимся на всю высоту */
+  overflow-y: auto; /* Разрешаем вертикальную прокрутку, если содержимое не помещается */
+  overflow-x: hidden;
+  font-size: calc(0.7vw + 0.7vh);
 }
 
-.monument-details-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333; /* Цвет заголовка */
+.monument-details-left-col {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  
 }
 
-.monument-details-name {
-  font-size: 24px;
-  font-weight: bold;
-  color: #555; /* Цвет названия */
-  margin-bottom: 10px;
+.monument-details-center-col {
+  position: absolute; /* Используем относительное позиционирование */
+  left: 20%;
+  width: 60%;
+  border: 3px solid #000000;
+  height: auto; /* Высота зависит от содержимого */
 }
 
-.monument-details-description {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666; /* Цвет описания */
-  margin-bottom: 20px;
+.monument-details-right-col {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  padding-left: 20px; /* Отступ слева для содержимого в правой колонке */
 }
 
-.monument-details-landmark {
-  font-style: italic;
-  color: #777; /* Цвет особенности */
-  margin-bottom: 20px;
+/* Дополнительные стили для текста */
+.monument-details-left-col p,
+.monument-details-right-col p {
+  color: #000;
 }
 
-.monument-details-address,
-.monument-details-coordinates,
-.monument-details-dating,
-.monument-details-categories,
-.monument-details-images {
-  margin-bottom: 20px;
+
+@media screen and (max-width: 768px) {
+  .monument-details-left-col,
+  .monument-details-center-col,
+  .monument-details-right-col {
+    position: static; /* Сбросим абсолютное позиционирование */
+    width: 100%; /* Ширина всех колонок на всю ширину экрана */
+  }
+
+  .monument-details-center-col {
+    order: -1; /* Поместим центральную колонку наверху */
+    border-left: none; /* Уберем рамку для центральной колонки */
+    border-right: none; /* Уберем рамку для центральной колонки */
+    border-top: none; /* Уберем рамку для центральной колонки */
+    border-bottom: 2px solid #594E3E; /* Добавляем нижний бордер */
+  }
+
+  .monument-details-left-col {
+    order: 0; /* Поместим левую колонку следующей */
+    border-left: none; /* Уберем рамку для центральной колонки */
+    border-right: none; /* Уберем рамку для центральной колонки */
+    border-top: none; /* Уберем рамку для центральной колонки */
+    padding-bottom: 10px;
+    border-bottom: 2px solid #594E3E; /* Добавляем нижний бордер */
+  }
+
+  .monument-details-right-col {
+    order: 1; /* Поместим правую колонку внизу */
+    
+  }
 }
 
-.monument-details-categories ul,
-.monument-details-dating ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.monument-details-categories h4,
-.monument-details-dating h4,
-.monument-details-images h4 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #444; /* Цвет заголовков списков */
-  margin-bottom: 10px;
-}
-
-.monument-details-categories li,
-.monument-details-dating li {
-  font-size: 16px;
-  color: #666; /* Цвет элементов списка */
-}
-
-.monument-image {
-  margin-bottom: 20px;
-}
-
-.monument-image img {
-  max-width: 100%;
-}
