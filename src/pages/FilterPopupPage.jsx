@@ -6,7 +6,7 @@ import PopupContent from '../components/PopupContent';
 const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDating, handleClearSelectionChange, handleCategoryChange, handleDatingChange, selectedMarkerInfo }) => {
   const [activeButton, setActiveButton] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(true); // Устанавливаем значение по умолчанию в true
   const [isTypeOpen, setIsTypeOpen] = useState(false);
   const [isDateOpen, setIsDateOpen] = useState(false);
   const [markerInfo, setMarkerInfo] = useState(null);
