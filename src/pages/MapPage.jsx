@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const customMarkerIcon = L.icon({
   iconUrl: markerIcon,
-  iconSize: [9, 9],
+  iconSize: [10, 10],
   iconAnchor: [0, 0],
 });
 
@@ -69,8 +69,9 @@ function MapPage() {
         </div>
       <div className="map-container">
         <MapContainer 
-          center={[60.1, 30.3]}
-          zoom={9}
+        // уточнить координату центра 
+          center={[59.936218, 30.248851]} 
+          zoom={10}
           minZoom={7}
           style={{ height: "85vh" }}
           maxBounds={maxBounds}

@@ -6,7 +6,7 @@
   box-sizing: border-box;
   margin: 20px auto 0;
   text-align: justify; /* Выравнивание текста по обеим сторонам */
-  font-size: calc(0.8vh + 0.8vh);
+  font-size: calc(0.65vw + 0.85vh);
 }
 
 .monument-details-left-column-content p {

@@ -12,6 +12,7 @@ import BibliographyListPage from "./pages/BibliographyListPage.jsx";
 import ArticlesPage from "./pages/ArticlesPage.jsx";
 import AboutProjectPage from "./pages/AboutProjectPage.jsx";
 import AboutAuthorsPage from "./pages/AboutAuthorsPage.jsx";
+import HowToUsePage from "./pages/HowToUsePage.jsx";
 
 
 
@@ -48,6 +49,7 @@ function App() {
           <Route path='/bibliographylist' element={<BibliographyListPage />} />
           <Route path='/about-project' element={<AboutProjectPage />} />
           <Route path='/about-authors' element={<AboutAuthorsPage />} />
+          <Route path='/how-to-use' element={<HowToUsePage />} />
           <Route path="/monument/:id" element={<MonumentDetailsPage />} />
         </Routes>
         </main>

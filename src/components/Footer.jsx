@@ -4,7 +4,8 @@ import { Link, useMatch } from 'react-router-dom';
 const Footer = () => {
   const isAboutProject = useMatch('/about-project');
   const isAboutAuthors = useMatch('/about-authors');
-
+  const iSHowToUsePage = useMatch('/how-to-use');
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,7 +21,7 @@ const Footer = () => {
       </div>
       <div className="right-half">
         <nav className='footer-navbar-wrapper'>
-          <div className={`burger-menu ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <div className={`burger-menu-footer ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
             <div className="burger-line"></div>
             <div className="burger-line"></div>
             <div className="burger-line"></div>
@@ -28,6 +29,7 @@ const Footer = () => {
           <ul className={`footer-nav-list ${isMenuOpen ? 'open' : ''}`}>
             <li><Link to="/about-project" className={isAboutProject ? "footer-link active" : "footer-link"}>О проекте</Link></li>
             <li><Link to="/about-authors" className={isAboutAuthors ? "footer-link active" : "footer-link"}>Об авторах</Link></li>   
+            <li><Link to="/how-to-use" className={iSHowToUsePage ? "footer-link active" : "footer-link"}>Как пользоваться?</Link></li>   
           </ul>
         </nav>
       </div>

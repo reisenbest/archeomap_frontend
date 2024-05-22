@@ -61,7 +61,7 @@
   background-color: #594E3E; /* Цвет фона кнопки */
   color: #ffffff; /* Цвет текста кнопки */
   border: 2px solid #594E3E; /* Граница кнопки */
-  padding: 2% 4%; /* Внутренние отступы в процентах */
+  padding: 1% 1%; /* Внутренние отступы в процентах */
   cursor: pointer; /* Изменение курсора при наведении */
   transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Плавные переходы для изменения свойств */
   margin-top: 5%; /* Отступ сверху */
@@ -250,8 +250,9 @@
   z-index: 999;
 }
 
+
 .PhotoView__Photo {
-  margin-bottom: 10%;
+ 
 }
 
 .info-text,
@@ -285,7 +286,6 @@
     margin-bottom: 15%;
     margin-left: 5%; /* Отступ слева */
     margin-right: 5%; /* Отступ справа */
-
     padding: 5%; /* Внутренний отступ */
     min-width:  80%;
     width: auto; /* Ширина элемента (100% - 5% - 5% = 90%) */

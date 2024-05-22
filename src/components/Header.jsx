@@ -27,7 +27,7 @@ const Header = () => {
         </div>
         <nav className='header-navbar-wrapper'>
           <ul className={`header-nav-list ${isMenuOpen ? 'open' : ''}`}>
-            <li><Link to="/" className={isStartPageActive ? "nav-link active" : "nav-link"}>WelcomePage</Link></li>
+            <li><Link to="/" className={isStartPageActive ? "nav-link active" : "nav-link"}>Старт</Link></li>
             <li><Link to="/map" className={isMapActive ? "nav-link active" : "nav-link"}>Карта</Link></li>
             <li><Link to="/monumentslist" className={isMonumentListActive ? "nav-link active" : "nav-link"}>Список памятников</Link></li>
             <li><Link to="/bibliographylist" className={isBibliographyListActive ? "nav-link active" : "nav-link"}>Источники</Link></li>
@@ -35,7 +35,7 @@ const Header = () => {
             <li><Link to="/articles" className={isArticleActive ? "nav-link active" : "nav-link"}>Статьи</Link></li>
             <li><Link to="/news" className={isNewsActive ? "nav-link active" : "nav-link"}>Новости</Link></li>
           </ul>
-          <div className={`burger-menu ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <div className={`burger-menu-header ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
             <div className="burger-line"></div>
             <div className="burger-line"></div>
             <div className="burger-line"></div>

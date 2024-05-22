@@ -34,7 +34,7 @@
   font-size: calc(0.8vw + 0.8vh); /* Размер шрифта зависит от ширины экрана */
 }
 
-.burger-menu {
+.burger-menu-footer {
   display: none;
   cursor: pointer;
 }
@@ -46,15 +46,15 @@
   margin: 5px;
 }
 
-.burger-menu.open .burger-line:nth-child(1) {
+.burger-menu-footer.open .burger-line:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
 
-.burger-menu.open .burger-line:nth-child(2) {
+.burger-menu-footer.open .burger-line:nth-child(2) {
   opacity: 0;
 }
 
-.burger-menu.open .burger-line:nth-child(3) {
+.burger-menu-footer.open .burger-line:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
@@ -88,12 +88,12 @@
 }
 
 /* Адаптивные стили */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1028px) {
   .right-half {
     position: relative;
   }
 
-  .burger-menu {
+  .burger-menu-footer {
     display: block;
     position: absolute;
     top: 50%;

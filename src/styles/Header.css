@@ -58,7 +58,7 @@
   background-color: #594E3E;
 }
 
-.burger-menu {
+.burger-menu-header {
   display: none;
   cursor: pointer;
   position: absolute; /* Добавим абсолютное позиционирование для бургер-меню */
@@ -74,15 +74,15 @@
   margin: 5px;
 }
 
-.burger-menu.open .burger-line:nth-child(1) {
+.burger-menu-header.open .burger-line:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
 
-.burger-menu.open .burger-line:nth-child(2) {
+.burger-menu-header.open .burger-line:nth-child(2) {
   opacity: 0;
 }
 
-.burger-menu.open .burger-line:nth-child(3) {
+.burger-menu-header.open .burger-line:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
@@ -96,7 +96,7 @@
     display: none;
   }
 
-  .burger-menu {
+  .burger-menu-header {
     display: block;
   }
 
