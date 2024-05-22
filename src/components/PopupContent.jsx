@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { API_BASE_URL } from '../config.jsx';
-import { PhotoSlider, PhotoView } from 'react-photo-view';
+import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import LinkLogo from '../assets/link-icon.png';
 
 const PopupContent = ({ markerInfo }) => {
   const [sliderVisible, setSliderVisible] = useState(false);
@@ -42,7 +43,9 @@ const PopupContent = ({ markerInfo }) => {
         <p><strong>Кастомные категории:</strong> {markerInfo.custom_category.join(', ')}</p>
       </div>
       <div className='monument-description'>
-        <p><strong>Описание:</strong> {markerInfo.description}</p>
+        <p><strong>Описание:</strong></p>
+         {/* Используем dangerouslySetInnerHTML для вставки HTML-разметки из markerInfo.description */}
+        <div dangerouslySetInnerHTML={{ __html: markerInfo.description }} /> 
       </div>
       <div className='monument-authors'>
         <p><strong>Авторы:</strong> {markerInfo.authors.join(', ')}</p>
@@ -51,27 +54,50 @@ const PopupContent = ({ markerInfo }) => {
         <p><strong>Организации:</strong> {markerInfo.organizations.join(', ')}</p>
       </div>
       <div className='monument-research-years'>
-        <p><strong>Годы исследований:</strong> {markerInfo.research_years.join(', ')}</p>
+        <p>
+            <strong>Годы исследований:</strong> {markerInfo.research_years.sort((a, b) => a - b).join(', ')}
+        </p>
       </div>
+
       <div className='monument-address'> 
         <p><strong>Местоположение:</strong> {markerInfo.address}</p>
       </div>
-    <div className='monument-sources'>
-      <p><strong>Источники:</strong></p>
-        <ul>
-          {markerInfo.sources.map((source, index) => (
-            <li key={index}>{source}</li>
-          ))}
-        </ul>
-    </div> 
+      <div className='monument-sources'>
+        <p><strong>Источники:</strong></p>
+          <ul>
+            {Object.entries(markerInfo.sources).map(([title, link], index) => (
+              <li key={index}>
+                {title}
+                {link && (
+                  <>
+                    {' '}
+                    <a href={link} target="_blank" rel="noopener noreferrer">
+                      <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
+                    </a>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+      </div>
      <div className='monument-content'>
-     <p><strong>Контент:</strong></p>
-      <ul>
-        {markerInfo.content.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-     </div>
+      <p><strong>Контент:</strong></p>
+        <ul>
+          {Object.entries(markerInfo.content).map(([title, link], index) => (
+                <li key={index}>
+                  {title}
+                  {link && (
+                    <>
+                      {' '}
+                      <a href={link} target="_blank" rel="noopener noreferrer">
+                        <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
+                      </a>
+                    </>
+                  )}
+                </li>
+              ))}
+        </ul>
+        </div>
       
       <div className='monument-image-gallery'>
         <p><strong>Галлерея:</strong></p>
