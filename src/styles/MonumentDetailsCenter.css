@@ -84,3 +84,13 @@
   text-align: center;
   color: #fff;
 }
+
+.source-link-icon {
+  transition: transform 0.3s; /* Плавный переход для ховер-эффекта */
+  width: 16px;
+  height: 16px;
+}
+
+.source-link-icon:hover {
+  transform: scale(1.2); /* Увеличение размера при наведении */
+}

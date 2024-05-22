@@ -3,6 +3,7 @@ import { API_BASE_URL } from '../config.jsx';
 import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import '../styles/MonumentDetailsCenter.css';
+import LinkLogo from '../assets/link-icon.png';
 
 const MonumentDetailsCenter = ({ id }) => {
   const [monumentData, setMonumentData] = useState(null);
@@ -51,7 +52,9 @@ const MonumentDetailsCenter = ({ id }) => {
         <p><strong>Кастомные категории:</strong> {monumentData.custom_category.join(', ')}</p>
       </div>
       <div className='monument-description'>
-        <p><strong>Описание:</strong> {monumentData.description}</p>
+        <p><strong>Описание:</strong></p>
+         {/* Используем dangerouslySetInnerHTML для вставки HTML-разметки из markerInfo.description */}
+        <div dangerouslySetInnerHTML={{ __html: markerInfo.description }} /> 
       </div>
       <div className='monument-authors'>
         <p><strong>Авторы:</strong> {monumentData.authors.join(', ')}</p>
@@ -60,27 +63,49 @@ const MonumentDetailsCenter = ({ id }) => {
         <p><strong>Организации:</strong> {monumentData.organizations.join(', ')}</p>
       </div>
       <div className='monument-research-years'>
-        <p><strong>Годы исследований:</strong> {monumentData.research_years.join(', ')}</p>
+        <p>
+            <strong>Годы исследований:</strong> {markerInfo.research_years.sort((a, b) => a - b).join(', ')}
+        </p>
       </div>
       <div className='monument-address'> 
         <p><strong>Местоположение:</strong> {monumentData.address}</p>
       </div>
       <div className='monument-sources'>
         <p><strong>Источники:</strong></p>
-        <ul>
-          {monumentData.sources.map((source, index) => (
-            <li key={index}>{source}</li>
-          ))}
-        </ul>
-      </div> 
-      <div className='monument-content'>
-        <p><strong>Контент:</strong></p>
-        <ul>
-          {monumentData.content.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
+          <ul>
+            {Object.entries(markerInfo.sources).map(([title, link], index) => (
+              <li key={index}>
+                {title}
+                {link && (
+                  <>
+                    {' '}
+                    <a href={link} target="_blank" rel="noopener noreferrer">
+                      <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
+                    </a>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
       </div>
+     <div className='monument-content'>
+      <p><strong>Контент:</strong></p>
+        <ul>
+          {Object.entries(markerInfo.content).map(([title, link], index) => (
+                <li key={index}>
+                  {title}
+                  {link && (
+                    <>
+                      {' '}
+                      <a href={link} target="_blank" rel="noopener noreferrer">
+                        <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
+                      </a>
+                    </>
+                  )}
+                </li>
+              ))}
+        </ul>
+        </div>
       <div className="monument-details-section">
         <h3 className="monument-details-section-title">Галлерея:</h3>
         <div className="monument-images-container">
