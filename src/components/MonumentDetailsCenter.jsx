@@ -73,7 +73,7 @@ const MonumentDetailsCenter = ({ id }) => {
       <div className='monument-sources'>
         <p><strong>Источники:</strong></p>
           <ul>
-            {Object.entries(markerInfo.sources).map(([title, link], index) => (
+            {Object.entries(monumentData.sources).map(([title, link], index) => (
               <li key={index}>
                 {title}
                 {link && (
@@ -91,7 +91,7 @@ const MonumentDetailsCenter = ({ id }) => {
      <div className='monument-content'>
       <p><strong>Контент:</strong></p>
         <ul>
-          {Object.entries(markerInfo.content).map(([title, link], index) => (
+          {Object.entries(monumentData.content).map(([title, link], index) => (
                 <li key={index}>
                   {title}
                   {link && (
