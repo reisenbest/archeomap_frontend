@@ -54,7 +54,7 @@ const MonumentDetailsCenter = ({ id }) => {
       <div className='monument-description'>
         <p><strong>Описание:</strong></p>
          {/* Используем dangerouslySetInnerHTML для вставки HTML-разметки из markerInfo.description */}
-        <div dangerouslySetInnerHTML={{ __html: markerInfo.description }} /> 
+        <div dangerouslySetInnerHTML={{ __html: monumentData.description }} /> 
       </div>
       <div className='monument-authors'>
         <p><strong>Авторы:</strong> {monumentData.authors.join(', ')}</p>
@@ -64,7 +64,7 @@ const MonumentDetailsCenter = ({ id }) => {
       </div>
       <div className='monument-research-years'>
         <p>
-            <strong>Годы исследований:</strong> {markerInfo.research_years.sort((a, b) => a - b).join(', ')}
+            <strong>Годы исследований:</strong> {monumentData.research_years.sort((a, b) => a - b).join(', ')}
         </p>
       </div>
       <div className='monument-address'> 
