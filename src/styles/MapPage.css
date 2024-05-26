@@ -300,6 +300,15 @@ p strong {
   word-wrap: break-word; /* Альтернативный вариант для кроссбраузерности */
 }
 
+.image-description a {
+  color: #c77d7a; /* Красный цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+  font-weight: bold; /* Жирный шрифт */
+}
+
+.image-description a:hover {
+  color: #769978; /* Темно-красный цвет при наведении */
+}
 .PhotoView__Photo {
  
 }

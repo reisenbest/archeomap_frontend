@@ -139,7 +139,7 @@ const PopupContent = ({ markerInfo }) => {
               onIndexChange={setCurrentIndex}
               overlayRender={(overlayProps) => (
                 <div className='image-description'>
-                  <p>{overlayProps.images[currentIndex].description}</p>
+                  <p dangerouslySetInnerHTML={{ __html: overlayProps.images[currentIndex].description }}></p>
                 </div>
               )}
             />
