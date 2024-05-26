@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/StartPage.css';
-import backgroundImage from '../assets/welcome-page-img.jpg'; // Замените на путь к вашему изображению
 
 // отрисовывваем привественную страницу
 function WelcomePage() {
   return (
-    <div className="welcome-page-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div className="welcome-page-container">
       <div className="overlay">
         <div className="welcome-page-content">
           <h1>Археологическая карта Санкт-Петербурга</h1>

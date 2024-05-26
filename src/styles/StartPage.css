@@ -124,3 +124,16 @@
     font-size: 0.9em;
   }
 }
+
+@media (max-aspect-ratio: 1/1) {
+  .welcome-page-container {
+    background-image: url('../assets/welcome-page-img-mobile.jpg'); /* Путь к вашему изображению для телефонов */
+  }
+}
+
+/* Медиа-запрос для экранов с соотношением сторон больше 1:1 (например, для десктопов) */
+@media (min-aspect-ratio: 1/1) {
+  .welcome-page-container {
+    background-image: url('../assets/welcome-page-img.jpg'); /* Путь к вашему изображению для десктопов */
+  }
+}
