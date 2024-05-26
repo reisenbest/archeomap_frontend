@@ -1,62 +1,74 @@
 .monument-detail-container {
   display: flex;
   flex-direction: column;
-  padding: 0 20px; /* Добавляем отступы слева и справа */
+  padding: 2% 5%; /* Добавляем отступы по бокам и сверху/снизу */
   font-size: calc(0.65vw + 0.85vh);
+  background-color: #F9F6F2;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрируем контейнер по горизонтали */
+  overflow: hidden;
 }
 
 .button-monument {
   background-color: #C87E7B;
   border: 2px solid #594E3E; 
   color: #fff;
-  padding: 1vw 6vh; /* Верхний и нижний отступ равен 1% ширины экрана, правый и левый отступ равен 3% ширины экрана */
+  padding: 0.8vw 3vw; /* Верхний и нижний отступ равен 1% ширины экрана, правый и левый отступ равен 3% ширины экрана */
   cursor: pointer;
   margin-bottom: 20px;
   width: fit-content; /* Ширина кнопки будет автоматически подстраиваться под содержимое */
   margin: 0 auto; /* Центрирование кнопки по горизонтали */
   margin-top: 5%;
   font-size: calc(0.7vw + 0.7vh);
-  
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-
+.button-monument:hover {
+  background-color: #d39491; /* Изменение цвета при наведении */
+}
 
 .monument-title {
   text-align: center;
   margin-bottom: 20px;
-  font-family: Pixel-Ultima-Bold;
+  font-family: 'Pixel-Ultima-Bold', sans-serif;
+  font-size: calc(1vw + 1vh);
+  color: #333;
 }
 
-/* Стили для остальных элементов */
-.monument-type,
-.monument-dating,
-.monument-custom-category,
-.monument-description,
-.monument-authors,
-.monument-organization,
-.monument-research-years,
-.monument-address,
-.monument-sources,
-.monument-content,
-.monument-details-section {
-  text-align: left; /* Выравнивание по левому краю */
-
+.monument-section {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-family: 'Pixel-Ultima-Regular', sans-serif;
 }
+
+.category-buttons,
+.dating-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Расстояние между кнопками */
+  margin-top: 10px;
+}
+
 
 .monument-images-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
-.monument-image {
-  margin-right: 20px;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
+
 
 .monument-image img {
-  max-width: 150px;
-  height: auto;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid black; /* Красная граница */
+  border-radius: 10px;
 }
 
 .monument-image p {
@@ -78,19 +90,39 @@
 
 .image-description {
   position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #fff;
+  bottom: 1%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* черный цвет с прозрачностью 70% */
+  color: white; /* белый цвет текста */
+  font-size: calc(0.7vw + 0.7vh);
+  font-weight: bold; /* жирный текст */
+  padding-left: 5%; /* отступы внутри блока */
+  z-index: 999;
 }
 
 .source-link-icon {
   transition: transform 0.3s; /* Плавный переход для ховер-эффекта */
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 .source-link-icon:hover {
-  transform: scale(1.2); /* Увеличение размера при наведении */
+  transform: scale(2); /* Увеличение размера при наведении */
+}
+
+.monument-details-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: calc(1vw + 1vh);
+  font-family: 'Pixel-Ultima-Regular', sans-serif;
+}
+
+@media (max-width: 1000px) {
+  .monument-image img {
+    width: 100px;
+    height: 100px;
+
+  }
 }

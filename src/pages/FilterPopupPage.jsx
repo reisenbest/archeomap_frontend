@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import TypeDropdown from '../components/TypeDropdown';
-import DatingDropdown from '../components/DatingDropdown'; // Импортируем компонент DatingDropdown
+import DatingDropdown from '../components/DatingDropdown';
+import CustomCategoryDropdown from '../components/CustomCategoryDropdown';
 import PopupContent from '../components/PopupContent';
 
-const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDating, handleClearSelectionChange, handleCategoryChange, handleDatingChange, selectedMarkerInfo }) => {
+//компонент представляет страницу фильтров и всплывающего контента.
+ // Он отображает кнопки для открытия фильтров и всплывающего контента,
+// а также содержит выпадающие списки для выбора категорий, датировки и пользовательских категорий. 
+const FilterPopupPage = ({
+  categories,
+  dating,
+  customCategories,
+  selectedCategories,
+  selectedDating,
+  selectedCustomCategories,
+  handleClearSelectionChange,
+  handleCategoryChange,
+  handleDatingChange,
+  handleCustomCategoryChange,
+  selectedMarkerInfo
+}) => {
   const [activeButton, setActiveButton] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(true); // Устанавливаем значение по умолчанию в true
+  const [isPopupOpen, setIsPopupOpen] = useState(true);
   const [isTypeOpen, setIsTypeOpen] = useState(false);
   const [isDateOpen, setIsDateOpen] = useState(false);
+  const [isCustomCategoryOpen, setIsCustomCategoryOpen] = useState(false);
   const [markerInfo, setMarkerInfo] = useState(null);
 
   useEffect(() => {
-    // Обновляем информацию о маркере при изменении выбранного маркера
     setMarkerInfo(selectedMarkerInfo);
   }, [selectedMarkerInfo]);
 
@@ -38,9 +54,19 @@ const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDatin
     setActiveButton('date');
   };
 
+  const toggleCustomCategoryButton = () => {
+    setIsCustomCategoryOpen(!isCustomCategoryOpen);
+    setActiveButton('customCategory');
+  };
+
+  // Обработчик для сброса всех выбранных фильтров
+  const handleClearAllFilters = () => {
+    handleClearSelectionChange();
+  };
+
   return (
     <>
-      <div className={`filters-buttons-container ${isFilterOpen || isTypeOpen || isDateOpen ? 'open' : ''}`}>
+      <div className={`filters-buttons-container ${isFilterOpen || isTypeOpen || isDateOpen || isCustomCategoryOpen ? 'open' : ''}`}>
         <button
           className={`monument-filter-button ${isFilterOpen ? 'open' : ''}`}
           onClick={toggleFilterButton}
@@ -56,6 +82,7 @@ const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDatin
         </button>
         
         {isFilterOpen && (
+          <div className='filter-content'>
           <>
             <TypeDropdown
               categories={categories}
@@ -65,7 +92,6 @@ const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDatin
               toggleTypeButton={toggleTypeButton}
             />
             
-            {/* Используем DatingDropdown */}
             <DatingDropdown
               dating={dating}
               isDateOpen={isDateOpen}
@@ -73,15 +99,26 @@ const FilterPopupPage = ({ categories, dating, selectedCategories, selectedDatin
               handleDatingChange={handleDatingChange}
               selectedDating={selectedDating}
             />
+
+            <CustomCategoryDropdown
+              customCategories={customCategories}
+              isCustomCategoryOpen={isCustomCategoryOpen}
+              toggleCustomCategoryButton={toggleCustomCategoryButton}
+              handleCustomCategoryChange={handleCustomCategoryChange}
+              selectedCustomCategories={selectedCustomCategories}
+            />
+
+        <button className="clear-all-filters-button" onClick={handleClearAllFilters}>
+          Сбросить все фильтры
+        </button>
           </>
+          </div>
         )}
       </div>
 
+      {isPopupOpen && <PopupContent markerInfo={markerInfo} />}
 
-        {isPopupOpen &&
-         <PopupContent markerInfo={markerInfo} />} {/* Используем компонент PopupContent */}
-
-</>
+    </>
   );
 };
 

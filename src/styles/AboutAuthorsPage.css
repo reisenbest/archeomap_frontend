@@ -1,0 +1,82 @@
+/* стили  для раздела об авторах */
+.about-authors-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* Добавляет вертикальную прокрутку, если контент выходит за пределы контейнера */
+}
+
+/* Центральная колонка для раздела об авторах */
+.about-authors-center-col {
+  padding: 20px; /* Внутренний отступ */
+  background-color: #F9F6F2; /* Цвет фона */
+  border: 1px solid #ddd; /* Граница */
+  border-radius: 10px; /* Закругление углов */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+  max-width: 70%; /* Максимальная ширина */
+  width: 100%; /* Ширина */
+  margin: 0 auto; /* Центрирование по горизонтали */
+}
+
+
+.about-authors-center-col h1 {
+  font-size: calc(1vw + 1.5vh); /* Размер шрифта с использованием вычислений */
+  font-family: Pixel-Ultima-Bold; /* Пользовательский шрифт */
+}
+
+
+.about-authors-center-col h2 {
+  font-size: calc(1vw + 1vh); /* Размер шрифта с использованием вычислений */
+  font-family: Pixel-Ultima-Bold; /* Пользовательский шрифт */
+  margin-top: 20px; /* Верхний отступ */
+}
+
+
+.about-authors-center-col p {
+  font-size: calc(0.8vw + 0.8vh); /* Размер шрифта с использованием вычислений */
+  margin-bottom: 10px; /* Нижний отступ */
+}
+
+
+.author {
+  display: flex; /* Отображение в виде гибкого контейнера */
+  align-items: center; /* Выравнивание элементов по центру */
+  margin-bottom: 20px; /* Нижний отступ */
+}
+
+
+.author-photo {
+  width: 100px; /* Ширина */
+  height: 100px; /* Высота */
+  border-radius: 50%; /* Скругление углов для создания круглой формы */
+  margin-right: 20px; /* Правый отступ */
+  cursor: pointer; /* Изменение курсора при наведении */
+  transition: transform 0.3s ease; /* Плавное изменение масштаба при наведении */
+}
+
+
+.author-photo:hover {
+  transform: scale(1.1); /* Увеличение масштаба */
+}
+
+
+.author-info {
+  flex: 1; /* Расширение до доступной ширины */
+}
+
+
+.author-info a {
+  color: #C87E7B; /* Цвет ссылок */
+}
+
+
+.author-info a:hover {
+  color: #769978; /* Цвет ссылок при наведении */
+}
+
+/* Медиа-запрос для устройств с шириной экрана до 1000px */
+@media screen and (max-width: 1000px) {
+  .about-authors-center-col {
+    padding: 10px; /* Внутренний отступ */
+    min-width: 100%; /* Минимальная ширина */
+  }
+}

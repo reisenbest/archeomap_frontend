@@ -1,54 +1,54 @@
 
-
+/* генеральные стили тут header footer main  */
+/* Обертка, которая занимает минимальную высоту экрана и устанавливает содержимое по вертикали */
 .wrapper {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-
-
+  min-height: 100%; 
+  display: flex; /* Элементы располагаются в строку */
+  flex-direction: column; /* Элементы располагаются вертикально */
 }
 
+/* шапка */
 .header {
-  background-color: #EFEBDD;
-  color: white;
-  position: fixed;
-  display: flex;
-  align-items: center; /* Центрирование содержимого по вертикали */
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 13%; /* Изменено на 10vh */
-  border-bottom: 3px solid black; /* Добавляем рамку только снизу */
-  border-left: 3px solid black; /* Добавляем рамку только сверху */
-  border-right: 3px solid black; /* Добавляем рамку только сверху */
-  z-index: 2; /* Устанавливаем порядок слоя для хедера */
+  background-color: #EFEBDD; 
+  color: white; 
+  position: fixed; /* Фиксированная позиция для постоянного отображения на верху страницы */
+  display: flex; /* Элементы располагаются в строку */
+  align-items: center; /* Содержимое выравнивается по центру вертикали */
+  top: 0; /* Отступ сверху */
+  left: 0; /* Отступ слева */
+  right: 0; /* Отступ справа */
+  height: 13%; /* Высота шапки */
+  border-bottom: 3px solid black;
+  border-left: 3px solid black; 
+  border-right: 3px solid black; 
+  z-index: 2; /* Порядок элемента */
 }
 
-
-
+/* подвал */
 .footer {
-  background-color: #EFEBDD; /* синий цвет */
-  width: 100%;
+  background-color: #EFEBDD; 
+  width: 100%; 
   height: 8%; 
-  position: fixed; /* фиксированная позиция, чтобы футер всегда был внизу страницы */
-  display: flex;
-  align-items: center; /* Центрирование содержимого по вертикали */
-  bottom: 0; /* футер прижимается к нижней границе страницы */
-  left: 0;
-  right: 0;
-  border-top: 3px solid black; /* Добавляем рамку только сверху */
-  border-left: 3px solid black; /* Добавляем рамку только сверху */
-  border-right: 3px solid black; /* Добавляем рамку только сверху */
-  z-index: 2; /* Устанавливаем порядок слоя для хедера */
+  position: fixed; /* Фиксированная позиция для постоянного отображения внизу страницы */
+  display: flex; /* Элементы располагаются в строку */
+  align-items: center; /* Содержимое выравнивается по центру вертикали */
+  bottom: 0; /* Отступ снизу */
+  left: 0; /* Отступ слева */
+  right: 0; /* Отступ справа */
+  border-top: 3px solid black;
+  border-left: 3px solid black; 
+  border-right: 3px solid black;
+  z-index: 2; /* Порядок элемента */
 }
 
+/* Основное содержимое страницы */
 .main {
-  background-color: #EFEBDD;
-  position: fixed;
-  top: 13%; /* Высота хедера */
-  bottom: 8%; /* Высота футера */
-  width: 100%;
-  height: calc(100% - 21%); /* 100% минус 13% (хедер) и 8% (футер) */
-
+  background-color: #EFEBDD; 
+  position: fixed; /* Фиксированная позиция */
+  top: 13%; /* Отступ сверху (высота шапки) */
+  bottom: 8%; /* Отступ снизу (высота подвала) */
+  width: 100%; 
+  height: calc(100% - 21%); /* Высота = 100% минус высота шапки и подвала */
 }
+
 

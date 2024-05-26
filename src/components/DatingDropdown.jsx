@@ -1,5 +1,7 @@
 import React from 'react';
 
+{/* Код берет из useMonumentsData данные, отбирает отттуда датировки и отображает их 
+также отслеживает выбранные категории*/}
 const DatingDropdown = ({ dating, isDateOpen, toggleDateButton, handleDatingChange, selectedDating }) => {
   return (
     <div className="dropdown-menu">
@@ -8,7 +10,7 @@ const DatingDropdown = ({ dating, isDateOpen, toggleDateButton, handleDatingChan
         onClick={toggleDateButton}
       >
         Датировка
-        <span className="arrow"></span> {/* Стрелочка */}
+        <span className="arrow"></span> 
       </button>
       {isDateOpen && (
         <div className={`dropdown-content ${isDateOpen ? 'open' : ''}`}>

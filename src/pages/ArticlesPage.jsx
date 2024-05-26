@@ -1,3 +1,4 @@
+// заготовка для рздела о статьях
 import React from 'react';
 
 

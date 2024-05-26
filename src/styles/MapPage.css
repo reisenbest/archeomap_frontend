@@ -39,10 +39,24 @@
   border: 3px solid rgb(0, 0, 0);
   overflow-y: auto; /* Всегда показывать полоску прокрутки */
   font-size: calc(0.7vw + 0.7vh);
-
 }
 
+.filter-content {
+  background-color: #EFEBDD; 
+  width: 90%; /* Ширина контента */
+  max-height: 70vh; /* Максимальная высота с прокруткой (70% от высоты экрана) */
+  overflow-y: auto; /* Включение вертикальной прокрутки, если контент не помещается */
+  padding: 2%; /* Паддинг внутри контента (2% от ширины контейнера) */
+  margin: 5% auto; /* Отступ сверху и снизу, автоматическое выравнивание по горизонтали */
+  margin-right: 10%; /* Отступ сверху и снизу, автоматическое выравнивание по горизонтали */
+  border: 2px solid #CCCCCC; 
+  border-radius: 10px; 
+  text-align: justify; /* Выравнивание текста по ширине */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: calc(0.7vw + 0.7vh);
 
+}
 .filters-buttons-container {
   position: relative;
   width: 100%; /* Ширина контейнера с фильтрами */ 
@@ -58,8 +72,8 @@
 
 .monument-popup-button,
 .monument-filter-button {
-  background-color: #594E3E; /* Цвет фона кнопки */
-  color: #ffffff; /* Цвет текста кнопки */
+  background-color: #594E3E; 
+  color: #ffffff; 
   border: 2px solid #594E3E; /* Граница кнопки */
   padding: 1% 1%; /* Внутренние отступы в процентах */
   cursor: pointer; /* Изменение курсора при наведении */
@@ -79,7 +93,7 @@
 .monument-filter-button:hover,
 .monument-popup-button.open,
 .monument-popup-button:hover {
-  background-color: #C87E7B; /* Цвет фона кнопки при открытом фильтре и наведении */
+  background-color: #c77d7a; /* Цвет фона кнопки при открытом фильтре и наведении */
 }
 .monument-filter-button:focus,
 .monument-popup-button:focus {
@@ -93,30 +107,33 @@
 
 
 .monument-type-button,
-.monument-date-button {
+.monument-date-button,
+.monument-custom-category-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #594E3E;
+  background-color: #58593e;
   color: #ffffff;
   border: 1px solid #594E3E;
-  padding: 2% 4%; /* Внутренние отступы в процентах */
+  padding: 1.5% 3%; /* Внутренние отступы в процентах */
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   margin-top: 2.5%; /* Отступ сверху в процентах */
   position: relative;
   font-family: Pixel-Ultima-Regular;
-  font-size: calc(0.7vw + 0.7vh);
+  font-size: calc(0.6vw + 0.6vh);
 }
 
 .monument-type-button.open,
-.monument-date-button.open {
+.monument-date-button.open,
+.monument-custom-category-button.open {
   background-color: #769978;
 }
 
 /* Стрелочка */
 .monument-type-button .arrow,
-.monument-date-button .arrow {
+.monument-date-button .arrow,
+.monument-custom-category-button .arrow {
   width: 0;
   height: 0;
   border-left: 4px solid transparent;
@@ -127,11 +144,33 @@
 
 /* Поворот стрелочки при открытии */
 .monument-type-button.open .arrow,
-.monument-date-button.open .arrow {
+.monument-date-button.open .arrow,
+.monument-custom-category-button.open .arrow {
   transform: rotate(270deg);
 }
 
 
+.clear-all-filters-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #DBB86B; 
+  color: #000000; 
+  border: 1px solid #DBB86B; 
+  padding: 1.5% 3%; /* Внутренние отступы в процентах */
+  font-size: calc(0.6vw + 0.6vh);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  margin-top: 10px; /* Отступ сверху */
+}
+
+.clear-all-filters-button:hover {
+  background-color: #ff6347; 
+}
+
+.clear-all-filters-button:active {
+  background-color: #ff6347; 
+}
 
 .dropdown-menu {
   position: relative;
@@ -140,13 +179,13 @@
 .dropdown-content {
   display: none;
   position: relative; /* Изменение на относительное позиционирование */
-  background-color: #ffffff; /* Прозрачность 50% */
+  background-color: #EFEBDD; /* Прозрачность 50% */
   border: 1px solid #000000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 8px;
   z-index: 1;
   text-align: left; /* Выравнивание текста по левому краю */
-  width: 80%; /* Занимает 80% ширины родительского контейнера */
+  width: 80%; 
 }
 
 .dropdown-content.open {
@@ -155,36 +194,42 @@
 
 .monument-type-button + .dropdown-content {
   top: calc(100% + 5px); /* смещение на 5 пикселей ниже кнопки "Тип" */
-  z-index: 2; /* Установка более высокого z-index */
+  z-index: 2; /* Установка z-index */
 }
 
 .checkbox-item {
   margin-bottom: 8px;
-  /* Красная граница для обертки чекбоксов */
+  
 }
 
 .checkbox-item label {
   color: #000000;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: calc(0.7vw + 0.7vh);
+  font-size: calc(0.6vw + 0.6vh);
 }
 
 
 .popup-content {
   background-color: #EFEBDD; /* Цвет фона */
-  width: 90%; /* Ширина контента */
+  width: 90%; 
   max-height: 70vh; /* Максимальная высота с прокруткой (70% от высоты экрана) */
   overflow-y: auto; /* Включение вертикальной прокрутки, если контент не помещается */
   padding: 2%; /* Паддинг внутри контента (2% от ширины контейнера) */
   margin: 5% auto; /* Отступ сверху и снизу, автоматическое выравнивание по горизонтали */
   margin-right: 5%; /* Отступ сверху и снизу, автоматическое выравнивание по горизонтали */
-  border: 2px solid #CCCCCC; /* Граница */
-  border-radius: 10px; /* Закругление углов */
+  border: 2px solid #CCCCCC; 
+  border-radius: 10px; 
   text-align: justify; /* Выравнивание текста по ширине */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: calc(0.7vw + 0.7vh);
 
+}
+
+p strong {
+  font-weight: bold;
+  color: #000000; 
+  font-size: calc(0.8vw + 0.8vh);
 }
 
 .popup-content h2 {
@@ -203,16 +248,17 @@
 }
 
 .dating-button,
-.category-button {
-  border-radius: 30px; /* Скругление углов */
-  background-color: #877C67; /* Черный фон */
-  color: #ffffff; /* Цвет текста */
-  padding: calc(0.5vw + 0.5vh) calc(1vw + 1vh); /* Внутренние отступы относительно размеров экрана */
+.category-button,
+.custom-category-button {
+  border-radius: 30px; 
+  background-color: #877C67; 
+  color: #ffffff; 
+  padding: calc(0.4vw + 0.4vh) calc(1vw + 1vh); /* Внутренние отступы относительно размеров экрана */
   margin-right: calc(0.5vw + 0.5vh); /* Отступ справа относительно ширины экрана */
   margin-bottom: calc(1vh + 1vw); /* Отступ снизу относительно высоты экрана */
   display: inline-block; /* Кнопки в строчку */
   margin-bottom: 10px; /* Расстояние между строками */
-  font-size: calc(0.7vw + 0.7vh);
+  font-size: calc(0.6vw + 0.6vh);
 }
 .monument-dating h4,
 .monument-type h4 {
@@ -234,18 +280,18 @@
   height: 100px;
   object-fit: cover;
   cursor: pointer;
-  border: 1px solid black; /* Красная граница */
+  border: 1px solid black; 
   border-radius: 10px;
 }
 
 .image-description {
   position: absolute;
   bottom: 1%;
-  left: 5%; /* расстояние от левого края */
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.7); /* черный цвет с прозрачностью 70% */
-  color: white; /* белый цвет текста */
-  font-size: calc(0.8vw + 0.8vh);
-  font-weight: bold; /* жирный текст */
+  color: white; 
+  font-size: calc(0.7vw + 0.7vh);
+  font-weight: bold; 
   padding: 10px; /* отступы внутри блока */
   z-index: 999;
 }
@@ -259,24 +305,12 @@
 .info-text.show {
   display: none;
 }
-.close-line,
+
 .close-button {
   display: none;
 }
 
-.close-line:first-child {
-  transform: translate(-50%, -50%) rotate(45deg); /* Поворот линии на 45 градусов */
-}
 
-.close-line:last-child {
-  transform: translate(-50%, -50%) rotate(-45deg); /* Поворот линии на -45 градусов */
-}
-
-
-
-.filter-popup-button-mobile {
-  
-}
 
 
 .source-link-icon {
@@ -332,15 +366,14 @@
     z-index: 10000; /* Устанавливаем высокий z-index для позиционирования поверх других элементов */
   }
   
-  .close-line {
-    display: block;
+  .close-icon {
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 4vw; /* Ширина линии крестика (3% от ширины экрана) */
-    height: 0.5vw; /* Толщина линии крестика (0.3% от ширины экрана) */
-    background-color: brown; /* Цвет линии крестика */
-    transform-origin: center;
+    right: 20%;
+    transform: translate(50%, -50%);
+    width: 3.5vw; /* Или другое значение ширины */
+    height: auto; /* Автоматическое соотношение сторон */
+    cursor: pointer;
   }
 
 
@@ -350,12 +383,27 @@
     overflow-y: auto;
   }
 
-  .filter-popup-button-mobile  {
+  .filter-popup-button-mobile {
     display: block;
-    position: absolute; /* Абсолютная позиция */
-    top: 10px; /* Отступ сверху */
-    right: 10px; /* Отступ справа */
-    z-index: 9999; /* Приоритет над другими элементами */
+    position: absolute;
+    top: 2vh; /* Отступ сверху относительно высоты окна */
+    right: 2vw; /* Отступ справа относительно ширины окна */
+    z-index: 9999;
+    background-color: #DBB86B;
+    color: #000000;
+    border: none;
+    padding: 1vh 3vw; /* Увеличим внутренние отступы для более удобного отображения текста */
+    font-size: calc(0.9vw + 0.9vh);
+    line-height: 1.5;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .filter-popup-button-mobile:hover {
+    background-color: #DBB86B;
+    transform: scale(1.05);
   }
   
   .map-container {

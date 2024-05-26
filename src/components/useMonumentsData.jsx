@@ -1,3 +1,6 @@
+//Этот компонент используется для управления состоянием данных о памятниках, 
+// компонент отправляет запрос по апи и получает всю информации из бд по по памятника 
+// отсюда компоненты для раздела карты берут инфу
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config.jsx';
@@ -7,7 +10,9 @@ const useMonumentsData = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [dating, setDating] = useState([]);
-  const [selectedDating, setSelectedDating] = useState([]); // Добавляем состояние для выбранных датировок
+  const [selectedDating, setSelectedDating] = useState([]);
+  const [customCategories, setCustomCategories] = useState([]);
+  const [selectedCustomCategories, setSelectedCustomCategories] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +27,10 @@ const useMonumentsData = () => {
         const allDating = response.data.flatMap(monument => monument.dating);
         const uniqueDating = Array.from(new Set(allDating));
         setDating(uniqueDating);
+
+        const allCustomCategories = response.data.flatMap(monument => monument.custom_category);
+        const uniqueCustomCategories = Array.from(new Set(allCustomCategories));
+        setCustomCategories(uniqueCustomCategories);
       } catch (error) {
         console.error('Error fetching data:', error);
         setMonuments([]);
@@ -49,9 +58,19 @@ const useMonumentsData = () => {
     }
   };
 
+  const handleCustomCategoryChange = (e) => {
+    const customCategory = e.target.value;
+    if (e.target.checked) {
+      setSelectedCustomCategories([...selectedCustomCategories, customCategory]);
+    } else {
+      setSelectedCustomCategories(selectedCustomCategories.filter(cat => cat !== customCategory));
+    }
+  };
+
   const handleClearSelectionChange = () => {
     setSelectedCategories([]);
-    setSelectedDating([]); // Очищаем выбранные датировки при очистке фильтров
+    setSelectedDating([]);
+    setSelectedCustomCategories([]);
   };
 
   return {
@@ -60,8 +79,11 @@ const useMonumentsData = () => {
     selectedCategories,
     dating,
     selectedDating,
+    customCategories,
+    selectedCustomCategories,
     handleCategoryChange,
     handleDatingChange,
+    handleCustomCategoryChange,
     handleClearSelectionChange
   };
 };

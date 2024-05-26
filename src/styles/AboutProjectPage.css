@@ -1,0 +1,75 @@
+/* стили  для раздела о проекте  */
+.about-project-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* Добавляет вертикальную прокрутку, если контент выходит за пределы контейнера */
+}
+
+
+.about-project-center-col {
+  padding: 20px; /* Внутренний отступ */
+  background-color: #F9F6F2; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+  max-width: 70%; 
+  width: 100%; 
+  margin: 0 auto; /* Центрирование по горизонтали */
+}
+
+
+.about-project-center-col h1 {
+  font-size: calc(1vw + 1.5vh); 
+  font-family: Pixel-Ultima-Bold; 
+}
+
+
+.about-project-section-title {
+  cursor: pointer; /* Изменение курсора при наведении */
+  color: #C87E7B; 
+  margin: 10px 0; /* Отступы сверху и снизу */
+  font-size: calc(0.8vw + 0.8vh); 
+  transition: color 0.3s; /* Плавный переход при наведении */
+}
+
+.about-project-section-title:hover {
+  color: #769978; 
+}
+
+
+.about-project-section-content p {
+  margin-bottom: 15px; /* Отступ снизу */
+  font-size: calc(0.7vw + 0.7vh); 
+  line-height: 1.6; /* Межстрочный интервал */
+  padding-left: 20px; /* Внутренний отступ слева */
+}
+
+
+.about-project-introductory-text-section {
+  margin-top: 20px; /* Отступ сверху */
+  padding: 15px; /* Внутренний отступ */
+  border: 2px solid #ddd; 
+  border-radius: 5px; 
+  background-color: #f9f9f9; /* Цвет фона */
+}
+
+/* Ссылки в тексте */
+.link {
+  color: #C87E7B; 
+  text-decoration: none; /* Убираем подчеркивание */
+  font-weight: bold; 
+  transition: color 0.3s; /* Плавный переход при наведении */
+}
+
+
+.link:hover {
+  color: #769978; 
+}
+
+/* Медиа-запрос для устройств с шириной экрана до 1000px */
+@media screen and (max-width: 1000px) {
+  .about-project-center-col {
+    padding: 10px; /* Внутренний отступ */
+    min-width: 100%; 
+  }
+}

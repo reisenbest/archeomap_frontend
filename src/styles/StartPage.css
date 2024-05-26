@@ -1,7 +1,109 @@
-.center-content {
+.welcome-page-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
   display: flex;
-  justify-content: center; /* Выравнивание содержимого по горизонтали по центру */
-  align-items: center; /* Выравнивание содержимого по вертикали по центру */
-  height: 100vh; /* Высота контейнера равна высоте видимой области окна браузера */
-  color: brown;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Полупрозрачный черный слой */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-page-content {
+  text-align: center;
+  max-width: 90%; /* Сделаем максимальную ширину адаптивной */
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон для текста */
+  border-radius: 10px;
+  transform: translateY(-10%); /* Поднимаем блок немного вверх */
+  box-sizing: border-box;
+}
+
+.welcome-page-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-family: Pixel-Ultima-Bold;
+}
+
+.welcome-page-content p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-family: Pixel-Ultima-Regular;
+  line-height: 1.6; /* Расстояние между строчками */
+}
+.how-to-use-button,
+.map-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #000000;
+  background-color: #c77d7a;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.how-to-use-button {
+  background-color: #DBB86B;
+}
+
+.how-to-use-button:hover,
+.map-button:hover {
+  background-color: #769978;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .welcome-page-content {
+    max-width: 80%; /* Увеличим ширину на мобильных устройствах */
+    padding: 15px;
+  }
+
+  .welcome-page-content h1 {
+    font-size: 2em;
+  }
+
+  .welcome-page-content p {
+    font-size: 1em;
+  }
+
+  .map-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-page-content {
+    max-width: 90%; /* Увеличим ширину на очень маленьких устройствах */
+    padding: 10px;
+  }
+
+  .welcome-page-content h1 {
+    font-size: 1.5em;
+  }
+
+  .welcome-page-content p {
+    font-size: 0.9em;
+  }
+  .how-to-use-button,
+  .map-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
 }

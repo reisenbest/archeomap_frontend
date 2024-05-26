@@ -1,8 +1,8 @@
-import '../styles/NewsPage.css';
-import React, { useState } from 'react';
-import News from '../components/News';
+
+import React from 'react';
 
 
+// заготовка для новостного раздела
 
 function NewsPage() {
   

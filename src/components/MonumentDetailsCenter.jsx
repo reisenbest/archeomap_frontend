@@ -1,9 +1,13 @@
+
 import React, { useEffect, useState } from 'react';
 import { API_BASE_URL } from '../config.jsx';
 import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import '../styles/MonumentDetailsCenter.css';
 import LinkLogo from '../assets/link-icon.png';
+
+{/* Код с разметкой и логикой для отображения информации о памятнике на отдельной страничке
+посылает запрос к апи для получения памятника по id и отображает его */}
 
 const MonumentDetailsCenter = ({ id }) => {
   const [monumentData, setMonumentData] = useState(null);
@@ -49,7 +53,10 @@ const MonumentDetailsCenter = ({ id }) => {
         ))}
       </div>
       <div className='monument-custom-category'>
-        <p><strong>Кастомные категории:</strong> {monumentData.custom_category.join(', ')}</p>
+      <h4><strong>Дополнительная категория:</strong></h4>
+        {monumentData.custom_category.map((custom_category, index) => (
+          <button key={index} className="custom-category-button">{custom_category}</button>
+        ))}
       </div>
       <div className='monument-description'>
         <p><strong>Описание:</strong></p>

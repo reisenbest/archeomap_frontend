@@ -1,10 +1,15 @@
+
 import React, { useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
+import burgerMenuIcon from '../assets/burger-menu-icon.png';
+import closeMenuIcon from '../assets/close-icon.png';
+
+{/* Код с разметкой и логикой для футера сайта */}
 
 const Footer = () => {
   const isAboutProject = useMatch('/about-project');
   const isAboutAuthors = useMatch('/about-authors');
-  const iSHowToUsePage = useMatch('/how-to-use');
+  const isHowToUsePage = useMatch('/how-to-use');
   
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,14 +27,12 @@ const Footer = () => {
       <div className="right-half">
         <nav className='footer-navbar-wrapper'>
           <div className={`burger-menu-footer ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-            <div className="burger-line"></div>
-            <div className="burger-line"></div>
-            <div className="burger-line"></div>
+            <img src={isMenuOpen ? closeMenuIcon : burgerMenuIcon} alt="Menu Icon" />
           </div>
           <ul className={`footer-nav-list ${isMenuOpen ? 'open' : ''}`}>
             <li><Link to="/about-project" className={isAboutProject ? "footer-link active" : "footer-link"}>О проекте</Link></li>
             <li><Link to="/about-authors" className={isAboutAuthors ? "footer-link active" : "footer-link"}>Об авторах</Link></li>   
-            <li><Link to="/how-to-use" className={iSHowToUsePage ? "footer-link active" : "footer-link"}>Как пользоваться?</Link></li>   
+            <li><Link to="/how-to-use" className={isHowToUsePage ? "footer-link active" : "footer-link"}>Как пользоваться?</Link></li>   
           </ul>
         </nav>
       </div>

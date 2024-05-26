@@ -1,3 +1,5 @@
+// заготовка для раздела новостей
+
 import {useEffect} from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config.jsx';
@@ -16,7 +18,7 @@ const News = ({ onDataReceived }) => {
     fetchData();
   }, [onDataReceived]);
 
-  return null; // Этот компонент ничего не отрисовывает, поэтому возвращаем null
+  return null; 
 };
 
 export default News;

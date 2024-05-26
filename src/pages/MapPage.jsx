@@ -7,7 +7,12 @@ import useMonumentsData from '../components/useMonumentsData';
 import markerIcon from '../assets/minimarker.png';
 import FilterPopupPage from './FilterPopupPage';
 import { Link } from 'react-router-dom';
+import closeMenuIcon from '../assets/close-icon.png';
 
+
+// кор-компонент отвечает за большинство логики для страницы с картой, собирает в себе все состояния 
+// выбранный маркер выбранные фильтры состояния и раскидывает все обеспечивает взаимодействие
+// отрисовывает непосредственно карту 
 const customMarkerIcon = L.icon({
   iconUrl: markerIcon,
   iconSize: [10, 10],
@@ -21,9 +26,12 @@ function MapPage() {
     selectedCategories,
     dating,
     selectedDating,
+    customCategories,
+    selectedCustomCategories,
     handleClearSelectionChange,
     handleCategoryChange,
-    handleDatingChange
+    handleDatingChange,
+    handleCustomCategoryChange
   } = useMonumentsData();
   
   const maxBounds = [
@@ -39,40 +47,45 @@ function MapPage() {
   };
 
   const filteredMarkers = monuments.filter(monument => {
-    if (selectedCategories.length === 0 && selectedDating.length === 0) {
+    if (selectedCategories.length === 0 && selectedDating.length === 0 && selectedCustomCategories.length === 0) {
       return true;
     }
 
     const categoryMatch = selectedCategories.length === 0 || selectedCategories.some(category => monument.classification_category.includes(category));
     const dateMatch = selectedDating.length === 0 || selectedDating.some(date => monument.dating.includes(date));
-    return categoryMatch && dateMatch;
+    const customCategoryMatch = selectedCustomCategories.length === 0 || selectedCustomCategories.some(customCategory => monument.custom_category.includes(customCategory));
+    
+    return categoryMatch && dateMatch && customCategoryMatch;
   });
 
   return (
     <>
-            {!showInfo && <button className="filter-popup-button-mobile" onClick={() => setShowInfo(!showInfo)}>Фильтры и информация о памятнике</button>}
-        <div className={`info-text ${showInfo ? 'show' : ''}`}>
-              <FilterPopupPage
+      {!showInfo && <button className="filter-popup-button-mobile" onClick={() => setShowInfo(!showInfo)}>Фильтры и информация о памятнике</button>}
+      <div className={`info-text ${showInfo ? 'show' : ''}`}>
+        
+        <FilterPopupPage
+        // передаем пропсы в кнопку фильтры
           categories={categories}
           selectedCategories={selectedCategories}
           dating={dating}
           selectedDating={selectedDating}
+          customCategories={customCategories} 
+          selectedCustomCategories={selectedCustomCategories} 
           handleClearSelectionChange={handleClearSelectionChange}
           handleCategoryChange={handleCategoryChange}
           handleDatingChange={handleDatingChange}
+          handleCustomCategoryChange={handleCustomCategoryChange} 
           selectedMarkerInfo={selectedMarkerInfo}
         />
-          <div className="close-button" onClick={() => setShowInfo(false)}>
-            <span className="close-line"></span>
-            <span className="close-line"></span>
-          </div>
+        <div className="close-button" onClick={() => setShowInfo(false)}>
+          <img src={closeMenuIcon} alt="Close icon" className="close-icon" />
         </div>
+      </div>
       <div className="map-container">
         <MapContainer 
-        // уточнить координату центра 
-          center={[59.936218, 30.248851]} 
+          center={[59.95, 30.15]} 
           zoom={10}
-          minZoom={7}
+          minZoom={9}
           style={{ height: "85vh" }}
           maxBounds={maxBounds}
           maxBoundsViscosity={1.0}
@@ -93,23 +106,29 @@ function MapPage() {
               }}
             >
               <Popup>
-                {monument.name} {monument.slug}
-                <br />
+                <strong>Название:</strong> {monument.name} <br />
+                <strong>Датировка:</strong> {monument.dating.join(', ')} <br />
+                <strong>Категория:</strong> {monument.classification_category.join(', ')} <br />
+                <strong>Адрес:</strong> {monument.address} <br />
                 <Link to={`/monument/${monument.id}`}>Читать подробнее</Link>
-              </Popup>
+            </Popup>
             </Marker>
           ))}
         </MapContainer>
       </div>
       <div className='filters-popup-container'>
         <FilterPopupPage
+        //передаем пропсы в в кнопку о памятнике
           categories={categories}
           selectedCategories={selectedCategories}
           dating={dating}
           selectedDating={selectedDating}
+          customCategories={customCategories} 
+          selectedCustomCategories={selectedCustomCategories} 
           handleClearSelectionChange={handleClearSelectionChange}
           handleCategoryChange={handleCategoryChange}
           handleDatingChange={handleDatingChange}
+          handleCustomCategoryChange={handleCustomCategoryChange} 
           selectedMarkerInfo={selectedMarkerInfo}
         />
       </div>

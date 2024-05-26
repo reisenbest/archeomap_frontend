@@ -1,0 +1,125 @@
+.how-to-use-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.how-to-use-center-col {
+  padding: 20px;
+  background-color: #F9F6F2;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 70%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.how-to-use-center-col h1 {
+  font-size: calc(1vw + 1.5vh);
+  font-family: Pixel-Ultima-Bold;
+}
+
+
+.how-to-use-section-title {
+  cursor: pointer;
+  color: #C87E7B;
+  margin: 10px 0; /* Увеличение отступов между заголовками */
+  font-size: calc(0.8vw + 0.8vh);
+  transition: color 0.3s; /* Плавный переход при наведении */
+}
+
+.how-to-use-section-title:hover {
+  color: #769978;
+}
+
+.how-to-use-section-content p {
+  margin-bottom: 15px; /* Увеличение отступов между параграфами */
+  font-size: calc(0.7vw + 0.7vh); /* Увеличение размера текста */
+  line-height: 1.6; /* Увеличение межстрочного интервала */
+  padding-left: 20px;
+}
+
+.how-to-use-introductory-text-section {
+  margin-top: 20px; /* Отступ сверху */
+  padding: 15px; /* Внутренний отступ */
+  border: 2px solid #ddd; /* Граница */
+  border-radius: 5px; /* Закругление углов */
+  background-color: #f9f9f9; /* Цвет фона */
+}
+
+.how-to-use-introductory-text-section p {
+  margin-bottom: 10px; /* Отступ между абзацами */
+  font-size: calc(0.75vw + 0.75vh)
+}
+
+.link {
+  color: #C87E7B; /* Цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+  font-weight: bold; /* Жирный шрифт */
+  transition: color 0.3s; /* Плавный переход при наведении */
+}
+
+.link:hover {
+  color: #769978; /* Цвет текста при наведении */
+}
+
+.how-to-use-image, 
+.how-to-use-image-high, 
+.how-to-use-image-wide {
+  margin: 10px 0; /* Отступы сверху и снизу */
+  display: inline-block; /* Встроенный блок для центрирования */
+  border: 2px solid #DBB86B; 
+  border-radius: 5px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1); /* тень */
+  transition: transform 0.2s, box-shadow 0.2s; /* Плавное увеличение и изменение тени при наведении */
+  margin: 30px;
+}
+
+.how-to-use-image {
+  width: 30%; 
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  max-width: 200px; 
+}
+
+.how-to-use-image-wide {
+  width: 60%; 
+  height: auto; 
+  max-width: 600px; 
+}
+
+.how-to-use-image-high {
+  width: 20%; 
+  height: auto; 
+  max-width: 150px; 
+  max-height: 400px; 
+}
+
+.how-to-use-image:hover, 
+.how-to-use-image-high:hover, 
+.how-to-use-image-wide:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.15); /*  тень при наведении */
+}
+
+@media screen and (max-width: 1000px) {
+  .how-to-use-center-col {
+    padding: 10px;
+    min-width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,8 @@
 import React from 'react';
 
+{/* Код берет из useMonumentsData данные, отбирает отттуда Тип и отображает их 
+также отслеживает выбранные категории*/}
+
 const TypeDropdown = ({ categories, selectedCategories, handleCategoryChange, isTypeOpen, toggleTypeButton }) => {
   return (
     <div className="dropdown-menu">

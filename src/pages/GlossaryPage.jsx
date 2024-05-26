@@ -1,3 +1,4 @@
+// заготовка для словаря
 import React from 'react';
 
 
