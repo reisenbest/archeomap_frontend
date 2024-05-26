@@ -102,7 +102,7 @@
 
   .header-nav-list.open {
     list-style-type: none;
-    margin: 0;
+    margin: 10px;
     position: absolute;
     top: 15%; /* Перемещаем вверх на 50% */
     right: 2%; /* Перемещаем влево на 50% */
@@ -110,13 +110,20 @@
     width: auto;
     display: flex;
     flex-direction: column;
-    padding: 5px; /* Отступы вокруг элементов списка */
+    padding: 10px; /* Отступы вокруг элементов списка */
     width: auto; /* Сбрасываем ширину на auto */
     background-color: #EFEBDD;
     border: 1px solid #594E3E;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 
+  .header-nav-list.open li {
+    margin-bottom: 10px; /* Добавляем отступ снизу между элементами списка */
+  }
+  
+  .header-nav-list.open li:last-child {
+    margin-bottom: 0; /* Убираем отступ у последнего элемента списка */
+  }
   .burger-menu-header {
     display: block;
     z-index: 1001; /* Устанавливаем z-index, чтобы бургер-меню отображалось выше меню */

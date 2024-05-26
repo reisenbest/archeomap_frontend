@@ -158,7 +158,7 @@
 @media screen and (max-width: 1000px) {
   .bibliography-center-col {
     padding: 10px;
-    min-width: 100%;
+    min-width: 95%;
   }
   
   .subcategory-block {

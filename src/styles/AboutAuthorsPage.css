@@ -8,6 +8,8 @@
 /* Центральная колонка для раздела об авторах */
 .about-authors-center-col {
   padding: 20px; /* Внутренний отступ */
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: #F9F6F2; /* Цвет фона */
   border: 1px solid #ddd; /* Граница */
   border-radius: 10px; /* Закругление углов */
@@ -77,6 +79,6 @@
 @media screen and (max-width: 1000px) {
   .about-authors-center-col {
     padding: 10px; /* Внутренний отступ */
-    min-width: 100%; /* Минимальная ширина */
+    min-width: 95%; /* Минимальная ширина */
   }
 }

@@ -47,10 +47,12 @@
 
 .about-project-introductory-text-section {
   margin-top: 20px; /* Отступ сверху */
+  margin-right: 20px;
   padding: 15px; /* Внутренний отступ */
   border: 2px solid #ddd; 
   border-radius: 5px; 
   background-color: #f9f9f9; /* Цвет фона */
+  font-size: calc(0.75vw + 0.75vh)
 }
 
 /* Ссылки в тексте */
@@ -70,6 +72,6 @@
 @media screen and (max-width: 1000px) {
   .about-project-center-col {
     padding: 10px; /* Внутренний отступ */
-    min-width: 100%; 
+    min-width: 95%; 
   }
 }

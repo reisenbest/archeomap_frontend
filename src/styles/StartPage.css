@@ -69,9 +69,17 @@
 }
 
 @media (max-width: 768px) {
+  .overlay {
+    display: flex;
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center;    /* Вертикальное центрирование */
+    height: 100%;           /* Обязательно, если хотите центрировать по всей высоте */
+  }
   .welcome-page-content {
-    max-width: 80%; /* Увеличим ширину на мобильных устройствах */
-    padding: 15px;
+    max-width: 90%; /* Увеличим ширину на очень маленьких устройствах */
+    padding: 10px;
+    margin-bottom: 50px;
+    box-sizing: border-box; /* Включить отступы и границы в общую ширину и высоту */
   }
 
   .welcome-page-content h1 {
@@ -89,9 +97,18 @@
 }
 
 @media (max-width: 480px) {
+
+  .overlay {
+    display: flex;
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center;    /* Вертикальное центрирование */
+    height: 100%;           /* Обязательно, если хотите центрировать по всей высоте */
+  }
   .welcome-page-content {
     max-width: 90%; /* Увеличим ширину на очень маленьких устройствах */
     padding: 10px;
+    margin-bottom: 50px;
+    box-sizing: border-box; /* Включить отступы и границы в общую ширину и высоту */
   }
 
   .welcome-page-content h1 {

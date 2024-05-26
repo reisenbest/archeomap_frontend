@@ -48,11 +48,11 @@
 
 
 @media screen and (max-width: 768px) {
-  .monument-details-left-col,
-  .monument-details-center-col,
-  .monument-details-right-col {
+  
+  .monument-details-center-col
+   {
     position: static; /* Сбросим абсолютное позиционирование */
-    width: 100%; /* Ширина всех колонок на всю ширину экрана */
+    min-width: 95%; /* Ширина всех колонок на всю ширину экрана */
   }
 
   .monument-details-center-col {

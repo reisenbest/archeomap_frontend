@@ -95,7 +95,7 @@
 
   .footer-nav-list {
     list-style-type: none;
-    padding: 5px;
+    padding: 10px;
     margin: 0;
     position: absolute; /* Абсолютное позиционирование */
     bottom: 0; /* Прижать к нижнему краю */
@@ -116,7 +116,13 @@
     flex-direction: column;
     opacity: 1; /* Сделать меню полностью непрозрачным */
   }
-  
+  .footer-nav-list.open li {
+    margin-bottom: 10px; /* Добавляем отступ снизу между элементами списка */
+  }
+
+  .footer-nav-list.open li:last-child {
+    margin-bottom: 0; /* Убираем отступ у последнего элемента списка */
+  }
   .footer-link {
     color: #000000;
     text-decoration: none;
