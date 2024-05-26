@@ -284,18 +284,21 @@ p strong {
   border-radius: 10px;
 }
 
-.image-description {
+.image-description p {
   position: absolute;
   bottom: 1%;
-  width: 100%;
+  width: 90%;
   background-color: rgba(0, 0, 0, 0.7); /* черный цвет с прозрачностью 70% */
   color: white; 
-  font-size: calc(0.7vw + 0.7vh);
+  font-size: calc(0.65vw + 0.7vh);
   font-weight: bold; 
   padding: 10px; /* отступы внутри блока */
+  padding-left: 0px; /* отступ слева */
+  padding-right: 10px; /* отступ справа */
   z-index: 999;
+  overflow-wrap: break-word; /* Переносить слова на новую строку, если они не помещаются */
+  word-wrap: break-word; /* Альтернативный вариант для кроссбраузерности */
 }
-
 
 .PhotoView__Photo {
  
