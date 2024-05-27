@@ -336,8 +336,9 @@ p strong {
 }
 @media (max-width: 1000px) {
   .source-link-icon {
-    width: 12px;
-    height: 12px;
+    width: 2vw; /* Ширина иконки будет 6% от ширины экрана */
+    height: 2vw; 
+    padding-left: 5px;
   }
   .info-text {
     position: fixed; /* Позиционируем элемент относительно окна просмотра */

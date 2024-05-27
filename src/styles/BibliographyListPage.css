@@ -167,8 +167,8 @@
   
   
   .source-link-icon {
-    width: 8px;
-    height: 8px;
+    width: 2vw; /* Ширина иконки будет 6% от ширины экрана */
+    height: 2vw; 
     padding-left: 5px;
   }
 }
