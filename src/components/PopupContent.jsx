@@ -45,7 +45,7 @@ const PopupContent = ({ markerInfo }) => {
       
       {hasCustomCategory && (
         <div className='monument-custom-category'>
-          <h4><strong>Кастомные категории:</strong></h4>
+          <h4><strong>Дополнительная категория:</strong></h4>
           {markerInfo.custom_category.map((custom_category, index) => (
             <button key={index} className="custom-category-button">{custom_category}</button>
           ))}
@@ -71,6 +71,10 @@ const PopupContent = ({ markerInfo }) => {
       
       <div className='monument-address'> 
         <p><strong>Местоположение:</strong> {markerInfo.address}</p>
+      </div>
+
+      <div className='monument-landmark'> 
+        <p><strong>Современное обустройство:</strong> {markerInfo.landmark}</p>
       </div>
       
       <div className='monument-sources'>
@@ -139,7 +143,7 @@ const PopupContent = ({ markerInfo }) => {
               onIndexChange={setCurrentIndex}
               overlayRender={(overlayProps) => (
                 <div className='image-description'>
-                  <p dangerouslySetInnerHTML={{ __html: overlayProps.images[currentIndex].description }}></p>
+                  <p>{overlayProps.images[currentIndex].description}</p>
                 </div>
               )}
             />
