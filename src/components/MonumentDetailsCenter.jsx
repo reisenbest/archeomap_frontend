@@ -79,7 +79,7 @@ const MonumentDetailsCenter = ({ id }) => {
       </div>
 
       <div className='monument-landmark'> 
-        <p><strong>Современное обустройство:</strong> {markerInfo.address}</p>
+        <p><strong>Современное обустройство:</strong> {monumentData.address}</p>
       </div>
       <div className="monument-details-section">
         <h3 className="monument-details-section-title">Галлерея:</h3>
