@@ -57,9 +57,9 @@ const PopupContent = ({ markerInfo }) => {
         <div dangerouslySetInnerHTML={{ __html: markerInfo.description }} />
       </div>
       
-      <div className='monument-authors'>
+      {/* <div className='monument-authors'>
         <p><strong>Авторы:</strong> {markerInfo.authors.join(', ')}</p>
-      </div>
+      </div> */}
       
       <div className='monument-organization'>
         <p><strong>Организации:</strong> {markerInfo.organizations.join(', ')}</p>
@@ -77,43 +77,9 @@ const PopupContent = ({ markerInfo }) => {
         <p><strong>Современное обустройство:</strong> {markerInfo.landmark}</p>
       </div>
       
-      <div className='monument-sources'>
-        <p><strong>Источники:</strong></p>
-        <ul>
-          {Object.entries(markerInfo.sources).map(([title, link], index) => (
-            <li key={index}>
-              {title}
-              {link && (
-                <>
-                  {' '}
-                  <a href={link} target="_blank" rel="noopener noreferrer">
-                    <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
-                  </a>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
       
-      <div className='monument-content'>
-        <p><strong>Контент:</strong></p>
-        <ul>
-          {Object.entries(markerInfo.content).map(([title, link], index) => (
-            <li key={index}>
-              {title}
-              {link && (
-                <>
-                  {' '}
-                  <a href={link} target="_blank" rel="noopener noreferrer">
-                    <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
-                  </a>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+      
+      
       
       <div className='monument-image-gallery'>
         <p><strong>Галлерея:</strong></p>
@@ -149,6 +115,44 @@ const PopupContent = ({ markerInfo }) => {
             />
           </div>
         )}
+      </div>
+
+      <div className='monument-content'>
+        <p><strong>Контент:</strong></p>
+        <ul>
+          {Object.entries(markerInfo.content).map(([title, link], index) => (
+            <li key={index}>
+              {title}
+              {link && (
+                <>
+                  {' '}
+                  <a href={link} target="_blank" rel="noopener noreferrer">
+                    <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
+                  </a>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div className='monument-sources'>
+        <p><strong>Источники:</strong></p>
+        <ul>
+          {Object.entries(markerInfo.sources).map(([title, link], index) => (
+            <li key={index}>
+              {title}
+              {link && (
+                <>
+                  {' '}
+                  <a href={link} target="_blank" rel="noopener noreferrer">
+                    <img src={LinkLogo} alt="Link icon" className="source-link-icon" />
+                  </a>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
