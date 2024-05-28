@@ -78,6 +78,9 @@ const MonumentDetailsCenter = ({ id }) => {
         <p><strong>Местоположение:</strong> {monumentData.address}</p>
       </div>
 
+      <div className='monument-landmark'> 
+        <p><strong>Современное обустройство:</strong> {markerInfo.address}</p>
+      </div>
       <div className="monument-details-section">
         <h3 className="monument-details-section-title">Галлерея:</h3>
         <div className="monument-images-container">
