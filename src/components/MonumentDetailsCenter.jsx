@@ -5,6 +5,7 @@ import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import '../styles/MonumentDetailsCenter.css';
 import LinkLogo from '../assets/link-icon.png';
+import { Link } from 'react-router-dom';
 
 {/* Код с разметкой и логикой для отображения информации о памятнике на отдельной страничке
 посылает запрос к апи для получения памятника по id и отображает его */}
@@ -38,7 +39,11 @@ const MonumentDetailsCenter = ({ id }) => {
 
   return monumentData ? (
     <div className='monument-detail-container'>
-      <button className='button-monument'>О памятнике</button>
+      <div className='monument-button'>
+        <Link to="/map" > 
+        <button className="button-back-to-map">Перейти на карту</button>
+        </Link> 
+      </div>
       <h2 className='monument-title'>{monumentData.name}</h2>
       <div className='monument-type'>
         <h4><strong>Тип:</strong></h4>

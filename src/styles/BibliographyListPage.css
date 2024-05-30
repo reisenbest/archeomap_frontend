@@ -104,6 +104,9 @@
   color: #769978;
 }
 
+.subcategory-header.open {
+  color: #769978; /* Измененный цвет для открытой подкатегории */
+}
 
 .bibliography-list {
   list-style-type: disc; /* Задаем тип маркеровки - точки */

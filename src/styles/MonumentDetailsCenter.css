@@ -12,7 +12,13 @@
   overflow: hidden;
 }
 
-.button-monument {
+.monument-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-back-to-map{
   background-color: #C87E7B;
   border: 2px solid #594E3E; 
   color: #fff;
@@ -27,7 +33,7 @@
   transition: background-color 0.3s ease;
 }
 
-.button-monument:hover {
+.button-back-to-map:hover {
   background-color: #d39491; /* Изменение цвета при наведении */
 }
 
