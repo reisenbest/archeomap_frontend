@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polygon } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../styles/MapPage.css';
@@ -9,10 +9,6 @@ import FilterPopupPage from './FilterPopupPage';
 import { Link } from 'react-router-dom';
 import closeMenuIcon from '../assets/close-icon.png';
 
-
-// кор-компонент отвечает за большинство логики для страницы с картой, собирает в себе все состояния 
-// выбранный маркер выбранные фильтры состояния и раскидывает все обеспечивает взаимодействие
-// отрисовывает непосредственно карту 
 const customMarkerIcon = L.icon({
   iconUrl: markerIcon,
   iconSize: [10, 10],
@@ -41,9 +37,17 @@ function MapPage() {
   
   const [selectedMarkerInfo, setSelectedMarkerInfo] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [selectedExcavationSquare, setSelectedExcavationSquare] = useState(null);
 
   const handleMarkerClick = (markerInfo) => {
+    console.log('Marker clicked:', markerInfo);
     setSelectedMarkerInfo(markerInfo);
+    if (markerInfo.excavations_square && markerInfo.excavations_square.length > 0) {
+      console.log('Excavation Square:', markerInfo.excavations_square[0]);
+      setSelectedExcavationSquare(markerInfo.excavations_square[0]);
+    } else {
+      setSelectedExcavationSquare(null);
+    }
   };
 
   const filteredMarkers = monuments.filter(monument => {
@@ -58,13 +62,16 @@ function MapPage() {
     return categoryMatch && dateMatch && customCategoryMatch;
   });
 
+  useEffect(() => {
+    console.log('Selected Excavation Square updated:', selectedExcavationSquare);
+  }, [selectedExcavationSquare]);
+
   return (
     <>
       {!showInfo && <button className="filter-popup-button-mobile" onClick={() => setShowInfo(!showInfo)}>Фильтры и информация о памятнике</button>}
       <div className={`info-text ${showInfo ? 'show' : ''}`}>
         
         <FilterPopupPage
-        // передаем пропсы в кнопку фильтры
           categories={categories}
           selectedCategories={selectedCategories}
           dating={dating}
@@ -111,14 +118,16 @@ function MapPage() {
                 <strong>Категория:</strong> {monument.classification_category.join(', ')} <br />
                 <strong>Адрес:</strong> {monument.address} <br />
                 <Link to={`/monument/${monument.id}`}>Читать подробнее</Link>
-            </Popup>
+              </Popup>
             </Marker>
           ))}
+          {selectedExcavationSquare && (
+            <Polygon positions={selectedExcavationSquare} />
+          )}
         </MapContainer>
       </div>
       <div className='filters-popup-container'>
         <FilterPopupPage
-        //передаем пропсы в в кнопку о памятнике
           categories={categories}
           selectedCategories={selectedCategories}
           dating={dating}
