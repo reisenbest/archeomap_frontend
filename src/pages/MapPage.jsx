@@ -4,16 +4,32 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../styles/MapPage.css';
 import useMonumentsData from '../components/useMonumentsData';
-import markerIcon from '../assets/minimarker.png';
+// import markerIcon from '../assets/minimarker_yellow.png';
 import FilterPopupPage from './FilterPopupPage';
 import { Link } from 'react-router-dom';
 import closeMenuIcon from '../assets/close-icon.png';
 
-const customMarkerIcon = L.icon({
-  iconUrl: markerIcon,
-  iconSize: [10, 10],
-  iconAnchor: [0, 0],
-});
+import redMarker from '../assets/minimarker_red.png';
+import yellowMarker from '../assets/minimarker_yellow.png';
+import blueMarker from '../assets/minimarker_blue.png';
+import greenMarker from '../assets/minimarker_green.png';
+
+const markerIcon = {
+  'Красный кружок': L.icon({ iconUrl: redMarker, iconSize: [10, 10], iconAnchor: [0, 0] }),
+  'Желтый кружок': L.icon({ iconUrl: yellowMarker, iconSize: [10, 10], iconAnchor: [0, 0] }),
+  'Синий кружок': L.icon({ iconUrl: blueMarker, iconSize: [10, 10], iconAnchor: [0, 0] }),
+  'Зеленый кружок': L.icon({ iconUrl: greenMarker, iconSize: [10, 10], iconAnchor: [0, 0] })
+};
+
+
+
+
+
+// const customMarkerIcon = L.icon({
+//   iconUrl: markerIcon,
+//   iconSize: [10, 10],
+//   iconAnchor: [0, 0],
+// });
 
 function MapPage() {
   const {
@@ -105,7 +121,7 @@ function MapPage() {
             <Marker
               key={monument.id}
               position={[monument.latitude, monument.longitude]}
-              icon={customMarkerIcon}
+              icon={markerIcon[monument.icon_choice] || markerIcon['Красный кружок']}
               eventHandlers={{
                 click: () => {
                   handleMarkerClick(monument);

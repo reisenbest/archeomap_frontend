@@ -87,7 +87,7 @@ const MonumentDetailsCenter = ({ id }) => {
         <p><strong>Современное обустройство:</strong> {monumentData.landmark}</p>
       </div>
       <div className="monument-details-section">
-        <h3 className="monument-details-section-title">Галлерея:</h3>
+        <h3 className="monument-details-section-title">Галерея:</h3>
         <div className="monument-images-container">
           {monumentData.images.map((image, index) => (
             <div key={index} className="monument-image" onClick={() => handleImageClick(index)}>

@@ -82,7 +82,7 @@ const PopupContent = ({ markerInfo }) => {
       
       
       <div className='monument-image-gallery'>
-        <p><strong>Галлерея:</strong></p>
+        <p><strong>Галерея:</strong></p>
         <div className="photo-thumbnails">
           {markerInfo.images.map((image, index) => (
             <img
