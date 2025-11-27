@@ -19,12 +19,11 @@
 }
 
 .monument-details-center-col {
-  position: absolute; /* Используем относительное позиционирование */
+  position: absolute;
   left: 10%;
   width: 80%;
-  align-self: center;
-  /* border: 3px solid #000000; */
-  height: auto; /* Высота зависит от содержимого */
+  height: auto;
+  overflow-y: auto;
 }
 
 .monument-details-right-col {
