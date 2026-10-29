@@ -3,123 +3,50 @@ import TypeDropdown from '../components/TypeDropdown';
 import DatingDropdown from '../components/DatingDropdown';
 import CustomCategoryDropdown from '../components/CustomCategoryDropdown';
 import PopupContent from '../components/PopupContent';
+import alterLogo from '../assets/alter_logo.png';
 
-//компонент представляет страницу фильтров и всплывающего контента.
- // Он отображает кнопки для открытия фильтров и всплывающего контента,
-// а также содержит выпадающие списки для выбора категорий, датировки и пользовательских категорий. 
-const FilterPopupPage = ({
-  categories,
-  dating,
-  customCategories,
-  selectedCategories,
-  selectedDating,
-  selectedCustomCategories,
-  handleClearSelectionChange,
-  handleCategoryChange,
-  handleDatingChange,
-  handleCustomCategoryChange,
-  selectedMarkerInfo
-}) => {
-  const [activeButton, setActiveButton] = useState(null);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(true);
-  const [isTypeOpen, setIsTypeOpen] = useState(false);
-  const [isDateOpen, setIsDateOpen] = useState(false);
+const FilterPopupPage = ({ categories, dating, customCategories, selectedCategories,
+  selectedDating, selectedCustomCategories, handleClearSelectionChange,
+  handleCategoryChange, handleDatingChange, handleCustomCategoryChange, selectedMarkerInfo }) => {
+  const [activeTab, setActiveTab] = useState('object');
+  const [isTypeOpen, setIsTypeOpen] = useState(true);
+  const [isDateOpen, setIsDateOpen] = useState(true);
   const [isCustomCategoryOpen, setIsCustomCategoryOpen] = useState(false);
-  const [markerInfo, setMarkerInfo] = useState(null);
-
   useEffect(() => {
-    setMarkerInfo(selectedMarkerInfo);
+    if (selectedMarkerInfo) setActiveTab('object');
   }, [selectedMarkerInfo]);
-
-  const toggleFilterButton = () => {
-    setIsFilterOpen(!isFilterOpen);
-    setIsPopupOpen(false);
-    setActiveButton('filter');
-  };
-
-  const togglePopupButton = () => {
-    setIsPopupOpen(!isPopupOpen);
-    setIsFilterOpen(false);
-    setActiveButton('popup');
-  };
-
-  const toggleTypeButton = () => {
-    setIsTypeOpen(!isTypeOpen);
-    setActiveButton('type');
-  };
-
-  const toggleDateButton = () => {
-    setIsDateOpen(!isDateOpen);
-    setActiveButton('date');
-  };
-
-  const toggleCustomCategoryButton = () => {
-    setIsCustomCategoryOpen(!isCustomCategoryOpen);
-    setActiveButton('customCategory');
-  };
-
-  // Обработчик для сброса всех выбранных фильтров
-  const handleClearAllFilters = () => {
-    handleClearSelectionChange();
-  };
+  const selectedCount = selectedCategories.length + selectedDating.length + selectedCustomCategories.length;
 
   return (
     <>
-      <div className={`filters-buttons-container ${isFilterOpen || isTypeOpen || isDateOpen || isCustomCategoryOpen ? 'open' : ''}`}>
-        <button
-          className={`monument-filter-button ${isFilterOpen ? 'open' : ''}`}
-          onClick={toggleFilterButton}
-        >
-          Фильтры
-        </button>
-        
-        <button
-          className={`monument-popup-button ${isPopupOpen ? 'open' : ''}`}
-          onClick={togglePopupButton}
-        >
-          О памятнике
-        </button>
-        
-        {isFilterOpen && (
-          <div className='filter-content'>
-          <>
-            <TypeDropdown
-              categories={categories}
-              handleCategoryChange={handleCategoryChange}
-              selectedCategories={selectedCategories}
-              isTypeOpen={isTypeOpen}
-              toggleTypeButton={toggleTypeButton}
-            />
-            
-            <DatingDropdown
-              dating={dating}
-              isDateOpen={isDateOpen}
-              toggleDateButton={toggleDateButton}
-              handleDatingChange={handleDatingChange}
-              selectedDating={selectedDating}
-            />
-
-            <CustomCategoryDropdown
-              customCategories={customCategories}
-              isCustomCategoryOpen={isCustomCategoryOpen}
-              toggleCustomCategoryButton={toggleCustomCategoryButton}
-              handleCustomCategoryChange={handleCustomCategoryChange}
-              selectedCustomCategories={selectedCustomCategories}
-            />
-
-        <button className="clear-all-filters-button" onClick={handleClearAllFilters}>
-          Сбросить все фильтры
-        </button>
-          </>
+      <div className="filters-buttons-container">
+        <button className={`monument-popup-button ${activeTab === 'object' ? 'open' : ''}`}
+          aria-pressed={activeTab === 'object'} onClick={() => setActiveTab('object')}>Об объекте</button>
+        <button className={`monument-filter-button ${activeTab === 'filters' ? 'open' : ''}`}
+          aria-pressed={activeTab === 'filters'} onClick={() => setActiveTab('filters')}>Фильтры</button>
+        {activeTab === 'filters' && (
+          <div className="filter-content">
+            <div className="filter-summary">
+              <span>Выбрано: {selectedCount}</span>
+              <button className="clear-all-filters-button" onClick={handleClearSelectionChange}>Сбросить всё</button>
+            </div>
+            <TypeDropdown categories={categories} selectedCategories={selectedCategories}
+              handleCategoryChange={handleCategoryChange} isTypeOpen={isTypeOpen}
+              toggleTypeButton={() => setIsTypeOpen(open => !open)} />
+            <DatingDropdown dating={dating} selectedDating={selectedDating}
+              handleDatingChange={handleDatingChange} isDateOpen={isDateOpen}
+              toggleDateButton={() => setIsDateOpen(open => !open)} />
+            <CustomCategoryDropdown customCategories={customCategories} selectedCustomCategories={selectedCustomCategories}
+              handleCustomCategoryChange={handleCustomCategoryChange} isCustomCategoryOpen={isCustomCategoryOpen}
+              toggleCustomCategoryButton={() => setIsCustomCategoryOpen(open => !open)} />
           </div>
         )}
       </div>
-
-      {isPopupOpen && <PopupContent markerInfo={markerInfo} />}
-
+      {activeTab === 'object' && <>
+        <PopupContent markerInfo={selectedMarkerInfo} />
+        {!selectedMarkerInfo && <img className="map-panel-empty-logo" src={alterLogo} alt="Логотип проекта" />}
+      </>}
     </>
   );
 };
-
 export default FilterPopupPage;

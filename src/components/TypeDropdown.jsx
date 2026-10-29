@@ -1,9 +1,15 @@
-import React from 'react';
+/*
+ * Фильтр по типу памятника. Данные и функции приходят через FilterPopupPage из MapPage.
+ * Этот компонент сам не загружает данные: показывает варианты categories и передаёт нажатия наверх.
+ * checked показывает галочку, includes проверяет наличие варианта в выбранном списке.
+ * onChange передаёт событие с value (вариант) и checked (отмечен ли он).
+ */
+import React, { useId } from 'react';
 
-{/* Код берет из useMonumentsData данные, отбирает отттуда Тип и отображает их 
-также отслеживает выбранные категории*/}
+
 
 const TypeDropdown = ({ categories, selectedCategories, handleCategoryChange, isTypeOpen, toggleTypeButton }) => {
+  const inputId = useId();
   return (
     <div className="dropdown-menu">
       <button
@@ -19,12 +25,12 @@ const TypeDropdown = ({ categories, selectedCategories, handleCategoryChange, is
             <div key={index} className="checkbox-item">
               <input 
                 type="checkbox" 
-                id={`category-${index}`} 
+                id={`${inputId}-${index}`} 
                 value={category} 
                 onChange={handleCategoryChange} 
                 checked={selectedCategories.includes(category)}
               />
-              <label htmlFor={`category-${index}`}>{category}</label>
+              <label htmlFor={`${inputId}-${index}`}>{category}</label>
             </div>
           ))}
         </div>
@@ -34,3 +40,4 @@ const TypeDropdown = ({ categories, selectedCategories, handleCategoryChange, is
 };
 
 export default TypeDropdown;
+

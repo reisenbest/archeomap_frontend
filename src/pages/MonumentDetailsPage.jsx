@@ -1,4 +1,7 @@
-// отрисовываем сраничку с подробной инфой о каждом отдельном памятнике
+/*
+ * Оболочка страницы отдельного памятника. useParams читает id из адреса /monument/:id.
+ * Загрузка и содержимое карточки находятся в MonumentDetailsCenter, куда передаётся этот id.
+ */
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/MonumentDetailsPage.css';

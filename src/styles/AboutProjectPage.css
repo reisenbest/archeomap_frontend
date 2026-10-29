@@ -1,45 +1,56 @@
+/*
+ * Страница проекта: центральная колонка, заголовки раскрываемых разделов и текст.
+ *
+ * Как читать CSS: .имя выбирает className из JSX; пробел выбирает вложенный элемент.
+ * :hover — наведение мыши, .open — класс открытого состояния.
+ * margin — отступ снаружи, padding — внутри; px — пиксели, vw/vh — проценты размеров окна.
+ * При одинаковой важности и точности селектора более позднее правило заменяет раннее.
+ * Стили здесь общие для приложения: одинаковые классы из разных файлов могут влиять друг на друга.
+ */
 /* стили  для раздела о проекте  */
 .about-project-container {
   width: 100%;
   height: 100%;
+  /* Управляет вертикальным выходом содержимого: auto добавляет прокрутку при нехватке места, hidden обрезает.  */
   overflow-y: auto; /* Добавляет вертикальную прокрутку, если контент выходит за пределы контейнера */
 }
 
 
 .about-project-center-col {
   padding: 20px; /* Внутренний отступ */
-  background-color: #F9F6F2; 
-  border: 1px solid #ddd; 
-  border-radius: 10px; 
+  background-color: #F9F6F2;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
-  max-width: 70%; 
-  width: 100%; 
+  max-width: 70%;
+  width: 100%;
   margin: 0 auto; /* Центрирование по горизонтали */
 }
 
 
 .about-project-center-col h1 {
-  font-size: calc(1vw + 1.5vh); 
-  font-family: Pixel-Ultima-Bold; 
+  font-size: calc(1vw + 1.5vh);
+  font-family: Pixel-Ultima-Bold;
 }
 
 
 .about-project-section-title {
   cursor: pointer; /* Изменение курсора при наведении */
-  color: #C87E7B; 
+  color: #C87E7B;
   margin: 10px 0; /* Отступы сверху и снизу */
-  font-size: calc(0.8vw + 0.8vh); 
+  font-size: calc(0.8vw + 0.8vh);
+  /* Какие свойства меняются плавно и за сколько секунд; само конечное значение задаётся отдельным правилом.  */
   transition: color 0.3s; /* Плавный переход при наведении */
 }
 
 .about-project-section-title:hover {
-  color: #769978; 
+  color: #769978;
 }
 
 
 .about-project-section-content p {
   margin-bottom: 15px; /* Отступ снизу */
-  font-size: calc(0.7vw + 0.7vh); 
+  font-size: calc(0.7vw + 0.7vh);
   line-height: 1.6; /* Межстрочный интервал */
   padding-left: 20px; /* Внутренний отступ слева */
 }
@@ -49,29 +60,34 @@
   margin-top: 20px; /* Отступ сверху */
   margin-right: 20px;
   padding: 15px; /* Внутренний отступ */
-  border: 2px solid #ddd; 
-  border-radius: 5px; 
+  border: 2px solid #ddd;
+  border-radius: 5px;
   background-color: #f9f9f9; /* Цвет фона */
   font-size: calc(0.75vw + 0.75vh)
 }
 
 /* Ссылки в тексте */
 .link {
-  color: #C87E7B; 
+  color: #C87E7B;
   text-decoration: none; /* Убираем подчеркивание */
-  font-weight: bold; 
+  font-weight: bold;
   transition: color 0.3s; /* Плавный переход при наведении */
 }
 
 
+/* Общий вид ссылок внутри текста. Этот класс встречается на нескольких страницах. Эти значения применяются при наведении мыши.  */
+
+
 .link:hover {
-  color: #769978; 
+  color: #769978;
 }
 
 /* Медиа-запрос для устройств с шириной экрана до 1000px */
+/* Настройки для окна шириной 1000 пикселей и меньше. Здесь переопределяются только перечисленные свойства.  */
 @media screen and (max-width: 1000px) {
   .about-project-center-col {
     padding: 10px; /* Внутренний отступ */
-    min-width: 95%; 
+    /* Нижняя граница ширины. Значение 0 позволяет элементу сжиматься даже при длинном тексте.  */
+    min-width: 95%;
   }
 }

@@ -1,17 +1,25 @@
+/*
+ * Список источников с выбором раздела, поиском и раскрывающимися подразделами.
+ * Данные и выбранный раздел приходят от BibliographyListPage через параметры (props).
+ * Текст источников берётся из API; оформление меняется в styles/BibliographyListPage.css.
+ */
 import React, { useState } from 'react';
 import LinkLogo from '../assets/link-icon.png';
 import '../styles/BibliographyListPage.css';
 
 function BibliographyList({ organizedBibliography, selectedMainCategory, setSelectedMainCategory }) {
+  // Объект хранит открытые подразделы: имя → true/false. searchQuery хранит введённый текст.
   const [openSubCategories, setOpenSubCategories] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
 
+  // При смене основного раздела закрываем подразделы и очищаем старый поиск.
   const handleMainCategoryChange = (e) => {
     setSelectedMainCategory(e.target.value);
     setOpenSubCategories({});
     setSearchQuery('');
   };
 
+  // Берём предыдущее состояние prev, сохраняем остальные ключи и переключаем только нужный подраздел.
   const toggleSubCategory = (subCategory) => {
     setOpenSubCategories((prev) => ({
       ...prev,
@@ -19,6 +27,8 @@ function BibliographyList({ organizedBibliography, selectedMainCategory, setSele
     }));
   };
 
+  // Поиск открывает подразделы, в которых найден хотя бы один источник.
+  // Сравнение через toLowerCase не различает большие и маленькие буквы. Пустой запрос закрывает подразделы.
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -37,12 +47,16 @@ function BibliographyList({ organizedBibliography, selectedMainCategory, setSele
     }
   };
 
+  // Оставляем источники, у которых поле source содержит введённую строку.
   const filterItemsBySearchQuery = (items) => {
     return items.filter((item) =>
       item.source.toLowerCase().includes(searchQuery.toLowerCase())
     );
   };
 
+  // Несмотря на Desc в имени, здесь даты идут по возрастанию: от старых к новым.
+  // Записи без даты ставятся первыми. Для обратного порядка меняют сравнение a и b.
+  // sort меняет переданный массив; ниже ему передаётся новый массив, полученный через filter.
   const sortByPublicationDateDesc = (items) => {
     return items.sort((a, b) => {
       if (a.publication_date && b.publication_date) {

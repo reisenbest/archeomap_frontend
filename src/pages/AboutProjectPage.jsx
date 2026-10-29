@@ -1,9 +1,13 @@
-// компонент отрисовывает страничку о проекте
+/*
+ * Текст о проекте с раскрывающимися разделами. Тексты редактируются в JSX ниже.
+ * При добавлении раздела используйте одинаковый ключ в showText, toggleText и условии показа.
+ */
 import React, { useState } from 'react';
 import '../styles/AboutProjectPage.css'; 
 import { Link } from 'react-router-dom';
 
 function AboutProjectPage() {
+  // Для каждого раздела храним, раскрыт ли он. Изначально все значения false — текст скрыт.
   const [showText, setShowText] = useState({
     problem: false,
     goals: false,
@@ -12,6 +16,8 @@ function AboutProjectPage() {
     future: false
   });
 
+  // section — ключ нажатого раздела. ...prevState сохраняет остальные разделы,
+  // [section] выбирает нужный ключ, ! меняет его значение на противоположное.
   const toggleText = (section) => {
     setShowText(prevState => ({
       ...prevState,

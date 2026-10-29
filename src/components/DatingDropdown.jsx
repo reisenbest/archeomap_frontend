@@ -1,8 +1,13 @@
-import React from 'react';
+/*
+ * Фильтр по датировке. Получает список dating, выбранные значения и обработчики через параметры.
+ * checked управляет галочкой; includes проверяет, выбрана ли эта датировка.
+ * Изменение галочки обрабатывает useMonumentsData, после чего MapPage пересчитывает точки.
+ */
+import React, { useId } from 'react';
 
-{/* Код берет из useMonumentsData данные, отбирает отттуда датировки и отображает их 
-также отслеживает выбранные категории*/}
+
 const DatingDropdown = ({ dating, isDateOpen, toggleDateButton, handleDatingChange, selectedDating }) => {
+  const inputId = useId();
   return (
     <div className="dropdown-menu">
       <button
@@ -19,12 +24,12 @@ const DatingDropdown = ({ dating, isDateOpen, toggleDateButton, handleDatingChan
             <div key={index} className="checkbox-item">
               <input 
                 type="checkbox" 
-                id={`date-${index}`} 
+                id={`${inputId}-${index}`} 
                 value={date} 
                 onChange={handleDatingChange} 
                 checked={selectedDating.includes(date)}
               />
-              <label htmlFor={`date-${index}`}>{date}</label>
+              <label htmlFor={`${inputId}-${index}`}>{date}</label>
             </div>
           ))}
         </div>
@@ -34,3 +39,4 @@ const DatingDropdown = ({ dating, isDateOpen, toggleDateButton, handleDatingChan
 };
 
 export default DatingDropdown;
+

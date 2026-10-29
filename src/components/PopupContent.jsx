@@ -1,5 +1,8 @@
-// компонент отрисовывает содержимое во вкладке о памятнике в разделе карта + фото слайдер
-// берет данные из маркер инфо. выбранный маркер из MapPage
+/*
+ * Содержимое вкладки «О памятнике» на карте. markerInfo — объект выбранной точки из MapPage.
+ * Здесь нет отдельного запроса: данные уже загрузил useMonumentsData.
+ * Поля карточки и галерея описаны ниже; оформление находится в styles/MapPage.css.
+ */
 
 import React, { useState } from 'react';
 import { API_BASE_URL } from '../config.jsx';
@@ -8,22 +11,27 @@ import 'react-photo-view/dist/react-photo-view.css';
 import LinkLogo from '../assets/link-icon.png';
 
 const PopupContent = ({ markerInfo }) => {
+  // sliderVisible хранит, открыт ли просмотр фотографий; currentIndex — номер фото, начиная с нуля.
   const [sliderVisible, setSliderVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Запоминаем номер нажатой миниатюры и открываем просмотр именно с неё.
   const handleImageClick = (index) => {
     setCurrentIndex(index);
     setSliderVisible(true);
   };
 
+  // Пока точка не выбрана, показываем подсказку и не обращаемся к полям отсутствующего объекта.
   if (!markerInfo) {
     return (
       <div className="popup-content">
-        <p>Чтобы получить информацию о памятнике, кликните на соответствующий маркер на карте.</p>
+        <span className="panel-empty-label">Город сквозь время</span><h2 className="panel-empty-title">У каждого места — своя история</h2><p>Выберите точку на карте, чтобы узнать о памятнике, находках и исследованиях. Или откройте фильтры, чтобы найти интересующую эпоху.</p>
       </div>
     );
   }
 
+  // Показываем блок, если есть хотя бы одна категория, отличная от null и NONE.
+  // Это проверка всего блока: внутри него ниже всё ещё выводятся все значения массива.
   const hasCustomCategory = markerInfo.custom_category && markerInfo.custom_category.some(category => category !== null && category !== 'NONE');
 
   return (
@@ -54,6 +62,7 @@ const PopupContent = ({ markerInfo }) => {
       
       <div className='monument-description'>
         <p><strong>Описание:</strong></p>
+        {/* Описание приходит как HTML с форматированием. Передавайте сюда только очищенную на сервере разметку: React вставляет её напрямую. */}
         <div dangerouslySetInnerHTML={{ __html: markerInfo.description }} />
       </div>
       
@@ -81,6 +90,7 @@ const PopupContent = ({ markerInfo }) => {
       
       
       
+      {/* Галерея: миниатюры берутся из images, полный адрес фото собирается из API_BASE_URL и image.image. */}
       <div className='monument-image-gallery'>
         <p><strong>Галерея:</strong></p>
         <div className="photo-thumbnails">
@@ -120,6 +130,7 @@ const PopupContent = ({ markerInfo }) => {
       <div className='monument-content'>
         <p><strong>Контент:</strong></p>
         <ul>
+          {/* Object.entries превращает объект в пары «название — ссылка». Пустая ссылка оставляет только название. */}
           {Object.entries(markerInfo.content).map(([title, link], index) => (
             <li key={index}>
               {title}
@@ -159,3 +170,4 @@ const PopupContent = ({ markerInfo }) => {
 };
 
 export default PopupContent;
+

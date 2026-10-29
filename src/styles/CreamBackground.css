@@ -1,0 +1,54 @@
+/*
+ * Не подключённый сейчас вариант общего фона. Для применения нужен импорт этого файла
+ * и класс cream-background у общей обёртки. Переключателя USE_CREAM_BACKGROUND в App.jsx сейчас нет.
+ *
+ * Как читать CSS: .имя выбирает className из JSX; пробел выбирает вложенный элемент.
+ * :hover — наведение мыши, .open — класс открытого состояния.
+ * margin — отступ снаружи, padding — внутри; px — пиксели, vw/vh — проценты размеров окна.
+ * При одинаковой важности и точности селектора более позднее правило заменяет раннее.
+ * Стили здесь общие для приложения: одинаковые классы из разных файлов могут влиять друг на друга.
+ */
+/* Этот набор правил пока не подключён к App.jsx. */
+.cream-background {
+  /* isolate создаёт отдельную группу слоёв, удерживая декоративный фон внутри неё. */
+  isolation: isolate;
+}
+
+/* Один неподвижный слой на весь экран, включая мобильные устройства.
+   Растягиваем градиент целиком, чтобы сохранить верхний и нижний цвета. */
+.cream-background::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  /* Порядок наложения в своём контексте слоёв: большее число обычно размещает элемент выше соседних. */
+  z-index: -1;
+  /* none пропускает нажатия сквозь декоративный слой к элементам под ним. */
+  pointer-events: none;
+  background: #EFEBDD url('../assets/05_cream_ochre.png') center / 100% 100% no-repeat;
+}
+
+.cream-background .header,
+.cream-background .header-content,
+.cream-background .main,
+.cream-background .footer,
+.cream-background .filters-popup-container,
+.cream-background .filters-buttons-container {
+  background-color: transparent;
+}
+
+/* Фиксированная карта не должна просвечивать за прозрачным футером. */
+.cream-background .main {
+  /* inset(0) обрезает видимое содержимое по границам блока. */
+  clip-path: inset(0);
+}
+
+/* Лёгкая подложка для читаемости; общий градиент виден сквозь неё. */
+.cream-background .filter-content,
+.cream-background .about-project-center-col,
+.cream-background .about-authors-center-col,
+.cream-background .how-to-use-center-col,
+.cream-background .monument-list-page-center-col,
+.cream-background .bibliography-center-col,
+.cream-background .monument-detail-container {
+  background-color: rgba(249, 246, 242, 0.65);
+}

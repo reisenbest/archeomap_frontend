@@ -1,23 +1,24 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Файлы и папки ниже Git не предлагает добавлять в новые коммиты. Уже отслеживаемые файлы это не скрывает.
 
-# dependencies
+# Установленные библиотеки: восстанавливаются командой npm install.
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Отчёт о покрытии кода тестами.
 /coverage
 
-# production
+# Результат сборки npm run build.
 /build
 
-# misc
+# Служебные файлы системы и локальные настройки окружения.
 .DS_Store
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# Журналы ошибок менеджеров пакетов.
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

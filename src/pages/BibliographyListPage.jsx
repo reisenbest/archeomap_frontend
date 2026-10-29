@@ -1,3 +1,7 @@
+/*
+ * Страница источников: загружает данные, хранит выбранный раздел и показывает пояснение.
+ * Сами подразделы, поиск и сортировка находятся в components/BibliographyList.jsx.
+ */
 import React, { useState } from 'react';
 import useBibliographyData from '../components/useBibliographyData';
 import BibliographyList from '../components/BibliographyList';
@@ -6,6 +10,7 @@ import '../styles/BibliographyListPage.css';
 
 function BibliographyListPage() {
   const { organizedBibliography } = useBibliographyData();
+  // Пустая строка означает, что раздел ещё не выбран. showAboutSection управляет пояснением над списком.
   const [selectedMainCategory, setSelectedMainCategory] = useState('');
   const [showAboutSection, setShowAboutSection] = useState(false);
 

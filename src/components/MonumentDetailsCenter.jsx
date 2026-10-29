@@ -1,3 +1,8 @@
+/*
+ * Полная карточка памятника. Получает id из MonumentDetailsPage и загружает одну запись API.
+ * Содержимое похоже на PopupContent, но это отдельная страница с отдельным запросом.
+ * Меняя поля карточки, проверьте также PopupContent, если изменения нужны и на карте.
+ */
 
 import React, { useEffect, useState } from 'react';
 import { API_BASE_URL } from '../config.jsx';
@@ -7,14 +12,16 @@ import '../styles/MonumentDetailsCenter.css';
 import LinkLogo from '../assets/link-icon.png';
 import { Link } from 'react-router-dom';
 
-{/* Код с разметкой и логикой для отображения информации о памятнике на отдельной страничке
-посылает запрос к апи для получения памятника по id и отображает его */}
+
 
 const MonumentDetailsCenter = ({ id }) => {
   const [monumentData, setMonumentData] = useState(null);
+  // sliderVisible хранит, открыт ли просмотр фотографий; currentIndex — номер фото, начиная с нуля.
   const [sliderVisible, setSliderVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // При первом открытии и при изменении id запрашиваем выбранный памятник.
+  // fetch сам не считает HTTP-ошибку исключением, поэтому отдельно проверяем response.ok.
   useEffect(() => {
     const fetchMonumentData = async () => {
       try {
@@ -32,11 +39,14 @@ const MonumentDetailsCenter = ({ id }) => {
     fetchMonumentData();
   }, [id]);
 
+  // Запоминаем номер нажатой миниатюры и открываем просмотр именно с неё.
   const handleImageClick = (index) => {
     setCurrentIndex(index);
     setSliderVisible(true);
   };
 
+  // Если данные есть, показываем карточку; иначе — Loading в конце разметки.
+  // Сейчас ошибка только выводится в консоль, поэтому после неудачного запроса Loading остаётся на экране.
   return monumentData ? (
     <div className='monument-detail-container'>
       <div className='monument-button'>
@@ -65,7 +75,8 @@ const MonumentDetailsCenter = ({ id }) => {
       </div>
       <div className='monument-description'>
         <p><strong>Описание:</strong></p>
-         {/* Используем dangerouslySetInnerHTML для вставки HTML-разметки из markerInfo.description */}
+         {/* HTML-описание этой страницы берётся из monumentData.description */}
+        {/* Описание приходит как HTML с форматированием. Передавайте сюда только очищенную на сервере разметку: React вставляет её напрямую. */}
         <div dangerouslySetInnerHTML={{ __html: monumentData.description }} /> 
       </div>
       {/* <div className='monument-authors'>
@@ -86,6 +97,7 @@ const MonumentDetailsCenter = ({ id }) => {
       <div className='monument-landmark'> 
         <p><strong>Современное обустройство:</strong> {monumentData.landmark}</p>
       </div>
+      {/* Галерея: миниатюры берутся из images, полный адрес фото собирается из API_BASE_URL и image.image. */}
       <div className="monument-details-section">
         <h3 className="monument-details-section-title">Галерея:</h3>
         <div className="monument-images-container">
@@ -121,6 +133,7 @@ const MonumentDetailsCenter = ({ id }) => {
       <div className='monument-content'>
       <p><strong>Контент:</strong></p>
         <ul>
+          {/* Object.entries превращает объект в пары «название — ссылка». Пустая ссылка оставляет только название. */}
           {Object.entries(monumentData.content).map(([title, link], index) => (
                 <li key={index}>
                   {title}

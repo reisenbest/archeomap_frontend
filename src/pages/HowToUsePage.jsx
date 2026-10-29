@@ -1,3 +1,8 @@
+/*
+ * Руководство пользователя с раскрывающимися разделами и увеличиваемыми снимками экрана.
+ * Тексты находятся ниже, изображения — в assets/how-to-use, оформление — в styles/HowToUsePage.css.
+ * PhotoProvider объединяет просмотр изображений, PhotoView делает снимок открываемым по нажатию.
+ */
 import React, { useState } from 'react';
 import '../styles/HowToUsePage.css'; 
 import { Link } from 'react-router-dom';
@@ -23,11 +28,11 @@ import sourcesSubCategoryAfter from '../assets/how-to-use/sourceslist/sub-sectio
 
 
 
-// раздел отрисовывает раздел как польззваться
 
 
 function HowToUsePage() {
 
+  // Для каждого раздела храним, раскрыт ли он. Изначально все значения false — текст скрыт.
   const [showText, setShowText] = useState({
     navigation: false,
     map: false,
@@ -35,6 +40,8 @@ function HowToUsePage() {
     sourceslist: false,
   });
 
+  // section — ключ нажатого раздела. ...prevState сохраняет остальные разделы,
+  // [section] выбирает нужный ключ, ! меняет его значение на противоположное.
   const toggleText = (section) => {
     setShowText(prevState => ({
       ...prevState,

@@ -1,36 +1,65 @@
+/*
+ * Содержимое шапки: логотип, ссылки и компактное меню. Класс open добавляет Header.jsx.
+ * Общая высота шапки задаётся в styles/App.css.
+ *
+ * Как читать CSS: .имя выбирает className из JSX; пробел выбирает вложенный элемент.
+ * :hover — наведение мыши, .open — класс открытого состояния.
+ * margin — отступ снаружи, padding — внутри; px — пиксели, vw/vh — проценты размеров окна.
+ * При одинаковой важности и точности селектора более позднее правило заменяет раннее.
+ * Стили здесь общие для приложения: одинаковые классы из разных файлов могут влиять друг на друга.
+ */
 /* Содержимое хедера */
 .header-content {
-  display: flex; /* Элементы располагаются в строку */
+  display: flex; /* Включаем flex-размещение; направление задаёт flex-direction (по умолчанию строка). */
   width: 100%; 
   height: 100%; 
   justify-content: space-between; /* Равномерное распределение пространства между элементами */
   align-items: center; /* Выравнивание элементов по центру вертикали */
-  font-size: calc(0.7vw + 0.7vh); 
+  font-size: clamp(14px, calc(0.7vw + 0.7vh), 20px);
   background-color: #EFEBDD; 
   position: relative; /* Относительное позиционирование для правильного позиционирования бургер-меню */
 }
 
 /* Обертка для логотипа в хедере */
 .header-logo-wrapper {
-  max-width: 20%; 
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 32px;
+  min-width: 0;
+}
+
+.header-logo-link {
+  flex-shrink: 0;
+}
+
+.header-title {
+  color: #000000;
+  font-family: Pixel-Ultima-Bold, sans-serif;
+  font-size: 22px;
+  line-height: 1.2;
 }
 
 
+/* Размер и отступы логотипа в верхнем меню. */
+
+
 .header-logo {
-  width:80%; 
-  height: 80%; 
-  max-width: 100px; 
-  margin-left: 50%; /* Отступ слева */
-  margin-right: 10%; /* Отступ справа */
+  display: block;
+  width: 64px;
+  height: 64px;
+  /* contain показывает изображение целиком, cover заполняет рамку с возможной обрезкой краёв. */
+  object-fit: contain;
+  margin: 0;
 }
 
 
 .header-navbar-wrapper {
-  width: 80%; 
-  max-width: 80%;
+  flex: 1;
+  min-width: 0;
   overflow: hidden; /* Скрытие содержимого, выходящего за границы */
   height: 100%; 
-  display: flex; /* Элементы располагаются в строку */
+  display: flex; /* Включаем flex-размещение; направление задаёт flex-direction (по умолчанию строка). */
   justify-content: flex-end; /* Выравнивание элементов по концу (справа) */
   align-items: center; /* Выравнивание элементов по центру вертикали */
   position: relative; /* Относительное позиционирование */
@@ -41,7 +70,7 @@
   list-style-type: none; /* Убираем стандартную маркеровку */
   margin: 0; /* Сбрасываем внешние отступы */
   padding: 0; /* Сбрасываем внутренние отступы */
-  display: flex; /* Элементы располагаются в строку */
+  display: flex; /* Включаем flex-размещение; направление задаёт flex-direction (по умолчанию строка). */
   justify-content: flex-end; /* Выравнивание элементов по концу (справа) */
   width: 100%; 
 }
@@ -63,6 +92,9 @@
 }
 
 
+/* Вид ссылки на текущую страницу; active добавляется компонентом React. */
+
+
 .nav-link.active {
   color: #ffffff; 
   background-color: #594E3E;
@@ -82,6 +114,7 @@
   width: 5vw; /* Адаптивный размер, равный 5% от ширины окна */
   height: auto; /* Сохраняет соотношение сторон */
   max-width: 40px; /* Ограничение максимального размера */
+  /* Какие свойства меняются плавно и за сколько секунд; само конечное значение задаётся отдельным правилом. */
   transition: transform 0.3s ease;
 }
 
@@ -89,7 +122,26 @@
   transform: rotate(90deg); /* Поворот изображения при открытии меню */
 }
 
-@media screen and (max-width: 768px) {
+/* Настройки для окна шириной 768 пикселей и меньше. Здесь переопределяются только перечисленные свойства. */
+
+@media screen and (max-width: 1100px) {
+  /* Размер и отступы логотипа в верхнем меню. */
+  .header-logo {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+  }
+
+  .header-logo-wrapper {
+    margin-left: 16px;
+    gap: 10px;
+  }
+
+  .header-title {
+    font-size: clamp(14px, 2.5vw, 22px);
+  }
+
   .header-content {
     font-size: calc(0.7vw + 0.8vh);
   }
@@ -104,9 +156,9 @@
     list-style-type: none;
     margin: 10px;
     position: absolute;
-    top: 15%; /* Перемещаем вверх на 50% */
-    right: 2%; /* Перемещаем влево на 50% */
-    transform: translate(0%, 40%); /* Центрируем относительно центра экрана */
+    top: 100%;
+    right: 2%; /* Отступ от правого края содержащего блока — 2%. */
+    transform: none;
     width: auto;
     display: flex;
     flex-direction: column;
@@ -126,17 +178,18 @@
   }
   .burger-menu-header {
     display: block;
+    /* Порядок наложения в своём контексте слоёв: большее число обычно размещает элемент выше соседних. */
     z-index: 1001; /* Устанавливаем z-index, чтобы бургер-меню отображалось выше меню */
   }
 
   .header-navbar-wrapper {
     position: relative; /* Изменим позиционирование на относительное */
-    width: 100%;
+    flex: 0 0 60px;
     z-index: 999;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: none; /* Сброс максимальной ширины */
+    max-height: none; /* Убираем ограничение максимальной высоты. */
     overflow: visible; /* Показываем содержимое, которое выходит за границы */
   }
 

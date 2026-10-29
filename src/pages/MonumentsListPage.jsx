@@ -1,3 +1,8 @@
+/*
+ * Алфавитный список памятников с поиском по названию.
+ * Данные загружает useMonumentsData; нажатие на название открывает /monument/id.
+ * Поиск выполняется в браузере по уже загруженному массиву, без нового запроса.
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useMonumentsData from '../components/useMonumentsData';
@@ -5,11 +10,13 @@ import '../styles/MonumentsListPage.css';
 
 // Отрисовываем раздел список памятников
 function MonumentsListPage() {
+  // Храним видимость пояснения и текущий поисковый текст. Изменение состояния обновляет список на экране.
   const [showAboutSection, setShowAboutSection] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { monuments } = useMonumentsData(); // Получаем данные о памятниках
 
   // Сортируем памятники по алфавиту по их именам
+  // localeCompare сравнивает названия как текст. Важно: sort сортирует сам массив monuments, а не его копию.
   const sortedMonuments = monuments.sort((a, b) => a.name.localeCompare(b.name));
 
   const toggleAboutSection = () => {

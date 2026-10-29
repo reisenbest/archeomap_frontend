@@ -1,11 +1,16 @@
-//Этот компонент используется для управления состоянием данных о памятниках, 
-// компонент отправляет запрос по апи и получает всю информации из бд по по памятника 
-// отсюда компоненты для раздела карты берут инфу
+/*
+ * Свой хук React: загружает памятники с сервера и хранит выбранные фильтры.
+ * Хук — функция с именем use..., которая использует состояние и другие возможности React.
+ * MapPage и MonumentsListPage вызывают его независимо: каждый вызов имеет свои данные и запрос.
+ * Списки вариантов берутся из ответа сервера, а не задаются вручную в выпадающих меню.
+ */
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config.jsx';
 
 const useMonumentsData = () => {
+  // useState хранит значение между перерисовками. set... меняет его и просит React обновить экран.
+  // Пустые массивы означают: данные ещё не загружены, фильтры пока не выбраны.
   const [monuments, setMonuments] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -14,12 +19,16 @@ const useMonumentsData = () => {
   const [customCategories, setCustomCategories] = useState([]);
   const [selectedCustomCategories, setSelectedCustomCategories] = useState([]);
 
+  // useEffect запускает загрузку после появления компонента. [] в конце означает, что эффект не зависит от значений.
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // await ждёт ответ, не блокируя интерфейс. response.data содержит массив памятников из API.
         const response = await axios.get(`${API_BASE_URL}/api/monuments/`);
         setMonuments(response.data);
 
+        // flatMap собирает категории всех памятников в один массив. Set убирает повторы, Array.from возвращает массив.
+        // Ниже тем же способом собираем датировки и дополнительные категории.
         const allCategories = response.data.flatMap(monument => monument.classification_category);
         const uniqueCategories = Array.from(new Set(allCategories));
         setCategories(uniqueCategories);
@@ -40,6 +49,8 @@ const useMonumentsData = () => {
     fetchData();
   }, []);
 
+  // При установленной галочке добавляем значение; при снятой исключаем его через filter.
+  // ... копирует элементы в новый массив, чтобы передать React обновлённый список.
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     if (e.target.checked) {
@@ -49,6 +60,7 @@ const useMonumentsData = () => {
     }
   };
 
+  // Та же логика выбора, но для датировок; список не связан с выбранными типами.
   const handleDatingChange = (e) => {
     const date = e.target.value;
     if (e.target.checked) {
@@ -58,6 +70,7 @@ const useMonumentsData = () => {
     }
   };
 
+  // Обновляем выбранные дополнительные категории по событию от галочки.
   const handleCustomCategoryChange = (e) => {
     const customCategory = e.target.value;
     if (e.target.checked) {
@@ -67,12 +80,14 @@ const useMonumentsData = () => {
     }
   };
 
+  // Сбрасываем все три фильтра. Сами загруженные памятники остаются в памяти.
   const handleClearSelectionChange = () => {
     setSelectedCategories([]);
     setSelectedDating([]);
     setSelectedCustomCategories([]);
   };
 
+  // Возвращаем данные и функции: вызывающая страница может показывать варианты и менять выбор.
   return {
     monuments,
     categories,

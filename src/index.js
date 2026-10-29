@@ -1,3 +1,7 @@
+/*
+ * Точка запуска сайта. Подключаем общие стили и помещаем App в элемент root из public/index.html.
+ * Импорты подключают готовые компоненты, функции и оформление из других файлов.
+ */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -7,14 +11,14 @@ import reportWebVitals from './reportWebVitals';
 
 
 
+// Находим HTML-контейнер и создаём корень React: в нём будет весь интерфейс.
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// StrictMode помогает находить ошибки при разработке; в этом режиме эффекты могут запускаться повторно.
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Измерение скорости сейчас выключено: функция вызывается без обработчика результатов.
 reportWebVitals();

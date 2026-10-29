@@ -1,3 +1,9 @@
+/*
+ * Главный компонент: общая шапка, содержимое выбранной страницы и подвал.
+ * Адреса страниц задаются в Route: path — адрес, element — компонент для показа.
+ * Чтобы добавить раздел, импортируйте его компонент и добавьте Route и ссылку в меню.
+ * :id в адресе памятника — переменная часть, например /monument/12.
+ */
 import React from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
@@ -20,6 +26,8 @@ import './styles/Footer.css';
 import './styles/MapPage.css';
 import './styles/App.css';
 import './styles/MonumentsListPage.css';
+import './styles/DesktopSizing.css';
+import './styles/ModernTheme.css';
 
 
 import './fonts/pixel-ultima-bold.ttf';
@@ -31,11 +39,12 @@ function App() {
     
 
     <BrowserRouter>
-      <div className="weapper">
+      <div className="wrapper">
       <header className='header'>
         <Header />
       </header>
       <main className="main">
+        {/* Routes выбирает страницу по адресу. Шапка и подвал остаются общими для всех маршрутов. */}
         <Routes>
           <Route path='/' element={<StartPage />} />
           <Route path='/map' element={<React.Fragment><MapPage /></React.Fragment>} />

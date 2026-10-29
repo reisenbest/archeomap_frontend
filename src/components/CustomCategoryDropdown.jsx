@@ -1,10 +1,15 @@
+/*
+ * Фильтр дополнительных категорий. Варианты приходят с сервера через родительские компоненты.
+ * Компонент показывает галочки и вызывает переданную функцию при изменении выбора.
+ * Сам список выбранных значений хранится в useMonumentsData, а не здесь.
+ */
 
-import React from 'react';
+import React, { useId } from 'react';
 
-{/* Код берет из useMonumentsData данные, отбирает отттуда кастомные категории и отображает их 
-также отслеживает выбранные категории. */}
+
 
 const CustomCategoryDropdown = ({ customCategories, isCustomCategoryOpen, toggleCustomCategoryButton, handleCustomCategoryChange, selectedCustomCategories }) => {
+  const inputId = useId();
   return (
     <div className="dropdown-menu">
       <button
@@ -21,12 +26,12 @@ const CustomCategoryDropdown = ({ customCategories, isCustomCategoryOpen, toggle
             <div key={index} className="checkbox-item">
               <input 
                 type="checkbox" 
-                id={`category-${index}`} 
+                id={`${inputId}-${index}`} 
                 value={category} 
                 onChange={handleCustomCategoryChange} 
                 checked={selectedCustomCategories.includes(category)}
               />
-              <label htmlFor={`category-${index}`}>{category}</label>
+              <label htmlFor={`${inputId}-${index}`}>{category}</label>
             </div>
           ))}
         </div>
