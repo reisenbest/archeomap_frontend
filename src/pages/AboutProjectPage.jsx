@@ -3,7 +3,6 @@
  * При добавлении раздела используйте одинаковый ключ в showText, toggleText и условии показа.
  */
 import React, { useState } from 'react';
-import '../styles/AboutProjectPage.css'; 
 import { Link } from 'react-router-dom';
 
 function AboutProjectPage() {

@@ -1,0 +1,24 @@
+/* Уменьшение движения по системной настройке пользователя. */
+
+/* На экранах от 1001 px. */
+@media (min-width: 1001px) and (prefers-reduced-motion: reduce) {
+  .map-layout .map-container,
+  .map-layout .filters-popup-container,
+  .map-panel-toggle {
+    transition: none;
+  }
+}
+
+/* Если пользователь отключил лишние анимации. */
+@media (prefers-reduced-motion: reduce) {
+  .selected-monument-marker::after {
+    animation: none;
+    opacity: 0;
+  }
+  .map-layout *,
+  .header *,
+  .footer *,
+  .welcome-page-content * {
+    transition: none;
+  }
+}

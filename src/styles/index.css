@@ -1,0 +1,15 @@
+/* Единственная точка подключения наших стилей. Порядок важен: общее → страницы → общие исключения. */
+
+@import "./Theme.css";
+@import "./Base.css";
+@import "./App.css";
+@import "./Header.css";
+@import "./Footer.css";
+@import "./ReadingPages.css";
+@import "./StartPage.css";
+@import "./MapPage.css";
+@import "./MapPanel.css";
+@import "./MonumentContent.css";
+@import "./Gallery.css";
+@import "./Typography.css";
+@import "./Accessibility.css";

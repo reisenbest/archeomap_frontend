@@ -21,14 +21,8 @@ import HowToUsePage from "./pages/HowToUsePage.jsx";
 
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import './styles/Header.css';
-import './styles/Footer.css';
-import './styles/MapPage.css';
-import './styles/App.css';
-import './styles/MonumentsListPage.css';
-import './styles/DesktopSizing.css';
-import './styles/ModernTheme.css';
-
+// Все наши стили подключаются один раз; порядок файлов указан в styles/index.css.
+import './styles/index.css';
 
 import './fonts/pixel-ultima-bold.ttf';
 import './fonts/pixel-ultima-regular.ttf';

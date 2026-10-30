@@ -1,11 +1,10 @@
 /*
  * Список источников с выбором раздела, поиском и раскрывающимися подразделами.
  * Данные и выбранный раздел приходят от BibliographyListPage через параметры (props).
- * Текст источников берётся из API; оформление меняется в styles/BibliographyListPage.css.
+ * Текст источников берётся из API; оформление меняется в styles/ReadingPages.css.
  */
 import React, { useState } from 'react';
 import LinkLogo from '../assets/link-icon.png';
-import '../styles/BibliographyListPage.css';
 
 function BibliographyList({ organizedBibliography, selectedMainCategory, setSelectedMainCategory }) {
   // Объект хранит открытые подразделы: имя → true/false. searchQuery хранит введённый текст.

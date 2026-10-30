@@ -1,248 +1,233 @@
-/*
- * Содержимое подвала: слева два логотипа с названием, справа ссылки и компактное меню.
- * Общая высота подвала задаётся в styles/App.css, а размещение его элементов — здесь.
- *
- * Как читать CSS: .имя выбирает className из JSX; пробел выбирает вложенный элемент.
- * :hover — наведение мыши, .open — класс открытого состояния.
- * margin — отступ снаружи, padding — внутри; px — пиксели, vw/vh — проценты размеров окна.
- * При одинаковой важности и точности селектора более позднее правило заменяет раннее.
- * Стили здесь общие для приложения: одинаковые классы из разных файлов могут влиять друг на друга.
- */
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+/* Подвал: логотипы музеев, название проекта и нижнее меню. */
 
-/* Левый блок подвала: три колонки для логотипа, названия и второго логотипа. */
-
-.left-half {
-  width: 55%;
-  flex: 0 0 55%;
-  display: grid;
-  /* Ширины колонок сетки. fr делит свободное место, minmax(0, ...) позволяет колонкам сжиматься. */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1.25fr);
-  justify-content: start;
-  align-items: center;
-  /* Расстояние между элементами flex- или grid-контейнера. */
-  gap: clamp(4px, 0.6vw, 12px);
-  padding: 0 8px;
-  /* border-box включает внутренние отступы и рамку в заданные width и height. */
-  box-sizing: border-box;
-  /* Нижняя граница ширины. Значение 0 позволяет элементу сжиматься даже при длинном тексте. */
-  min-width: 0;
-  /* Позволяет считать cqw от ширины этого контейнера; 1cqw — 1% его ширины. */
-  container-type: inline-size;
-
-}
-
-/* Общие размеры логотипов музеев; пропорции сохраняются через object-fit. */
-
-.footer-logo {
-  display: block;
-  /* contain показывает изображение целиком, cover заполняет рамку с возможной обрезкой краёв. */
-  object-fit: contain;
-  min-width: 0;
-  width: 100%;
-  height: auto;
-  max-height: 68px;
-  object-position: left center;
-}
-
-.left-half > .footer-text {
-  min-width: 0;
-  /* anywhere разрешает переносить длинные строки, чтобы они не расширяли блок. */
-  overflow-wrap: anywhere;
-}
-
-/* Название сайта между логотипами. */
-
-.footer-text {
-  font-family: Pixel-Ultima-Bold;
-  margin: 0;
-  text-decoration: none;
-  color: #000000;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1;
-  font-size: min(24px, 3.3cqw); /* Размер зависит от ширины левого блока. */
-
-}
-
-/* Правый блок подвала с навигацией. */
-
-.right-half {
-  width: 45%;
-  min-width: 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  font-size: clamp(14px, calc(0.8vw + 0.8vh), 20px);
-}
-
+/* Кнопка нижнего меню для небольших экранов. */
 .burger-menu-footer {
   display: none;
   cursor: pointer;
 }
 
 .burger-menu-footer img {
-  width: 5vw; /* Адаптивный размер, равный 5% от ширины окна */
-  height: auto; /* Сохраняет соотношение сторон */
+  width: 5vw;
+  height: auto;
   max-width: 40px;
-  /* Какие свойства меняются плавно и за сколько секунд; само конечное значение задаётся отдельным правилом. */
   transition: transform 0.3s ease;
 }
 
 .burger-menu-footer.open img {
-  transform: rotate(90deg); /* Поворот изображения при открытии меню */
+  transform: rotate(90deg);
 }
 
+/* Расположение логотипов и нижнего меню. */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-inline: var(--map-gutter);
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+/* Левая часть: два логотипа и название проекта. */
+.left-half {
+  display: grid;
+  justify-content: start;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  container-type: inline-size;
+  width: auto;
+  flex: 1 1 720px;
+  max-width: 780px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1.1fr);
+  padding: 0;
+  gap: 18px;
+}
+
+/* Размеры логотипов без обрезки изображения. */
+.footer-logo {
+  display: block;
+  min-width: 0;
+  object-position: left center;
+  width: 100%;
+  max-width: 170px;
+  height: 38px;
+  max-height: 38px;
+  object-fit: contain;
+}
+
+.footer-text {
+  margin: 0;
+  text-decoration: none;
+  color: #000000;
+  font: 500 18px/1.25 var(--ui-font);
+  text-align: left;
+}
+
+.left-half > .footer-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  border-left: 1px solid #b8aa94;
+  padding-left: 18px;
+}
+
+/* Правая часть: ссылки на справочные страницы. */
+.right-half {
+  min-width: 0;
+  text-align: center;
+  display: flex;
+  width: auto;
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: var(--navigation-font-size);
+  justify-content: flex-end;
+}
+
+/* Ссылки в подвале и выбранный раздел. */
 .footer-nav-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
+  gap: 8px;
 }
 
 .footer-link {
   color: #000000;
   text-decoration: none;
-  padding-right: 7px;
-  padding-left: 7px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-right: 12px;
-  border-radius: 10px;
+  display: block;
+  margin: 0;
+  padding: 7px;
+  border-radius: 5px;
+  white-space: nowrap;
 }
 
-/* Настройки для окна шириной 600 пикселей и меньше. Здесь переопределяются только перечисленные свойства. */
-
-@media screen and (max-width: 600px) {
-  /* Общие размеры логотипов музеев; пропорции сохраняются через object-fit. */
-  .footer-logo {
-    max-height: 48px;
-  }
-
-  /* Левый блок подвала: три колонки для логотипа, названия и второго логотипа. */
-
-  .left-half {
-    gap: 6px;
-    padding: 0 6px;
-  }
-
-}
-
+.footer-link.active,
 .footer-link:hover {
-  color: #ffffff;
-  background-color: #594E3E;
+  background: #e6dfd1;
+  color: var(--accent);
 }
 
-/* Вид ссылки на текущую страницу; active добавляется компонентом React. */
-
-.footer-link.active {
-  color: #ffffff;
-  background-color: #594E3E;
+/* На экранах до 1100 px. */
+@media (max-width: 1100px) {
+  .burger-menu-footer img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
 }
 
-
-/* Настройки для окна шириной 1028 пикселей и меньше. Здесь переопределяются только перечисленные свойства. */
-
-
-@media screen and (max-width: 1028px) {
-  /* Правый блок подвала с навигацией. */
+/* На экранах до 1028 px. */
+@media (max-width: 1028px) {
   .right-half {
     position: relative;
-    flex-shrink: 0;
   }
-
+  .footer-nav-list.open {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+  }
+  .footer-nav-list.open li {
+    margin-bottom: 10px;
+  }
+  .footer-nav-list.open li:last-child {
+    margin-bottom: 0;
+  }
+  .footer-link {
+    color: #000000;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  .left-half {
+    position: relative;
+  }
+  .footer-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    gap: 12px;
+  }
+  .footer-content .left-half {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+  .footer-content .right-half {
+    width: 44px;
+    height: 44px;
+    margin: 0;
+  }
+  .footer-content .burger-menu-footer {
+    position: static;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+    transform: none;
+  }
+  .footer-nav-list {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    width: auto;
+    max-width: calc(100vw - 30px);
+    border: 1px solid #594E3E;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    display: none;
+    bottom: calc(100% + 8px);
+    right: 0;
+    transform: none;
+    background: var(--surface);
+    border-color: var(--line);
+    border-radius: 8px;
+    font-size: var(--navigation-font-size);
+  }
   .burger-menu-footer {
     display: block;
     position: absolute;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-  }
-
-  .footer-nav-list {
-    list-style-type: none;
-    padding: 10px;
-    margin: 0;
-    position: absolute; /* Абсолютное позиционирование */
-    bottom: 0; /* Прижать к нижнему краю */
-    right: 0; /* Прижать к правому краю */
-    transform: translate(-10px, -30%); /* Сдвинуть вверх на 30% и влево на 10px */
-    width: auto;
-    max-width: calc(100vw - 30px);
-    background-color: #EFEBDD;
-    border: 1px solid #594E3E;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* Порядок наложения в своём контексте слоёв: большее число обычно размещает элемент выше соседних. */
-    z-index: 1000;
-    opacity: 0; /* Начальная непрозрачность */
-    display: none; /* Скрыть меню по умолчанию */
-  }
-
-  .footer-nav-list.open {
-    display: flex;
-    flex-direction: column;
-    opacity: 1; /* Сделать меню полностью непрозрачным */
-  }
-  .footer-nav-list.open li {
-    margin-bottom: 10px; /* Добавляем отступ снизу между элементами списка */
-  }
-
-  .footer-nav-list.open li:last-child {
-    margin-bottom: 0; /* Убираем отступ у последнего элемента списка */
-  }
-  .footer-link {
-    color: #000000;
-    text-decoration: none;
+    border: 0;
+    background: transparent;
     padding: 8px;
-    margin: 0;
-    transition: background-color 0.3s; /* Плавное изменение фона при наведении */
   }
-
-  .footer-link:hover {
-    color: #ffffff;
-    background-color: #594E3E;
-  }
-
-  /* Вид ссылки на текущую страницу; active добавляется компонентом React. */
-
-  .footer-link.active {
-    color: #ffffff;
-    background-color: #594E3E;
-  }
-
-
-  /* Левый блок подвала: три колонки для логотипа, названия и второго логотипа. */
-
-
-  .left-half {
-    position: relative;
-  }
-
-
 }
 
-/* На телефоне карта занимает всю ширину; оставляем место для кнопки меню. */
-/* Настройки для окна шириной 1000 пикселей и меньше. Здесь переопределяются только перечисленные свойства. */
-@media screen and (max-width: 1000px) {
-  /* Левый блок подвала: три колонки для логотипа, названия и второго логотипа. */
-  .left-half {
-    width: calc(100% - 48px);
-    flex: 0 0 calc(100% - 48px);
-  }
-
-  /* Правый блок подвала с навигацией. */
-
-  .right-half {
-    width: 48px;
-  }
-
+/* На экранах до 1000 px. */
+@media (max-width: 1000px) {
   .burger-menu-footer {
     right: 12px;
+  }
+  .left-half {
+    grid-template-columns: minmax(70px, 1fr) minmax(110px, 1.3fr) minmax(70px, 1fr);
+    gap: 16px;
+  }
+  .left-half > .footer-text {
+    padding-left: 16px;
+  }
+}
+
+/* На экранах до 600 px. */
+@media (max-width: 600px) {
+  .footer-content {
+    gap: 8px;
+  }
+  .left-half {
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .left-half > .footer-text {
+    display: none;
+  }
+  .footer-logo {
+    width: 100%;
+    max-width: 136px;
+    height: 32px;
+    max-height: 32px;
   }
 }

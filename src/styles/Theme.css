@@ -1,0 +1,31 @@
+/* Цвета, размеры и шрифты всего сайта. Меняйте общие значения здесь. */
+:root {
+  /* Основной фон, светлые блоки и текст. */
+  --paper: #f2eee3;
+  --surface: #fcfaf5;
+  --ink: #302c26;
+  --muted: #827766;
+  --line: #d9d1c1;
+  /* Цвет ссылок, активных элементов и рамок. */
+  --accent: #855e49;
+  --terracotta: #a44737;
+  --frame-color: var(--line);
+  /* Эти высоты используются также для отступов основной области. */
+  --header-height: 80px;
+  --footer-height: 64px;
+  /* Отступы от краёв окна: для текстовых страниц и для карты. */
+  --page-gutter: clamp(16px, 2.4vw, 40px);
+  --map-gutter: clamp(8px, 1vw, 16px);
+  /* Обычный шрифт интерфейса; пиксельные заголовки — в Typography.css. */
+  --ui-font: 'Segoe UI', Arial, sans-serif;
+  --navigation-font-size: 16px;
+}
+
+/* На экранах до 600 px. */
+@media (max-width: 600px) {
+  :root {
+    --header-height: 72px;
+    --footer-height: calc(62px + env(safe-area-inset-bottom, 0px));
+    --page-gutter: 12px;
+  }
+}

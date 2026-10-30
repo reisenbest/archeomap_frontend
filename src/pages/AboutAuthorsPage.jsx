@@ -9,7 +9,6 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import alexeyPhoto from '../assets/alexey-portrait.jpg';
 import annaPhoto from '../assets/anna-portrait.jpg';
-import '../styles/AboutAuthorsPage.css'; 
 
 
 function AboutAuthorsPage() {

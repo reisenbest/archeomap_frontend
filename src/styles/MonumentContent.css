@@ -1,0 +1,154 @@
+/* Сведения о памятнике в панели и на отдельной странице. Фотографии — в Gallery.css. */
+
+/* Метки типа, датировки и дополнительной категории. */
+.dating-button,
+.category-button,
+.custom-category-button {
+  display: inline-block;
+}
+
+/* Карточка внутри панели: текст без отдельной рамки и прокрутки. */
+.filters-popup-container .popup-content,
+.info-text .popup-content {
+  width: 100%;
+  max-height: none;
+  margin: 8px 0 0;
+  padding: 24px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  overflow: visible;
+  font: 15px/1.65 var(--ui-font);
+  box-sizing: border-box;
+}
+
+/* Название и текст памятника. */
+.popup-content h2 {
+  font: 400 26px/1.16 Georgia, 'Times New Roman', serif;
+  text-align: left;
+  margin: 0 0 22px;
+}
+
+.popup-content p {
+  margin: 0 0 14px;
+}
+
+.popup-content p strong {
+  font-size: inherit;
+  color: var(--ink);
+}
+
+.popup-content ul {
+  margin-bottom: 1%;
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+/* Разделитель перед подробным описанием. */
+.popup-content .monument-description {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.monument-description > p:first-child {
+  font: 600 19px/1.3 Georgia, serif;
+}
+
+/* Общий вид меток в панели и на отдельной странице. */
+.popup-content .category-button,
+.popup-content .dating-button,
+.popup-content .custom-category-button,
+.monument-detail-container .category-button,
+.monument-detail-container .dating-button,
+.monument-detail-container .custom-category-button {
+  background: #eae4d5;
+  color: #514a3e;
+  border: 0;
+  border-radius: 20px;
+  padding: 5px 12px;
+  margin: 0 6px 6px 0;
+  font: 12px/1.5 var(--ui-font);
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* Подписи перед метками. */
+.monument-type h4,
+.monument-dating h4 {
+  display: inline;
+  margin-right: 10px;
+  font: 12px/1.5 var(--ui-font);
+  color: var(--muted);
+}
+
+.monument-custom-category h4 {
+  font: 12px/1.5 var(--ui-font);
+  color: var(--muted);
+}
+
+.monument-type h4 strong,
+.monument-dating h4 strong {
+  font-weight: 400;
+}
+
+/* Логотип и подсказка, пока памятник не выбран. */
+.map-panel-empty-logo {
+  position: relative;
+  display: block;
+  height: auto;
+  width: 46%;
+  max-width: 190px;
+  opacity: .6;
+  margin: 40px auto;
+}
+
+.panel-empty-label {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.popup-content .panel-empty-title {
+  margin: 12px 0;
+  font: 400 28px/1.2 Georgia, serif;
+}
+
+/* На экранах до 1000 px. */
+@media (max-width: 1000px) {
+  .info-text .popup-content {
+    min-width: 0;
+  }
+  .info-text .popup-content ul {
+    padding-left: 20px;
+  }
+}
+
+/* На экранах от 1001 px. */
+@media (min-width: 1001px) {
+  .popup-content .dating-button,
+  .popup-content .category-button,
+  .popup-content .custom-category-button,
+  .monument-detail-container .dating-button,
+  .monument-detail-container .category-button,
+  .monument-detail-container .custom-category-button {
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+  }
+  .monument-type h4,
+  .monument-dating h4,
+  .monument-custom-category h4 {
+    display: inline;
+    margin: 0 8px 0 0;
+  }
+  .monument-type,
+  .monument-dating,
+  .monument-custom-category {
+    margin-bottom: 8px;
+  }
+}

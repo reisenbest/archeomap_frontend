@@ -8,7 +8,6 @@ import React, { useEffect, useState } from 'react';
 import { API_BASE_URL } from '../config.jsx';
 import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import '../styles/MonumentDetailsCenter.css';
 import LinkLogo from '../assets/link-icon.png';
 import { Link } from 'react-router-dom';
 

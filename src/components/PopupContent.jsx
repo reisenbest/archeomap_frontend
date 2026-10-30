@@ -1,7 +1,7 @@
 /*
  * Содержимое вкладки «О памятнике» на карте. markerInfo — объект выбранной точки из MapPage.
  * Здесь нет отдельного запроса: данные уже загрузил useMonumentsData.
- * Поля карточки и галерея описаны ниже; оформление находится в styles/MapPage.css.
+ * Оформление карточки — в styles/MonumentContent.css, фотографий — в styles/Gallery.css.
  */
 
 import React, { useState } from 'react';

@@ -6,7 +6,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useMonumentsData from '../components/useMonumentsData';
-import '../styles/MonumentsListPage.css'; 
 
 // Отрисовываем раздел список памятников
 function MonumentsListPage() {

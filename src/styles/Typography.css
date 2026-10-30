@@ -1,0 +1,11 @@
+/* Общий пиксельный шрифт заголовков и названий. Подключается после стилей страниц. */
+.main h1,
+.popup-content h2,
+.popup-content .panel-empty-title,
+.monument-title,
+.monuments-list a,
+.monument-map-popup__name {
+  font-family: 'Pixel-Ultima-Bold', var(--ui-font);
+  font-weight: 400;
+  letter-spacing: normal;
+}

@@ -1,10 +1,9 @@
 /*
  * Руководство пользователя с раскрывающимися разделами и увеличиваемыми снимками экрана.
- * Тексты находятся ниже, изображения — в assets/how-to-use, оформление — в styles/HowToUsePage.css.
+ * Тексты находятся ниже, изображения — в assets/how-to-use, оформление — в styles/ReadingPages.css.
  * PhotoProvider объединяет просмотр изображений, PhotoView делает снимок открываемым по нажатию.
  */
 import React, { useState } from 'react';
-import '../styles/HowToUsePage.css'; 
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';

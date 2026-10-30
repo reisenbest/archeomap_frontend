@@ -1,17 +1,18 @@
-/*
- * Карта и её панели: выделение точки, фильтры, описание памятника и фотографии.
- * Доля правой панели задаётся переменной --map-panel-width в .map-layout.
- * Правила внутри @media ниже заменяют часть настроек на узких экранах.
- *
- * Как читать CSS: .имя выбирает className из JSX; пробел выбирает вложенный элемент.
- * :hover — наведение мыши, .open — класс открытого состояния.
- * margin — отступ снаружи, padding — внутри; px — пиксели, vw/vh — проценты размеров окна.
- * При одинаковой важности и точности селектора более позднее правило заменяет раннее.
- * Стили здесь общие для приложения: одинаковые классы из разных файлов могут влиять друг на друга.
- */
-/* Сохраняем стандартные размеры, отступы, крестик и тень окна Leaflet.
-   Меняем только фон, цвет текста и шрифт, чтобы окно сочеталось с панелями карты.
-   Высота свободная: весь текст показывается сразу, без внутренней прокрутки. */
+/* Карта: точки, подсветка, панели и фильтры. Содержимое карточки — в MonumentContent.css. */
+
+/* Плавное расширение кольца вокруг выбранной точки. */
+@keyframes selected-marker-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Небольшое окно над точкой: сохраняем размеры Leaflet, меняем оформление. */
 .monument-map-popup .leaflet-popup-content-wrapper,
 .monument-map-popup .leaflet-popup-tip {
   background: #EFEBDD;
@@ -23,7 +24,6 @@
   font-size: 12px;
 }
 
-/* Обычная подчёркнутая ссылка вместо отдельной большой кнопки. */
 .monument-map-popup .leaflet-popup-content a {
   color: #72512c;
   text-decoration: underline;
@@ -33,63 +33,36 @@
   color: #594E3E;
 }
 
-/* Прозрачная обёртка выбранного значка. Его положение задаёт Leaflet. */
+/* Выбранная точка: значок и два декоративных кольца. */
 .selected-monument-marker {
   background: transparent;
   border: 0;
 }
 
-/* Два круглых слоя вокруг картинки. Они не перехватывают нажатия. */
-.selected-monument-marker::before,
-/* Внешнее кольцо плавно расширяется и исчезает. */
-.selected-monument-marker::after {
+.selected-monument-marker::before {
   content: '';
   position: absolute;
   inset: -7px;
   border-radius: 50%;
-  /* none пропускает нажатия сквозь декоративный слой к элементам под ним. */
   pointer-events: none;
-}
-
-/* Постоянное светлое кольцо с золотистой обводкой и тенью. */
-.selected-monument-marker::before {
   background: rgba(219, 184, 107, 0.24);
   border: 2px solid #fffdf6;
   box-shadow: 0 0 0 2px #a77a32, 0 2px 10px rgba(59, 47, 29, 0.3);
 }
 
 .selected-monument-marker::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  pointer-events: none;
   border: 2px solid #a77a32;
-  /* Имя анимации связано с @keyframes; далее задаются длительность и способ повторения. */
   animation: selected-marker-pulse 2.2s ease-out infinite;
 }
 
-/* Сохраняем размер картинки и показываем её поверх фонового кольца. */
 .selected-monument-marker__image {
   position: relative;
   display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Меняем размер только кольца, чтобы точка не сдвигалась на карте. */
-/* Шаги анимации: from — начало, to — конец. Длительность задаётся в свойстве animation. */
-@keyframes selected-marker-pulse {
-  from { transform: scale(1); opacity: 0.65; }
-  to { transform: scale(2); opacity: 0; }
-}
-
-/* Если в системе уменьшены анимации, оставляем только постоянное кольцо. */
-/* Учитываем системную настройку уменьшения движения: условие определяет, когда применять анимацию. */
-@media (prefers-reduced-motion: reduce) {
-  .selected-monument-marker::after {
-    animation: none;
-    opacity: 0;
-  }
-}
-
-.map-layout {
-  --map-panel-width: 40%;
   width: 100%;
   height: 100%;
 }
@@ -98,84 +71,7 @@
   display: none;
 }
 
-@media (min-width: 1001px) {
-  .map-layout .map-container {
-    width: calc(100% - var(--map-panel-width));
-    transition: width 280ms ease;
-  }
-
-  .map-layout .filters-popup-container {
-    width: var(--map-panel-width);
-    right: 0;
-    margin-left: 0;
-    transition: transform 280ms ease, visibility 0s;
-  }
-
-  .map-panel-toggle {
-    display: grid;
-    place-items: center;
-    position: fixed;
-    right: var(--map-panel-width);
-    top: calc(var(--header-height) + (100% - var(--header-height) - var(--footer-height)) / 2);
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 32px;
-    height: 56px;
-    padding: 0;
-    border: 2px solid var(--frame-color);
-    border-right: 0;
-    border-radius: 14px 0 0 14px;
-    background: #EFEBDD;
-    color: #594E3E;
-    box-shadow: -3px 2px 8px rgba(59, 47, 29, 0.15);
-    cursor: pointer;
-    transition: right 280ms ease, background-color 150ms ease;
-  }
-
-  .map-panel-toggle:hover {
-    background: #DBB86B;
-  }
-
-  .map-panel-toggle:focus-visible {
-    outline: 3px solid #a77a32;
-    outline-offset: 2px;
-  }
-
-  .map-layout--collapsed .map-container {
-    width: 100%;
-  }
-
-  .map-layout--collapsed .filters-popup-container {
-    transform: translateX(100%);
-    visibility: hidden;
-    pointer-events: none;
-    transition: transform 280ms ease, visibility 0s 280ms;
-  }
-
-  .map-layout--collapsed .map-panel-toggle {
-    right: 0;
-  }
-}
-
-@media (min-width: 1001px) and (prefers-reduced-motion: reduce) {
-  .map-layout .map-container,
-  .map-layout .filters-popup-container,
-  .map-panel-toggle {
-    transition: none;
-  }
-}
-
-.map-page-container {
-  display: flex;
-  width: 100%;
-  /* Порядок наложения в своём контексте слоёв: большее число обычно размещает элемент выше соседних. */
-  z-index: 1;
-  /* Управляет вертикальным выходом содержимого: auto добавляет прокрутку при нехватке места, hidden обрезает. */
-  overflow-y: auto;
-
-}
-
-/* На широком экране карта занимает левую часть страницы. */
+/* Область, в которой Leaflet рисует карту. */
 .map-container {
   position: absolute;
   top: 0;
@@ -183,18 +79,9 @@
   width: 60%;
   height: 100%;
   overflow-y: hidden;
-  /* Управляет горизонтальным выходом содержимого; hidden скрывает выступающие части. */
   overflow-x: hidden;
   z-index: 0;
 }
-
-/* Кнопка открытия панели карты на узком экране. */
-
-.filter-popup-button-mobile {
-  display: none;
-}
-
-/* Размер области, в которой библиотека Leaflet рисует карту. */
 
 .leaflet-container {
   width: 100%;
@@ -202,577 +89,102 @@
   border: 0;
 }
 
-/* Панель справа от карты, между шапкой и подвалом.
-   Прокрутка появляется, только если содержимое не помещается. */
-.filters-popup-container {
+/* Общая рамка карты. Здесь задаётся ширина боковой панели. */
+.map-layout {
+  height: 100%;
+  --map-panel-width: clamp(360px, 31vw, 520px);
   position: relative;
-  flex-shrink: 0;
-  width: 40%;
-  margin-left: 60%;
-  height: calc(100% - var(--header-height) - var(--footer-height));
-  top: var(--header-height);
-  position: fixed;
-  z-index: 0;
-  padding-left: 20px;
-  background-color: #EFEBDD;
-  border: 0;
-  border-left: 2px solid var(--frame-color);
-  /* border-box включает внутренние отступы и рамку в заданные width и height. */
+  width: calc(100% - 2 * var(--map-gutter));
+  margin-inline: var(--map-gutter);
   box-sizing: border-box;
-  overflow-y: auto;
-  font-size: calc(0.7vw + 0.7vh);
+  border: 1px solid var(--line);
 }
 
-/* Список фильтров с ограничением высоты и собственной прокруткой. */
-.filter-content {
-  background-color: #EFEBDD;
-  width: 90%;
-  max-height: 70vh;
-  overflow-y: auto;
-  padding: 2%;
-  margin: 5% auto;
-  margin-right: 10%;
-  border: 2px solid var(--frame-color);
-  border-radius: 10px;
-  text-align: justify;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: calc(0.7vw + 0.7vh);
-
-}
-.filters-buttons-container {
-  position: relative;
-  width: 100%;
-  height: 10%;
-  padding: 0;
-  margin: 0;
-  z-index: 1;
-  background-color: #EFEBDD;
-  text-align: center;
-
-
-}
-
-/* Кнопки открытия фильтров и информации о памятнике. */
-.monument-popup-button,
-.monument-filter-button {
-  background-color: #594E3E;
-  color: #ffffff;
-  border: 2px solid #594E3E;
-  padding: 1% 1%;
-  cursor: pointer;
-  /* Какие свойства меняются плавно и за сколько секунд; само конечное значение задаётся отдельным правилом. */
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  margin-top: 5%;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 32%;
-  height: 60%;
-  text-align: center;
-  font-family: Pixel-Ultima-Regular;
-  font-size: calc(0.7vw + 0.7vh);
-
-}
-
-.monument-filter-button.open,
-.monument-filter-button:hover,
-.monument-popup-button.open,
-.monument-popup-button:hover {
-  background-color: #c77d7a;
-}
-.monument-filter-button:focus,
-.monument-popup-button:focus {
-  outline: none;
-}
-
-.monument-filter-button .fa-angle-down,
-.monument-popup-button .fa-angle-down {
-  margin-left: 8px;
-}
-
-
-.monument-type-button,
-.monument-date-button,
-.monument-custom-category-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #58593e;
-  color: #ffffff;
-  border: 1px solid #594E3E;
-  padding: 1.5% 3%;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  margin-top: 2.5%;
-  position: relative;
-  font-family: Pixel-Ultima-Regular;
-  font-size: calc(0.6vw + 0.6vh);
-}
-
-.monument-type-button.open,
-.monument-date-button.open,
-.monument-custom-category-button.open {
-  background-color: #769978;
-}
-
-
-/* Треугольная стрелка нарисована границами блока без картинки. */
-.monument-type-button .arrow,
-.monument-date-button .arrow,
-.monument-custom-category-button .arrow {
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #ffffff;
-  margin-left: 8px;
-}
-
-
-/* Поворачиваем стрелку, когда список открыт. */
-.monument-type-button.open .arrow,
-.monument-date-button.open .arrow,
-.monument-custom-category-button.open .arrow {
-  transform: rotate(270deg);
-}
-
-
-.clear-all-filters-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #DBB86B;
-  color: #000000;
-  border: 1px solid #DBB86B;
-  padding: 1.5% 3%;
-  font-size: calc(0.6vw + 0.6vh);
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  margin-top: 10px;
-}
-
-.clear-all-filters-button:hover {
-  background-color: #ff6347;
-}
-
-.clear-all-filters-button:active {
-  background-color: #ff6347;
-}
-
-.dropdown-menu {
-  position: relative;
-}
-
-/* Список вариантов фильтра; по умолчанию скрыт до добавления класса open. */
-
-.dropdown-content {
-  display: none;
-  position: relative;
-  background-color: #EFEBDD;
-  border: 2px solid var(--frame-color);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 8px;
-  z-index: 1;
-  text-align: left;
-  width: 80%;
-}
-
-/* Открытый список фильтра: класс open отменяет скрытие обычного списка. */
-
-.dropdown-content.open {
-  display: block;
-}
-
-.monument-type-button + .dropdown-content {
-  top: calc(100% + 5px);
-  z-index: 2;
-}
-
-/* Одна строка фильтра: галочка и её подпись. */
-
-.checkbox-item {
-  margin-bottom: 8px;
-
-}
-
-/* Одна строка фильтра: галочка и её подпись. */
-
-.checkbox-item label {
-  color: #000000;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: calc(0.6vw + 0.6vh);
-}
-
-
-/* Карточка выбранного памятника. */
-.popup-content {
-  background-color: #EFEBDD;
-  width: 90%;
-  max-height: 70vh;
-  overflow-y: auto;
-  padding: 2%;
-  margin: 5% auto;
-  margin-right: 5%;
-  border: 2px solid var(--frame-color);
-  border-radius: 10px;
-  text-align: justify;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: calc(0.7vw + 0.7vh);
-
-}
-
-p strong {
-  font-weight: bold;
-  color: #000000;
-  font-size: calc(0.8vw + 0.8vh);
-}
-
-.map-panel-empty-logo {
-  position: relative;
-  display: block;
-  width: 80%;
-  max-width: 440px;
-  height: auto;
-  margin: 24px auto;
-}
-
-.popup-content h2 {
-  text-align: center;
-  margin-bottom: 2%;
-  font-family: Pixel-Ultima-Bold;
-}
-
-.popup-content p, .popup-content ul {
-  margin-bottom: 1%;
-}
-
-.popup-content ul {
-  list-style-type: disc;
-  padding-left: 2%;
-}
-
-.dating-button,
-.category-button,
-.custom-category-button {
-  border-radius: 30px;
-  background-color: #877C67;
-  color: #ffffff;
-  padding: calc(0.4vw + 0.4vh) calc(1vw + 1vh);
-  margin-right: calc(0.5vw + 0.5vh);
-  margin-bottom: calc(1vh + 1vw);
-  display: inline-block;
-  margin-bottom: 10px;
-  font-size: calc(0.6vw + 0.6vh);
-}
-.monument-dating h4,
-.monument-type h4 {
-  display: inline;
-  margin-right: 10px;
-
-}
-
-
-
-/* Миниатюры галереи располагаются рядом и переносятся при нехватке места. */
-
-
-
-.photo-thumbnails {
-  display: flex;
-  /* wrap разрешает переносить дочерние элементы на следующую строку. */
-  flex-wrap: wrap;
-  /* Расстояние между элементами flex- или grid-контейнера. */
-  gap: 10px;
-}
-
-/* Размер миниатюры и поведение фотографии внутри рамки. */
-
-.thumbnail {
-  width: 100px;
-  height: 100px;
-  /* contain показывает изображение целиком, cover заполняет рамку с возможной обрезкой краёв. */
-  object-fit: cover;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-/* Подпись поверх фотографии: полупрозрачный тёмный фон и перенос длинных слов. */
-.image-description p {
+/* Боковая панель внутри рамки карты. */
+.map-layout .filters-popup-container {
   position: absolute;
-  bottom: 1%;
-  width: 90%;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-size: calc(0.65vw + 0.7vh);
-  font-weight: bold;
-  padding: 10px;
-  padding-left: 0px;
-  padding-right: 10px;
-  z-index: 999;
-  /* anywhere разрешает переносить длинные строки, чтобы они не расширяли блок. */
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  top: 0;
+  height: 100%;
+  padding: 0 28px;
+  background: var(--surface);
+  border-left: 1px solid var(--line);
 }
 
-/* Подпись к открытой фотографии. */
-
-.image-description a {
-  color: #c77d7a;
-  text-decoration: none;
-  font-weight: bold;
+/* Кнопка сворачивания панели на границе с картой. */
+.map-layout .map-panel-toggle {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 52px;
+  border: 1px solid #ab9375;
+  border-right: 0;
+  border-radius: 10px 0 0 10px;
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: -2px 1px 5px #302c2614;
 }
 
-/* Подпись к открытой фотографии. Эти значения применяются при наведении мыши. */
-
-.image-description a:hover {
-  color: #769978;
-}
-.PhotoView__Photo {
-
+.map-panel-toggle:hover {
+  background: #eee6d7;
 }
 
-/* На широком экране всплывающая мобильная панель не нужна. */
-.info-text,
-.info-text.show {
-  display: none;
+/* Кнопки масштаба Leaflet. */
+.leaflet-touch .leaflet-bar {
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 6px #302c2614;
 }
 
-/* Кнопка закрытия мобильной панели и изображение крестика. */
-
-.close-button {
-  display: none;
+.leaflet-bar a {
+  color: #514a3e;
+  background: var(--surface);
 }
 
-
-
-
-/* Значок внешней ссылки рядом с источником. */
-
-
-
-
-.source-link-icon {
-  transition: transform 0.3s;
-  width: 16px;
-  height: 16px;
-}
-
-/* Значок внешней ссылки рядом с источником. Эти значения применяются при наведении мыши. */
-
-.source-link-icon:hover {
-  transform: scale(1.2);
-}
-/* На узком экране карта занимает всю ширину, а панель открывается поверх неё. */
-/* Настройки для окна шириной 1000 пикселей и меньше. Здесь переопределяются только перечисленные свойства. */
-@media (max-width: 1000px) {
-  /* Значок внешней ссылки рядом с источником. */
-  .source-link-icon {
-    width: 2vw;
-    height: 2vw;
-    padding-left: 5px;
+/* На экранах от 1001 px. */
+@media (min-width: 1001px) {
+  .map-layout .map-container {
+    width: calc(100% - var(--map-panel-width));
+    transition: width 280ms ease;
   }
-  /* Мобильная панель фильтров и описания выбранного памятника. */
-  .info-text {
-    position: fixed;
-    top: calc(var(--header-height) + 12px);
-    left: 12px;
-    right: 12px;
-    margin: 0;
-    padding: 52px 12px 12px;
-    /* Нижняя граница ширины. Значение 0 позволяет элементу сжиматься даже при длинном тексте. */
-    min-width: 0;
-    box-sizing: border-box;
-    max-height: calc(100dvh - var(--header-height) - var(--footer-height) - 24px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    /* contain не передаёт прокрутку родительскому блоку при достижении края панели. */
-    overscroll-behavior: contain;
-    display: block;
-    font-size: 16px;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-    background-color: #EFEBDD;
-    border: 2px solid var(--frame-color);
-    border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(59, 47, 29, 0.18);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-}
-  /* Видимая мобильная панель: класс show добавляется при открытии. */
-  .info-text.show {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease, visibility 0s linear;
+  .map-layout .filters-popup-container {
+    width: var(--map-panel-width);
+    right: 0;
+    margin-left: 0;
+    transition: transform 280ms ease, visibility 0s;
   }
-
-  /* Кнопка закрытия мобильной панели и изображение крестика. */
-
-  .close-button {
+  .map-panel-toggle {
     display: grid;
     place-items: center;
-    position: fixed;
-    width: 44px;
-    height: 44px;
-    top: calc(var(--header-height) + 16px);
-    right: 16px;
+    right: var(--map-panel-width);
+    transform: translateY(-50%);
+    z-index: 10;
     padding: 0;
-    border: 0;
-    border-radius: 8px;
-    background: #EFEBDD;
     cursor: pointer;
-    z-index: 10000;
+    transition: right 280ms ease, background-color 150ms ease;
   }
-
-  /* Кнопка закрытия мобильной панели и изображение крестика. */
-
-  .close-icon {
-    width: 20px;
-    height: auto;
-    cursor: pointer;
+  .map-panel-toggle:focus-visible {
+    outline: 3px solid #a77a32;
+    outline-offset: 2px;
   }
-
-
-  .map-page-container {
-    display: flex;
+  .map-layout--collapsed .map-container {
     width: 100%;
-    overflow-y: auto;
   }
-
-  /* Кнопка открытия панели карты на узком экране. */
-
-  .filter-popup-button-mobile {
-    display: block;
-    position: absolute;
-    top: 2vh;
-    right: 2vw;
-    z-index: 9999;
-    background-color: #DBB86B;
-    color: #000000;
-    border: none;
-    padding: 1vh 3vw;
-    font-size: calc(0.9vw + 0.9vh);
-    line-height: 1.5;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s;
+  .map-layout--collapsed .filters-popup-container {
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 280ms ease, visibility 0s 280ms;
   }
-
-  /* Кнопка открытия панели карты на узком экране. Эти значения применяются при наведении мыши. */
-
-  .filter-popup-button-mobile:hover {
-    background-color: #DBB86B;
-    transform: scale(1.05);
+  .map-layout--collapsed .map-panel-toggle {
+    right: 0;
   }
+}
 
+/* На экранах до 1000 px. */
+@media (max-width: 1000px) {
   .map-container {
-    position: absolute;
-    flex-grow: 1;
     width: 100%;
-    height: 100%;
-    z-index: 0;
   }
-
-  /* Размер области, в которой библиотека Leaflet рисует карту. */
-
-  .leaflet-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  .filters-popup-container {
-    display: none;
-  }
-
-  .info-text .filters-buttons-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    height: auto;
-  }
-
-  .info-text .monument-filter-button,
-  .info-text .monument-popup-button {
-    flex: 1 1 0;
-    width: auto;
-    min-width: 0;
-    min-height: 44px;
-    height: auto;
-    margin: 0;
-    padding: 8px;
-    font-size: 16px;
-  }
-
-  /* Прокручивается вся мобильная панель, а не отдельные блоки внутри неё. */
-  .info-text .filter-content,
-  .info-text .popup-content {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    max-height: none;
-    overflow: visible;
-    margin: 12px 0 0;
-    padding: 12px;
-    text-align: left;
-    font-size: 16px;
-  }
-
-  .info-text .filter-content {
-    flex-basis: 100%;
-    margin-top: 0;
-  }
-
-  .info-text .monument-type-button,
-  .info-text .monument-date-button,
-  .info-text .monument-custom-category-button,
-  .info-text .clear-all-filters-button {
-    width: 100%;
-    min-height: 44px;
-    padding: 8px 12px;
-    font-size: 16px;
-    text-align: left;
-  }
-
-  .info-text .dropdown-content {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .info-text .checkbox-item label,
-  .info-text p strong,
-  .info-text .dating-button,
-  .info-text .category-button,
-  .info-text .custom-category-button {
-    font-size: 16px;
-  }
-
-  .info-text .checkbox-item label {
-    display: inline-block;
-    min-width: 0;
-    padding: 6px 0;
-  }
-
-  .info-text .checkbox-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .info-text .checkbox-item input {
-    flex-shrink: 0;
-    margin-top: 12px;
-  }
-
-  .info-text .popup-content ul {
-    padding-left: 20px;
-  }
-
-  .info-text img {
-    max-width: 100%;
+  .map-layout {
+    --map-panel-width: 0px;
   }
 }

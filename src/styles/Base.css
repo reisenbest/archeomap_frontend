@@ -1,0 +1,73 @@
+/* Шрифты, фон страницы и базовые правила для текста и элементов управления. */
+
+/* Два начертания шрифта из файлов проекта. */
+@font-face {
+  font-family: "Pixel-Ultima-Bold";
+  src: local("Pixel-Ultima-Bold"),
+    url("../fonts/pixel-ultima-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Pixel-Ultima-Regular";
+  src: local("Pixel-Ultima-Regular"),
+    url("../fonts/pixel-ultima-regular.ttf") format("truetype");
+}
+
+code {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Размер выделенных подписей. В карточках есть отдельные уточнения. */
+p strong {
+  font-weight: bold;
+  color: #000000;
+  font-size: calc(0.8vw + 0.8vh);
+}
+
+/* Убираем стандартный отступ браузера. */
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  font-family: var(--ui-font);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+#root {
+  height: 100%;
+  font-family: var(--ui-font);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+button,
+input,
+select {
+  font-family: var(--ui-font);
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Обводка для переходов по интерфейсу с клавиатуры. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: #e6d4b9;
+}
+
+/* Единый вид полос прокрутки. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #bdb4a4 transparent;
+}

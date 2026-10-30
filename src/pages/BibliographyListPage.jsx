@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import useBibliographyData from '../components/useBibliographyData';
 import BibliographyList from '../components/BibliographyList';
 import { Link } from 'react-router-dom';
-import '../styles/BibliographyListPage.css';
 
 function BibliographyListPage() {
   const { organizedBibliography } = useBibliographyData();

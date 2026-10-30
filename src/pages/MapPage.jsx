@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polygon, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import '../styles/MapPage.css';
 import useMonumentsData from '../components/useMonumentsData';
 import FilterPopupPage from './FilterPopupPage';
 import { Link } from 'react-router-dom';
