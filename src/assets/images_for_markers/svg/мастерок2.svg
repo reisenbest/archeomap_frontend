@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Мастерок · диагональный" color="#242722">
+  <title>Мастерок · диагональный</title>
+  <g fill="currentColor" stroke="none">
+<g transform="rotate(-33 64 64)">
+<path d="M64 9 C55 28 45 47 40 70 Q64 82 88 70 C83 47 73 28 64 9 Z"/>
+<path d="M60 74 H68 V88 H60 Z"/>
+<rect x="55" y="86" width="18" height="34" rx="8"/>
+<rect x="54" y="83" width="20" height="8" rx="2"/>
+</g>
+</g>
+</svg>

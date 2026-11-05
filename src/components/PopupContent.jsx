@@ -9,6 +9,7 @@ import { API_BASE_URL } from '../config.jsx';
 import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import LinkLogo from '../assets/link-icon.png';
+import MonumentArticle from './article/MonumentArticle';
 
 const PopupContent = ({ markerInfo }) => {
   // sliderVisible хранит, открыт ли просмотр фотографий; currentIndex — номер фото, начиная с нуля.
@@ -63,7 +64,7 @@ const PopupContent = ({ markerInfo }) => {
       <div className='monument-description'>
         <p><strong>Описание:</strong></p>
         {/* Описание приходит как HTML с форматированием. Передавайте сюда только очищенную на сервере разметку: React вставляет её напрямую. */}
-        <div dangerouslySetInnerHTML={{ __html: markerInfo.description }} />
+        <MonumentArticle key={markerInfo.id} html={markerInfo.description} compact />
       </div>
       
       {/* <div className='monument-authors'>

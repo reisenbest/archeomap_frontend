@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Мастерок · остриём вверх" color="#242722">
+  <title>Мастерок · остриём вверх</title>
+  <g fill="currentColor" stroke="none">
+<path d="M64 9 C56 26 40 46 30 67 Q64 82 98 67 C88 46 72 26 64 9 Z"/>
+<path d="M59 73 H69 V90 H59 Z"/>
+<rect x="55" y="84" width="18" height="34" rx="8"/>
+<rect x="53" y="83" width="22" height="7" rx="2"/>
+</g>
+</svg>

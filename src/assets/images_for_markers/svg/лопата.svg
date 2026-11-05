@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Лопата" color="#242722">
+  <title>Лопата</title>
+  <g fill="currentColor" stroke="none">
+<path fill-rule="evenodd" d="M64 7 C78 7 83 17 83 25 V38 H45 V25 C45 17 50 7 64 7 Z M64 17 C58 17 55 22 55 27 V30 H73 V27 C73 22 70 17 64 17 Z"/>
+<rect x="59" y="35" width="10" height="52" rx="3"/>
+<path d="M40 79 H88 V94 C88 108 75 119 64 122 C53 119 40 108 40 94 Z"/>
+<path d="M37 77 H91 V84 H37 Z"/>
+</g>
+</svg>

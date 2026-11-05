@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 760" width="800" height="760">
+<rect width="100%" height="100%" fill="#F4EFE7"/>
+<text x="40" y="48" font-size="28" font-family="Georgia, serif" fill="#2F2A26">Пакет SVG-иконок</text>
+<text x="40" y="76" font-size="16" font-family="Arial, sans-serif" fill="#6F6258">Археологическая карта Санкт-Петербурга</text>
+<rect x="40" y="100" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(78,118) scale(1.0)">
+<path fill="#2F2A26" d="M32 4 L48 16 L56 30 L48 44 L32 60 L16 44 L8 30 L16 16 Z"/>
+  <path fill="rgba(255,255,255,0.0)" d=""/>
+  <path fill="#ffffff00" d=""/>
+  <path fill="none" stroke="#EDE7DD" stroke-width="0" d=""/>
+  <path fill="none" stroke="#F4EFE7" stroke-width="0" d=""/>
+  <path fill="none" stroke="#000000" stroke-width="0" d=""/>
+  <path fill="none" stroke="#000000" stroke-width="0" d=""/>
+  <path fill="#7A5946" opacity="0.85" d="M32 11 L42 22 L45 30 L42 38 L32 51 L22 38 L19 30 L22 22 Z"/>
+</g>
+<text x="110" y="205" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Каменный век</text>
+<rect x="220" y="100" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(258,118) scale(1.0)">
+<circle cx="32" cy="9" r="4" fill="#2E607C"/>
+  <rect x="29" y="13" width="6" height="22" rx="3" fill="#2E607C"/>
+  <path fill="#2E607C" d="M20 27 C20 38 24 48 32 53 C40 48 44 38 44 27 L50 27 C50 41 44 53 32 60 C20 53 14 41 14 27 Z"/>
+  <path fill="#2E607C" d="M15 42 C12 42 9 41 8 38 C12 37 16 34 19 30 L24 33 C22 39 19 42 15 42 Z"/>
+  <path fill="#2E607C" d="M49 42 C52 42 55 41 56 38 C52 37 48 34 45 30 L40 33 C42 39 45 42 49 42 Z"/>
+  <rect x="23" y="23" width="18" height="5" rx="2.5" fill="#2E607C"/>
+</g>
+<text x="290" y="205" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Якорь</text>
+<rect x="400" y="100" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(438,118) scale(1.0)">
+<path fill="#2F2A26" d="M32 6 C38 10 44 20 44 30 C44 38 39 43 32 46 C25 43 20 38 20 30 C20 20 26 10 32 6 Z"/>
+  <rect x="28" y="46" width="8" height="4" rx="1" fill="#2F2A26"/>
+  <rect x="24" y="50" width="16" height="4" rx="1" fill="#7A5946"/>
+  <path fill="#7A5946" d="M24 54 C24 60 28 62 32 62 C36 62 40 60 40 54 L40 54 L38 54 L38 42 L26 42 L26 54 Z" transform="translate(0,0)"/>
+  <circle cx="32" cy="57" r="2.3" fill="#E8DED1"/>
+</g>
+<text x="470" y="205" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Мастерок</text>
+<rect x="580" y="100" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(618,118) scale(1.0)">
+<path fill="#8F3E36" d="M28 6 H36 V24 H52 V32 H36 V58 H28 V32 H12 V24 H28 Z"/>
+</g>
+<text x="650" y="205" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Крест</text>
+<rect x="40" y="260" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(78,278) scale(1.0)">
+<path fill="#2F2A26" d="M16 12 H22 V18 H26 V12 H32 V18 H38 V12 H42 V18 H48 V60 H16 Z"/>
+  <path fill="#E8DED1" d="M27 39 C27 31 30 26 32 26 C34 26 37 31 37 39 V60 H27 Z"/>
+</g>
+<text x="110" y="365" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Зубчатая башня</text>
+<rect x="220" y="260" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(258,278) scale(1.0)">
+<path fill="#2F2A26" fill-rule="evenodd" d="M32 5 L40 16 L54 16 L48 28 L58 38 L46 42 L44 56 L32 50 L20 56 L18 42 L6 38 L16 28 L10 16 L24 16 Z
+  M32 17 L27 24 L18 24 L22 31 L15 38 L24 40 L25 49 L32 45 L39 49 L40 40 L49 38 L42 31 L46 24 L37 24 Z"/>
+</g>
+<text x="290" y="365" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Бастион</text>
+<rect x="400" y="260" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(438,278) scale(1.0)">
+<path fill="#2F2A26" d="M8 22 L32 8 L56 22 L52 28 H12 Z"/>
+  <rect x="12" y="50" width="40" height="6" fill="#2F2A26"/>
+  <rect x="16" y="30" width="6" height="20" rx="1" fill="#2F2A26"/>
+  <rect x="26" y="30" width="6" height="20" rx="1" fill="#2F2A26"/>
+  <rect x="36" y="30" width="6" height="20" rx="1" fill="#2F2A26"/>
+  <rect x="46" y="30" width="6" height="20" rx="1" fill="#2F2A26"/>
+  <rect x="14" y="26" width="36" height="3" fill="#2F2A26"/>
+</g>
+<text x="470" y="365" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Фронтон</text>
+<rect x="580" y="260" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(618,278) scale(1.0)">
+<ellipse cx="24" cy="26" rx="10" ry="6" fill="none" stroke="#2F2A26" stroke-width="4"/>
+  <ellipse cx="40" cy="26" rx="10" ry="6" fill="none" stroke="#2F2A26" stroke-width="4"/>
+  <ellipse cx="32" cy="40" rx="12" ry="7" fill="none" stroke="#2F2A26" stroke-width="4"/>
+</g>
+<text x="650" y="365" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Монеты</text>
+<rect x="40" y="420" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(78,438) scale(1.0)">
+<path fill="#2F2A26" d="M10 22 C20 12 32 10 52 16 C50 20 49 25 54 31 C49 40 43 47 34 54 C25 53 15 48 10 40 C14 34 15 28 10 22 Z"/>
+  <path d="M19 36 C25 33 30 31 39 30" stroke="#7A5946" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+  <path d="M24 43 C31 40 38 38 45 38" stroke="#7A5946" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+</g>
+<text x="110" y="525" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Черепок</text>
+<rect x="220" y="420" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(258,438) scale(1.0)">
+<circle cx="28" cy="28" r="14" fill="none" stroke="#2F2A26" stroke-width="6"/>
+  <rect x="37" y="37" width="18" height="7" rx="3.5" transform="rotate(45 37 37)" fill="#7A5946"/>
+</g>
+<text x="290" y="525" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Лупа</text>
+<rect x="400" y="420" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(438,438) scale(1.0)">
+<rect x="22" y="42" width="20" height="10" rx="2" fill="#2F2A26"/>
+  <path fill="#2F2A26" d="M32 12 C41 18 44 24 44 32 C44 38 39 42 32 42 C25 42 20 38 20 32 C20 24 23 18 32 12 Z"/>
+  <rect x="30.5" y="4" width="3" height="12" fill="#8F3E36"/>
+  <rect x="26" y="8.5" width="12" height="3" fill="#8F3E36"/>
+</g>
+<text x="470" y="525" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Купол</text>
+<rect x="580" y="420" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(618,438) scale(1.0)">
+<rect x="16" y="50" width="32" height="6" fill="#2F2A26"/>
+  <rect x="22" y="44" width="20" height="6" fill="#7A5946"/>
+  <circle cx="32" cy="18" r="5" fill="#2F2A26"/>
+  <path fill="#2F2A26" d="M29 24 L35 24 L38 38 L34 42 L34 44 L26 44 L26 42 L22 38 Z"/>
+  <path fill="#2F2A26" d="M23 30 L18 37 L22 40 L27 33 Z"/>
+  <path fill="#2F2A26" d="M41 28 L46 36 L43 40 L37 33 Z"/>
+</g>
+<text x="650" y="525" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Статуя</text>
+<rect x="40" y="580" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(78,598) scale(1.0)">
+<rect x="29" y="8" width="6" height="22" rx="3" fill="#7A5946"/>
+  <path fill="#7A5946" d="M26 8 C26 3 38 3 38 8 V13 H34 V9 C34 7 30 7 30 9 V13 H26 Z"/>
+  <rect x="28" y="30" width="8" height="4" rx="1" fill="#2F2A26"/>
+  <path fill="#2F2A26" d="M32 60 C22 56 18 48 18 40 C18 34 22 29 32 24 C42 29 46 34 46 40 C46 48 42 56 32 60 Z"/>
+</g>
+<text x="110" y="685" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Лопата</text>
+<rect x="220" y="580" width="140" height="120" rx="18" fill="#EFE7DC" stroke="#D9CFC2"/>
+<g transform="translate(258,598) scale(1.0)">
+<path fill="none" stroke="#2F2A26" stroke-width="6" stroke-linejoin="round" d="M10 44 L10 26 L20 26 L20 34 L30 34 L30 20 L42 20 L42 28 L54 28 L54 44"/>
+  <path fill="none" stroke="#7A5946" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8" d="M10 44 L54 44"/>
+  <path fill="#2F2A26" d="M18 26 L22 18 L27 23 L32 17 L37 20 L42 13 L47 18 L46 28 L42 28 L42 20 L30 20 L30 34 L20 34 L20 26 Z" opacity="0.75"/>
+</g>
+<text x="290" y="685" text-anchor="middle" font-size="13" font-family="Arial, sans-serif" fill="#2F2A26">Руинированный фундамент</text>
+</svg>

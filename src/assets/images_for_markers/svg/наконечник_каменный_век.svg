@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Каменный век · наконечник" color="#242722">
+  <title>Каменный век · наконечник</title>
+  <g fill="currentColor" stroke="none">
+<path d="M64 12
+ C55 12 50 20 46 29
+ C43 35 39 41 36 49
+ C33 58 29 64 26 73
+ C22 84 19 92 19 101
+ C19 108 22 113 28 113
+ C33 113 35 107 41 105
+ C49 102 55 104 57 108
+ C59 112 54 114 50 117
+ Q48 119 48 124
+ Q64 123 80 124
+ Q80 119 78 117
+ C74 114 69 112 71 108
+ C73 104 79 102 87 105
+ C93 107 95 113 100 113
+ C106 113 109 108 109 101
+ C109 92 106 84 102 73
+ C99 64 95 58 92 49
+ C89 41 85 35 82 29
+ C78 20 73 12 64 12 Z"
+ fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Якорь" color="#242722">
+  <title>Якорь</title>
+  <g fill="currentColor" stroke="none">
+<circle cx="64" cy="19" r="10.5" fill="none" stroke="currentColor" stroke-width="8"/>
+<rect x="59" y="29" width="10" height="75" rx="4"/>
+<path d="M39 48 H89" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+<path d="M23 76 C27 96 41 108 64 108 C87 108 101 96 105 76" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+<path d="M17 74 L37 82 L22 96 Z M111 74 L91 82 L106 96 Z"/>
+</g>
+</svg>

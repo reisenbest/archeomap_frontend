@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Руинированный фундамент" color="#242722">
+  <title>Руинированный фундамент</title>
+  <g fill="currentColor" stroke="none">
+<path d="M24 27 H89 V43 M89 54 V65 M89 79 V95 H73 M60 103 H46 M32 103 H24 V85 M24 72 V27" fill="none" stroke="currentColor" stroke-width="10" stroke-linejoin="bevel" stroke-linecap="square"/>
+<path d="M29 58 H54 V80" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M99 40 L112 45 L107 55 L98 51 Z M95 104 L109 98 L114 107 L102 114 Z M12 104 L22 108 L18 117 L8 113 Z M58 112 L70 110 L73 119 L57 121 Z"/>
+</g>
+</svg>

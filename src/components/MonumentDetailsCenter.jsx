@@ -4,8 +4,9 @@
  * Меняя поля карточки, проверьте также PopupContent, если изменения нужны и на карте.
  */
 
-import React, { useEffect, useState } from 'react';
-import { API_BASE_URL } from '../config.jsx';
+import React, { useEffect, useMemo, useState } from 'react';
+import { API_BASE_URL, ENABLE_MONUMENT_ARTICLES } from '../config.jsx';
+import MonumentArticle, { hasArticle } from './article/MonumentArticle';
 import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import LinkLogo from '../assets/link-icon.png';
@@ -18,6 +19,7 @@ const MonumentDetailsCenter = ({ id }) => {
   // sliderVisible хранит, открыт ли просмотр фотографий; currentIndex — номер фото, начиная с нуля.
   const [sliderVisible, setSliderVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const showArticle = useMemo(() => ENABLE_MONUMENT_ARTICLES && hasArticle(monumentData?.article), [monumentData?.article]);
 
   // При первом открытии и при изменении id запрашиваем выбранный памятник.
   // fetch сам не считает HTTP-ошибку исключением, поэтому отдельно проверяем response.ok.
@@ -72,12 +74,12 @@ const MonumentDetailsCenter = ({ id }) => {
           <button key={index} className="custom-category-button">{custom_category}</button>
         ))}
       </div>
-      <div className='monument-description'>
+      {showArticle ? <MonumentArticle key={id} html={monumentData.article} /> : <div className='monument-description'>
         <p><strong>Описание:</strong></p>
          {/* HTML-описание этой страницы берётся из monumentData.description */}
         {/* Описание приходит как HTML с форматированием. Передавайте сюда только очищенную на сервере разметку: React вставляет её напрямую. */}
-        <div dangerouslySetInnerHTML={{ __html: monumentData.description }} /> 
-      </div>
+        <MonumentArticle key={id} html={monumentData.description} compact />
+      </div>}
       {/* <div className='monument-authors'>
         <p><strong>Авторы:</strong> {monumentData.authors.join(', ')}</p>
       </div> */}
@@ -97,7 +99,7 @@ const MonumentDetailsCenter = ({ id }) => {
         <p><strong>Современное обустройство:</strong> {monumentData.landmark}</p>
       </div>
       {/* Галерея: миниатюры берутся из images, полный адрес фото собирается из API_BASE_URL и image.image. */}
-      <div className="monument-details-section">
+      {!showArticle && <div className="monument-details-section">
         <h3 className="monument-details-section-title">Галерея:</h3>
         <div className="monument-images-container">
           {monumentData.images.map((image, index) => (
@@ -106,7 +108,7 @@ const MonumentDetailsCenter = ({ id }) => {
             </div>
           ))}
         </div>
-      </div>
+      </div>}
 
       {sliderVisible && (
         <div className="photo-slider-overlay">

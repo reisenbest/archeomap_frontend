@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Зубчатая башня" color="#242722">
+  <title>Зубчатая башня</title>
+  <g fill="currentColor" stroke="none">
+<path fill-rule="evenodd" d="M23 15 H38 V29 H49 V15 H79 V29 H90 V15 H105 V40 H99 V113 H29 V40 H23 Z
+M55 113 V89 C55 76 73 76 73 89 V113 Z
+M43 56 H49 V72 H43 Z M79 56 H85 V72 H79 Z"/>
+</g>
+</svg>

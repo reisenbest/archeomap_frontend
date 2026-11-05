@@ -1,0 +1,69 @@
+.monument-article {
+  margin: 28px 0;
+  font-family: var(--ui-font);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+/* Единый шрифт нарратива, даже если TinyMCE сохранил другой inline-шрифт.
+   Размер, цвет, жирность и курсив из редактора остаются без изменений. */
+.monument-article :where(p, div, span, li, ul, ol, blockquote, table, td, th,
+  figcaption, a, strong, em, b, i, u, s, font) {
+  font-family: var(--ui-font) !important;
+}
+
+.monument-article img {
+  max-width: 100% !important;
+  height: auto !important;
+  vertical-align: middle;
+}
+
+.monument-article img[role="button"] { cursor: zoom-in; }
+.monument-article figure { max-width: 100%; margin: 28px 0; }
+.monument-article figure > img { display: block; margin: 0 auto; }
+.monument-article figcaption {
+  margin-top: 12px;
+  color: var(--muted, #666);
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+.monument-article :is(h2, h3, h4) { margin: 28px 0 14px; }
+.monument-article blockquote {
+  margin: 24px 0;
+  padding: 4px 20px;
+  border-left: 3px solid var(--line, #ddd);
+}
+.monument-article table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.monument-article :is(td, th) { padding: 8px; border: 1px solid var(--line, #ddd); }
+.monument-article .article-carousel {
+  margin: 28px 0;
+  padding: 16px;
+  background: var(--surface, #f8f5ef);
+  border: 1px solid var(--line, #ddd);
+  border-radius: 12px;
+}
+.monument-article .article-carousel figure { margin: 0; }
+.monument-article .article-carousel img {
+  width: 100%;
+  height: min(55vh, 520px) !important;
+  object-fit: contain;
+}
+.article-carousel-controls { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 16px; }
+.article-carousel-controls button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line, #ccc);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 24px;
+  cursor: pointer;
+}
+.monument-article :is(button, img[role="button"]):focus-visible { outline: 3px solid #627e98; outline-offset: 4px; }
+.article-image-error { display: block; padding: 24px; color: var(--muted, #666); }
+@media (max-width: 600px) {
+  .monument-article .article-carousel { padding: 10px; }
+  .monument-article .article-carousel img { height: 280px !important; }
+}

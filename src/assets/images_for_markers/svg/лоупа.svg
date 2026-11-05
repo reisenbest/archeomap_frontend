@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Лупа" color="#242722">
+  <title>Лупа</title>
+  <g fill="currentColor" stroke="none">
+<circle cx="54" cy="49" r="29" fill="none" stroke="currentColor" stroke-width="10"/>
+<path d="M76 74 L109 108" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/>
+</g>
+</svg>

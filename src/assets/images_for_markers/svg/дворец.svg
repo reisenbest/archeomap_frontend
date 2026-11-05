@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Дворец · фронтон" color="#242722">
+  <title>Дворец · фронтон</title>
+  <g fill="currentColor" stroke="none">
+<path fill-rule="evenodd" d="M64 12 L116 45 V55 H12 V45 Z M64 26 L91 44 H37 Z"/>
+<rect x="18" y="59" width="92" height="10" rx="1"/>
+<rect x="24" y="73" width="11" height="33" rx="1"/>
+<rect x="47" y="73" width="11" height="33" rx="1"/>
+<rect x="70" y="73" width="11" height="33" rx="1"/>
+<rect x="93" y="73" width="11" height="33" rx="1"/>
+<path d="M19 70 H109 V75 H19 Z M17 106 H111 V116 H17 Z"/>
+</g>
+</svg>

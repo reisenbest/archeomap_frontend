@@ -15,6 +15,7 @@ import GlossaryPage from "./pages/GlossaryPage.jsx";
 import MonumentsListPage from "./pages/MonumentsListPage.jsx";
 import BibliographyListPage from "./pages/BibliographyListPage.jsx";
 import ArticlesPage from "./pages/ArticlesPage.jsx";
+import ArticleDetailsPage from "./pages/ArticleDetailsPage.jsx";
 import AboutProjectPage from "./pages/AboutProjectPage.jsx";
 import AboutAuthorsPage from "./pages/AboutAuthorsPage.jsx";
 import HowToUsePage from "./pages/HowToUsePage.jsx";
@@ -46,6 +47,7 @@ function App() {
           <Route path='/monumentslist' element={<MonumentsListPage />} />
           <Route path='/vocabulary' element={<GlossaryPage />} />
           <Route path='/articles' element={<ArticlesPage />} />
+          <Route path='/articles/:id' element={<ArticleDetailsPage />} />
           <Route path='/bibliographylist' element={<BibliographyListPage />} />
           <Route path='/about-project' element={<AboutProjectPage />} />
           <Route path='/about-authors' element={<AboutAuthorsPage />} />

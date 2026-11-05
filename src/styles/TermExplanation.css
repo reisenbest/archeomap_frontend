@@ -1,0 +1,55 @@
+button.term-trigger {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  text-decoration: underline dotted var(--accent, #72512c);
+  text-underline-offset: 3px;
+}
+.term-trigger__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -1em;
+  vertical-align: baseline;
+  width: 10px;
+  height: 10px;
+  margin-left: -3px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--accent, #72512c);
+  font: 8px/1 sans-serif;
+  text-decoration: none;
+}
+.term-popover {
+  position: fixed;
+  z-index: 12000;
+  box-sizing: border-box;
+  width: 280px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: #EFEBDD;
+  color: #302a21;
+  box-shadow: 0 3px 14px #00000033;
+  font: 12px/1.5 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  overflow-wrap: anywhere;
+}
+.term-popover h2 { margin: 0 18px 8px 0; font: 700 14px/1.4 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+.term-popover__close { position: absolute; right: 2px; top: 2px; width: 28px; height: 28px; padding: 0; border: 0; background: transparent; color: #756d60; font-size: 20px; cursor: pointer; }
+.term-popover__definition p { margin: 0 0 8px; }
+.term-popover__definition a { color: var(--accent, #72512c); text-decoration: underline; }
+.term-popover__footer { margin-top: 10px; display: grid; gap: 2px; }
+.term-popover__footer button { padding: 0; justify-self: start; border: 0; background: transparent; color: #72512c; font: inherit; text-decoration: underline; cursor: not-allowed; }
+.term-popover__footer span { font-size: 10px; color: #6c6255; }
+.term-trigger:focus-visible, .term-popover button:focus-visible { outline: 2px solid var(--accent, #72512c); outline-offset: 3px; }

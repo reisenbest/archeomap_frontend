@@ -3,8 +3,10 @@
  * Leaflet рисует карту, react-leaflet позволяет управлять ею через компоненты React.
  * Положение карты задаётся в MapContainer, цвета точек — в markerIcon, оформление — в MapPage.css.
  */
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polygon, useMap } from 'react-leaflet';
+import React, { useState, useEffect, useCallback } from 'react';
+import { MapContainer, Marker, Popup, Polygon, useMap } from 'react-leaflet';
+import MapBasemap, { BASEMAPS, readBasemap, saveBasemap } from '../components/MapBasemap';
+import MapCoordinates from '../components/MapCoordinates';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMonumentsData from '../components/useMonumentsData';
@@ -12,17 +14,18 @@ import FilterPopupPage from './FilterPopupPage';
 import { Link } from 'react-router-dom';
 import closeMenuIcon from '../assets/close-icon.png';
 
-import redMarker from '../assets/minimarker_red.png';
+import redMarker from '../assets/images_for_markers/svg/кучка черепов черные.svg';
 import yellowMarker from '../assets/minimarker_yellow.png';
 import blueMarker from '../assets/minimarker_blue.png';
 import greenMarker from '../assets/minimarker_green.png';
 
 // Обычные значки: цвет выбирается по данным памятника.
+// К координатам привязан центр значка: iconAnchor равен половине iconSize.
 const markerIcon = {
-  'Красный кружок': L.icon({ iconUrl: redMarker, iconSize: [10, 10], iconAnchor: [0, 0] }),
-  'Желтый кружок': L.icon({ iconUrl: yellowMarker, iconSize: [10, 10], iconAnchor: [0, 0] }),
-  'Синий кружок': L.icon({ iconUrl: blueMarker, iconSize: [10, 10], iconAnchor: [0, 0] }),
-  'Зеленый кружок': L.icon({ iconUrl: greenMarker, iconSize: [10, 10], iconAnchor: [0, 0] })
+  'Красный кружок': L.icon({ iconUrl: redMarker, iconSize: [20, 14], iconAnchor: [10, 7] }),
+  'Желтый кружок': L.icon({ iconUrl: yellowMarker, iconSize: [10, 10], iconAnchor: [5, 5] }),
+  'Синий кружок': L.icon({ iconUrl: blueMarker, iconSize: [10, 10], iconAnchor: [5, 5] }),
+  'Зеленый кружок': L.icon({ iconUrl: greenMarker, iconSize: [10, 10], iconAnchor: [5, 5] })
 };
 
 // Для каждого значка один раз создаём вариант с подсветкой.
@@ -63,6 +66,13 @@ function MapResizeSync() {
 }
 
 function MapPage() {
+  const [basemap, setBasemap] = useState(readBasemap);
+  const [basemapNotice, setBasemapNotice] = useState('');
+  const handleBasemapUnavailable = useCallback(() => {
+    setBasemap('osm');
+    setBasemapNotice('Выбранная подложка недоступна в этом браузере. Включена OpenStreetMap.');
+  }, []);
+
   // Получаем массив памятников, доступные варианты фильтров и функции для изменения выбора.
   const {
     monuments,
@@ -148,6 +158,17 @@ function MapPage() {
         </button>
       </div>
       <div className="map-container">
+        <div className="map-basemap-control">
+          <label htmlFor="map-basemap">Подложка карты</label>
+          <select id="map-basemap" value={basemap} onChange={event => {
+            setBasemap(event.target.value);
+            saveBasemap(event.target.value);
+            setBasemapNotice('');
+          }}>
+            {BASEMAPS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+          </select>
+          {basemapNotice && <span className="map-basemap-notice" role="status">{basemapNotice}</span>}
+        </div>
         {/* center — [широта, долгота], zoom — начальное приближение, minZoom — предел отдаления. maxBounds ограничивает перемещение. */}
         <MapContainer 
           center={[59.95, 30.15]} 
@@ -158,11 +179,8 @@ function MapPage() {
           maxBoundsViscosity={1.0}
         >
           <MapResizeSync />
-          {/* Подложка карты загружается небольшими картинками из OpenStreetMap. {z}, {x}, {y} библиотека заменяет координатами плитки. */}
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
+          <MapCoordinates />
+          <MapBasemap value={basemap} onUnavailable={handleBasemapUnavailable} />
           {/* Выбранной точке даём значок с подсветкой и повышаем её слой.
               Если тип значка неизвестен, используем красный. */}
           {filteredMarkers.map(monument => (

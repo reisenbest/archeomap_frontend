@@ -16,7 +16,7 @@ const Header = () => {
   const isMonumentListActive = useMatch('/monumentslist');
   const isBibliographyListActive = useMatch('/bibliographylist');
   const isVocabularyActive = useMatch('/vocabulary');
-  const isArticleActive = useMatch('/articles');
+  const isArticleActive = useMatch('/articles/*');
   const isNewsActive = useMatch('/news');
 
   // false — компактное меню закрыто. При нажатии меняем состояние; класс open включает стили открытого меню.
@@ -41,9 +41,8 @@ const Header = () => {
             <li><Link to="/map" className={isMapActive ? "nav-link active" : "nav-link"}>Карта</Link></li>
             <li><Link to="/monumentslist" className={isMonumentListActive ? "nav-link active" : "nav-link"}>Список памятников</Link></li>
             <li><Link to="/bibliographylist" className={isBibliographyListActive ? "nav-link active" : "nav-link"}>Источники</Link></li>
-            {/* Эти три ссылки отключены комментарием. Для включения удалите обёртку комментария у нужной ссылки. */}
-            {/* <li><Link to="/vocabulary" className={isVocabularyActive ? "nav-link active" : "nav-link"}>Словарь</Link></li> */}
-            {/* <li><Link to="/articles" className={isArticleActive ? "nav-link active" : "nav-link"}>Статьи</Link></li> */}
+            <li><Link to="/vocabulary" onClick={() => setIsMenuOpen(false)} className={isVocabularyActive ? "nav-link active" : "nav-link"}>Словарь</Link></li>
+            <li><Link to="/articles" onClick={() => setIsMenuOpen(false)} className={isArticleActive ? "nav-link active" : "nav-link"}>Статьи</Link></li>
             {/* <li><Link to="/news" className={isNewsActive ? "nav-link active" : "nav-link"}>Новости</Link></li> */}
           </ul>
           
